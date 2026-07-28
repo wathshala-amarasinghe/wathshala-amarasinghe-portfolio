@@ -1,65 +1,168 @@
-import Image from "next/image";
+import { ArrowUpRight, Mail } from "lucide-react";
+
+import GSAPReveal from "@/components/animations/GSAPReveal";
+import { Container } from "@/components/layout/Container";
+import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Tag } from "@/components/ui/Tag";
+import {
+  personalInformation,
+  projectCategories,
+  services,
+  socialLinks,
+} from "@/data/portfolio";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main id="main-content" tabIndex={-1}>
+      <section
+        aria-labelledby="home-heading"
+        className="background-grid flex min-h-[calc(82svh-var(--header-height))] items-center py-20"
+        id="home"
+      >
+        <Container>
+          <GSAPReveal className="max-w-4xl">
+            <Tag>UI/UX and product design portfolio</Tag>
+            <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+              {personalInformation.title}
+            </p>
+            <h1
+              className="mt-4 font-heading text-5xl font-semibold leading-[1.05] tracking-[-0.045em] text-primary sm:text-6xl lg:text-7xl"
+              id="home-heading"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              I&apos;m {personalInformation.name}. I turn complex ideas into
+              clear digital experiences.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-secondary">
+              {personalInformation.introduction}
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Button href="/#projects">
+                Explore projects <ArrowUpRight aria-hidden size={18} />
+              </Button>
+              <Button
+                href={`mailto:${personalInformation.email}`}
+                variant="secondary"
+              >
+                <Mail aria-hidden size={18} /> Get in touch
+              </Button>
+            </div>
+          </GSAPReveal>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="about-heading"
+        className="section-space border-y border-border bg-secondary-background"
+        id="about"
+      >
+        <Container>
+          <SectionHeading
+            description="Wathshala works across research, wireframing, prototyping, design systems, and frontend collaboration to shape clear and usable product experiences."
+            eyebrow="About"
+            headingId="about-heading"
+            title="Design thinking with implementation in view."
+          />
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="services-heading"
+        className="section-space"
+        id="services"
+      >
+        <Container>
+          <SectionHeading
+            description="A focused set of capabilities supporting product teams from early thinking through delivery."
+            eyebrow="Services"
+            headingId="services-heading"
+            title="From product questions to coherent interfaces."
+          />
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {services.map((service) => (
+              <article
+                className="rounded-card border border-border bg-card p-6"
+                key={service.title}
+              >
+                <h3 className="font-heading text-xl font-semibold text-primary">
+                  {service.title}
+                </h3>
+                <p className="mt-3 leading-7 text-secondary">
+                  {service.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="experience-heading"
+        className="section-space border-y border-border bg-secondary-background"
+        id="experience"
+      >
+        <Container>
+          <SectionHeading
+            description="Professional work focused on UI/UX design and associate UI/UX development, with experience details reserved for verified CV content."
+            eyebrow="Experience"
+            headingId="experience-heading"
+            title="Product design and frontend collaboration."
+          />
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="projects-heading"
+        className="section-space"
+        id="projects"
+      >
+        <Container>
+          <SectionHeading
+            description="Portfolio work spans real healthcare, FinTech, and corporate product contexts. Detailed case studies will use only verified source material."
+            eyebrow="Projects"
+            headingId="projects-heading"
+            title="Work grounded in real product contexts."
+          />
+          <div className="mt-6 flex flex-wrap gap-2">
+            {projectCategories.map((category) => (
+              <Tag key={category.id}>{category.label}</Tag>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="contact-heading"
+        className="section-space border-t border-border bg-secondary-background"
+        id="contact"
+      >
+        <Container className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <SectionHeading
+            description="For UI/UX, product-design, or frontend collaboration opportunities, contact Wathshala directly by email."
+            eyebrow="Contact"
+            headingId="contact-heading"
+            title="Let’s discuss thoughtful digital products."
+          />
+          <div className="flex flex-wrap gap-3">
+            <Button href={`mailto:${personalInformation.email}`}>
+              <Mail aria-hidden size={18} /> Email Wathshala
+            </Button>
+            {socialLinks
+              .filter((link) => link.href.startsWith("https://"))
+              .map((link) => (
+                <Button
+                  href={link.href}
+                  key={link.label}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  variant="text"
+                >
+                  {link.label} <ArrowUpRight aria-hidden size={16} />
+                </Button>
+              ))}
+          </div>
+        </Container>
+      </section>
+    </main>
   );
 }
