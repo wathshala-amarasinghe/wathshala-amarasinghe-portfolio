@@ -2,8 +2,10 @@
 
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { TiltCard } from "@/components/ui/TiltCard";
 
-const projects = [
+const defaultProjects = [
   {
     title: "E-Commerce Redesign",
     category: "Web Design",
@@ -32,8 +34,10 @@ const projects = [
 
 export function PortfolioSection({
   hideHeader = false,
+  projects = defaultProjects,
 }: {
   hideHeader?: boolean;
+  projects?: any[];
 }) {
   return (
     <section
@@ -74,10 +78,12 @@ export function PortfolioSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer"
+              className="group cursor-pointer perspective-1000"
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
+              <Link href={`/work/${project.slug || "e-commerce-platform"}`}>
+              <TiltCard className="relative overflow-hidden rounded-2xl h-full block">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
@@ -91,6 +97,8 @@ export function PortfolioSection({
                   {project.title}
                 </h3>
               </div>
+            </TiltCard>
+            </Link>
             </motion.div>
           ))}
         </div>

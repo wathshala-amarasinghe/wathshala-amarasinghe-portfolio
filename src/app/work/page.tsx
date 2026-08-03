@@ -3,12 +3,24 @@ import { Footer } from "@/components/layout/Footer";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { MarqueeSection } from "@/components/sections/about/MarqueeSection";
 
+import { getMdxData } from "@/lib/mdx";
+
 export const metadata = {
   title: "Work | Wathshala Amarasinghe",
   description: "View my latest web design and development projects.",
 };
 
 export default function WorkPage() {
+  const mdxProjects = getMdxData("work");
+  
+  // Map MDX data to match the PortfolioSection expected format
+  const projects = mdxProjects.map(p => ({
+    title: p.frontmatter.title,
+    category: p.frontmatter.category,
+    image: p.frontmatter.image,
+    slug: p.slug
+  }));
+
   return (
     <>
       <Navbar />
@@ -22,7 +34,7 @@ export default function WorkPage() {
             ideas to life.
           </p>
         </div>
-        <PortfolioSection hideHeader={true} />
+        <PortfolioSection hideHeader={true} projects={projects} />
         <MarqueeSection />
       </main>
       <Footer />
