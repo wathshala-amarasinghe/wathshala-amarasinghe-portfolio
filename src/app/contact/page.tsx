@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { motion } from "motion/react";
 import { ArrowUpRight, Compass } from "lucide-react";
+import { ContactForm } from "@/components/sections/contact/ContactForm";
 
 // Custom SVG icons for social media
 const InstagramIcon = ({ size = 24 }: { size?: number }) => (
@@ -134,30 +135,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="border border-white/5 p-8 bg-[#0a0a0a]/80 backdrop-blur-sm rounded-sm mb-6"
             >
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="text"
-                  placeholder="NAME"
-                  className="w-full bg-[#151515] px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:text-foreground/30 text-xs tracking-widest uppercase"
-                />
-                <input
-                  type="email"
-                  placeholder="EMAIL"
-                  className="w-full bg-[#151515] px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:text-foreground/30 text-xs tracking-widest uppercase"
-                />
-                <textarea
-                  rows={5}
-                  placeholder="MESSAGE"
-                  className="w-full bg-[#151515] px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:text-foreground/30 resize-none text-xs tracking-widest uppercase"
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full uppercase tracking-widest text-xs h-12 text-black bg-gold hover:bg-gold-light mt-2 rounded-sm"
-                >
-                  Send Message
-                </Button>
-              </form>
+              <ContactForm />
             </motion.div>
 
             <motion.div
