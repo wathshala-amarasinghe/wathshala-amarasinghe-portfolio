@@ -5,9 +5,14 @@ import { MarqueeSection } from "@/components/sections/about/MarqueeSection";
 
 import { getMdxData } from "@/lib/mdx";
 
-export const metadata = {
-  title: "Work | Wathshala Amarasinghe",
-  description: "View my latest web design and development projects.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Work & Case Studies",
+  description: "A selection of UI/UX design and development projects spanning healthcare systems, FinTech, and enterprise web applications by Wathshala Amarasinghe.",
+  alternates: {
+    canonical: "/work",
+  },
 };
 
 export default function WorkPage() {
@@ -30,8 +35,7 @@ export default function WorkPage() {
             Work
           </h1>
           <p className="text-foreground/60 max-w-sm mx-auto font-light text-sm md:text-base leading-relaxed">
-            My latest web design projects and see how we can help bring your
-            ideas to life.
+            A selection of UI/UX design and development projects spanning healthcare systems, FinTech, and enterprise web applications.
           </p>
         </div>
         <PortfolioSection hideHeader={true} projects={projects} />

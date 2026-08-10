@@ -3,9 +3,9 @@
 import { motion } from "motion/react";
 
 const stats = [
-  { label: "Client Satisfaction", value: "100%" },
   { label: "Years Experience", value: "4+" },
-  { label: "Projects Completed", value: "50+" },
+  { label: "Projects Completed", value: "10+" },
+  { label: "Enterprise Systems Designed", value: "5+" },
 ];
 
 export function StatsSection() {

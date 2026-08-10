@@ -13,7 +13,7 @@ export function MarqueeSection() {
         {[...Array(30)].map((_, i) => (
           <div key={i} className="flex items-center space-x-8">
             <span className="text-xs font-serif italic tracking-widest">
-              Let's Talk
+              Let&apos;s Talk
             </span>
             <span className="text-white/10 text-xs tracking-[0.3em]">---</span>
           </div>

@@ -1,29 +1,36 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Monitor, Code, Search, Check } from "lucide-react";
+import { Monitor, Code, Search, Check, Layers } from "lucide-react";
 
 const services = [
   {
     title: "UI/UX Design",
     description:
-      "I craft visually stunning and intuitive interfaces that provide an exceptional user experience and drive engagement.",
+      "Designing intuitive, user-centered digital products through research, wireframing, prototyping, and high-fidelity UI using Figma and Adobe XD.",
     icon: Monitor,
-    features: ["User Research", "Wireframing", "Prototyping"],
+    features: ["User Research", "Wireframing & Prototyping", "High-Fidelity UI"],
   },
   {
-    title: "Web Dev",
+    title: "Front-End Development",
     description:
-      "I build responsive, fast-loading, and SEO-friendly websites tailored to your unique business needs.",
+      "Building responsive, accessible, and performant web interfaces using React.js, Next.js, TypeScript, and Tailwind CSS.",
     icon: Code,
-    features: ["Front-end Development", "Back-end Integration", "CMS Setup"],
+    features: ["React.js / Next.js", "TypeScript & Tailwind CSS", "Responsive & Accessible"],
   },
   {
-    title: "SEO",
+    title: "Design Systems",
     description:
-      "I optimize your website to rank higher in search engines to attract more organic traffic.",
+      "Creating reusable component libraries and structured design systems that ensure consistency, scalability, and faster development.",
+    icon: Layers,
+    features: ["Component Libraries", "Style Guides", "Accessibility (WCAG)"],
+  },
+  {
+    title: "UX Research",
+    description:
+      "Conducting user research and usability testing to validate design decisions and iterate based on real-world usage.",
     icon: Search,
-    features: ["Keyword Research", "On-page Optimization", "Link Building"],
+    features: ["Usability Testing", "User Interviews", "Agile Iteration"],
   },
 ];
 

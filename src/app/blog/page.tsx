@@ -5,9 +5,14 @@ import { getMdxData } from "@/lib/mdx";
 import { BlogGrid } from "@/components/sections/blog/BlogGrid";
 import { ClientMotionDiv } from "@/components/ui/ClientMotionDiv";
 
-export const metadata = {
-  title: "Blog | Wathshala Amarasinghe",
-  description: "Insights and thoughts on web design and development.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog & Insights",
+  description: "Read the latest thoughts, techniques, and philosophies in digital design and web development by Wathshala Amarasinghe.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default function BlogPage() {

@@ -2,9 +2,14 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 
-export const metadata = {
-  title: "Services | Wathshala Amarasinghe",
-  description: "Web Design, Development, and SEO Services.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description: "Web Design, UX Research, and Development services offered by Wathshala Amarasinghe to build better digital products.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export default function ServicesPage() {
@@ -17,8 +22,7 @@ export default function ServicesPage() {
             Specialized <span className="italic text-gold">Services</span>
           </h1>
           <p className="text-foreground/60 max-w-2xl mx-auto font-light">
-            I offer a complete suite of digital services designed to elevate
-            your brand.
+            From UX research and high-fidelity Figma design to front-end implementation in React and Next.js — here's how I help build better digital products.
           </p>
         </div>
         <ServicesSection />

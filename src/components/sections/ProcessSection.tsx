@@ -4,29 +4,29 @@ import { motion } from "motion/react";
 
 const steps = [
   {
-    title: "Discovery & Strategy",
+    title: "Research & Discovery",
     description:
-      "We begin by understanding your business goals, target audience, and competitive landscape to create a solid foundation for your project.",
+      "Understanding user needs, business goals, and pain points through user research, interviews, and competitive analysis before any design decisions are made.",
   },
   {
-    title: "Wireframing & UI/UX Design",
+    title: "Wireframing & Information Architecture",
     description:
-      "Transforming strategy into visual concepts. We create intuitive wireframes and beautiful high-fidelity designs tailored to your brand.",
+      "Mapping out user flows and laying the structural foundation with low-fidelity wireframes, ensuring intuitive navigation and logical content hierarchy.",
   },
   {
-    title: "Development & Integration",
+    title: "High-Fidelity UI Design",
     description:
-      "Bringing designs to life with clean, efficient code. We ensure your website is fast, secure, and seamlessly integrated with your systems.",
+      "Crafting pixel-perfect, accessible interfaces in Figma with attention to typography, colour, spacing, and interactive states aligned to the design system.",
   },
   {
-    title: "Testing & Quality Assurance",
+    title: "Prototyping & Usability Testing",
     description:
-      "Rigorous testing across multiple devices and browsers to guarantee a flawless user experience without any bugs or issues.",
+      "Creating interactive prototypes and conducting usability testing sessions to validate design decisions and iterate based on real user feedback.",
   },
   {
-    title: "Launch & Ongoing Support",
+    title: "Implementation & Handoff",
     description:
-      "Deploying your website to the world. We provide continuous support and maintenance to keep your digital presence running smoothly.",
+      "Delivering developer-ready assets and specifications, and collaborating closely during front-end implementation using React, Next.js, and Tailwind CSS.",
   },
 ];
 

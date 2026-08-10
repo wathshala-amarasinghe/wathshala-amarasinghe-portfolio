@@ -18,9 +18,12 @@ export type Service = { title: string; description: string };
 
 export type TimelineEntry = {
   title: string;
-  organisation: string;
+  organization?: string;
+  organisation?: string;
+  location?: string;
   period: string;
   description?: string;
+  highlights?: string[];
 };
 
 export type SkillGroup = { title: string; skills: readonly string[] };
@@ -39,6 +42,7 @@ export type PersonalInformation = {
   name: string;
   title: string;
   email: string;
+  phone?: string;
   introduction: string;
   resumePath: string | null;
 };

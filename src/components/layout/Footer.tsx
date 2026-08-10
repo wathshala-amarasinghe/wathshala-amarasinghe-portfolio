@@ -32,15 +32,17 @@ export function Footer() {
           className="mb-16"
         >
           <p className="text-gold tracking-widest uppercase text-sm mb-4">
-            Available for freelance opportunities
+            Open to opportunities — UI/UX Design & Front-End Development
           </p>
           <h2 className="text-5xl md:text-7xl font-serif text-foreground font-light mb-8">
-            Let's make your <br />
-            <span className="italic text-gold">Website shine</span>
+            Let's build something <br />
+            <span className="italic text-gold">meaningful together</span>
           </h2>
-          <Button size="lg" className="rounded-full px-8 text-base">
-            Get in touch
-          </Button>
+          <a href="mailto:wathshaladulashan@outlook.com">
+            <Button size="lg" className="rounded-full px-8 text-base">
+              Get in touch
+            </Button>
+          </a>
         </motion.div>
 
         <div className="w-full h-px bg-white/10 my-12" />
@@ -51,13 +53,19 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-6">
-            {["Twitter", "LinkedIn", "Dribbble", "Instagram"].map((social) => (
+            {[
+              { name: "GitHub", href: "https://github.com/wathshala-amarasinghe" },
+              { name: "LinkedIn", href: "https://www.linkedin.com/in/wathshala-amarasinghe/" },
+              { name: "Email", href: "mailto:wathshaladulashan@outlook.com" },
+            ].map((social) => (
               <a
-                key={social}
-                href="#"
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground/50 hover:text-gold transition-colors text-sm font-light uppercase tracking-wider"
               >
-                {social}
+                {social.name}
               </a>
             ))}
           </div>

@@ -6,12 +6,39 @@ import Link from "next/link";
 import { getMdxBySlug, getMdxFiles } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/JsonLd";
+
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   const files = getMdxFiles("blog");
   return files.map((file) => ({
     slug: file.replace(/\.mdx$/, ""),
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getMdxBySlug("blog", slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.frontmatter.title,
+    description: post.frontmatter.description || `${post.frontmatter.title} - A blog post by Wathshala Amarasinghe on ${post.frontmatter.category}.`,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    openGraph: {
+      images: post.frontmatter.image ? [post.frontmatter.image] : [],
+    },
+  };
 }
 
 export default async function BlogSinglePage({
@@ -26,8 +53,24 @@ export default async function BlogSinglePage({
     notFound();
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description || `A blog post by Wathshala Amarasinghe on ${post.frontmatter.category}.`,
+    url: `${baseUrl}/blog/${slug}`,
+    image: post.frontmatter.image ? `${baseUrl}${post.frontmatter.image}` : undefined,
+    datePublished: post.frontmatter.date,
+    author: {
+      "@type": "Person",
+      name: "Wathshala Amarasinghe"
+    }
+  };
+
   return (
     <>
+      <JsonLd data={jsonLd} />
       <Navbar />
       <main className="flex flex-col min-h-screen pt-32">
         {/* Header Section */}

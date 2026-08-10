@@ -16,18 +16,16 @@ export function AboutHero() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10 pointer-events-none" />
           <img
             src="/profile/profile-photo.jpeg"
-            alt="Portrait"
+            alt="Portrait of Wathshala Amarasinghe"
             className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-500"
           />
         </div>
 
         {/* Heading */}
         <div className="space-y-2">
-          <h1 className="text-5xl sm:text-7xl font-serif tracking-tight text-foreground font-light">
-            Wathshala
-          </h1>
-          <h1 className="text-5xl sm:text-7xl font-serif tracking-tight italic text-gold font-light">
-            Amarasinghe
+          <h1 className="text-5xl sm:text-7xl font-serif tracking-tight text-foreground font-light flex flex-col items-center">
+            <span>Wathshala</span>
+            <span className="italic text-gold">Amarasinghe</span>
           </h1>
         </div>
 

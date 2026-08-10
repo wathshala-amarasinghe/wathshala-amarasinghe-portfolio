@@ -40,10 +40,7 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section
-      id="reviews"
-      className="py-32 px-6 bg-black/40 border-y border-white/5"
-    >
+    <section id="reviews" className="py-32 px-6 bg-black/40 border-y border-white/5">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,7 +53,7 @@ export function TestimonialsSection() {
             What my <span className="italic text-gold">clients say</span>
           </h2>
           <p className="text-foreground/60 font-light">
-            Don't just take my word for it.
+            Don&apos;t just take my word for it.
           </p>
         </motion.div>
 
@@ -70,12 +67,9 @@ export function TestimonialsSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-card hover:bg-card-hover border border-white/5 p-8 rounded-2xl transition-colors relative"
             >
-              <Quote
-                className="absolute top-8 right-8 text-gold/20"
-                size={40}
-              />
+              <Quote className="absolute top-8 right-8 text-gold/20" size={40} />
               <p className="text-foreground/80 font-light leading-relaxed mb-8 italic relative z-10">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </p>
               <div className="flex items-center gap-4">
                 <img
@@ -84,12 +78,8 @@ export function TestimonialsSection() {
                   className="w-12 h-12 rounded-full object-cover filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
                 />
                 <div>
-                  <h4 className="font-serif text-foreground">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-gold text-sm font-light">
-                    {testimonial.role}
-                  </p>
+                  <h4 className="font-serif text-foreground">{testimonial.name}</h4>
+                  <p className="text-gold text-sm font-light">{testimonial.role}</p>
                 </div>
               </div>
             </motion.div>

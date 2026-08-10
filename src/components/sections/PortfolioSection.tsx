@@ -7,28 +7,28 @@ import { TiltCard } from "@/components/ui/TiltCard";
 
 const defaultProjects = [
   {
-    title: "E-Commerce Redesign",
-    category: "Web Design",
-    image:
-      "/projects/Medi-Connect-Web.mp4",
+    title: "Medi Connect",
+    category: "Healthcare Web Platform",
+    image: "/projects/Medi-Connect-Web.mp4",
+    slug: "e-commerce-platform",
   },
   {
-    title: "Fintech Dashboard",
-    category: "UI/UX Design",
-    image:
-      "/projects/TrackMYSavings.jpg",
+    title: "TrackMySavings",
+    category: "FinTech / Finance Tracker",
+    image: "/projects/TrackMYSavings.jpg",
+    slug: "fintech-dashboard",
   },
   {
-    title: "Marketing Website",
-    category: "Development",
-    image:
-      "/projects/TrackMySavings2.jpg",
+    title: "Event Management System",
+    category: "Full-Stack Development",
+    image: "/projects/aaa.jpg",
+    slug: "creative-agency",
   },
   {
-    title: "Real Estate Portal",
-    category: "Web Design",
-    image:
-      "/projects/aaa.jpg",
+    title: "Accommodation Finder",
+    category: "Web Development",
+    image: "/projects/TrackMySavings2.jpg",
+    slug: "saas-landing-page",
   },
 ];
 
@@ -37,13 +37,10 @@ export function PortfolioSection({
   projects = defaultProjects,
 }: {
   hideHeader?: boolean;
-  projects?: any[];
+  projects?: Array<{ title: string; category: string; image: string; slug: string }>;
 }) {
   return (
-    <section
-      id="projects"
-      className="py-32 px-6 bg-black/40 border-y border-white/5"
-    >
+    <section id="projects" className="py-32 px-6 bg-black/40 border-y border-white/5">
       <div className="max-w-6xl mx-auto">
         {!hideHeader && (
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -58,7 +55,7 @@ export function PortfolioSection({
               </h2>
             </motion.div>
             <motion.a
-              href="#"
+              href="/work"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -80,36 +77,36 @@ export function PortfolioSection({
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group cursor-pointer perspective-1000"
             >
-              <Link href={`/work/${project.slug || "e-commerce-platform"}`}>
-              <TiltCard className="relative overflow-hidden rounded-2xl h-full block">
-                <div className="aspect-[4/3] overflow-hidden">
-                  {project.image.endsWith('.mp4') ? (
-                    <video
-                      src={project.image}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
-                    />
-                  ) : (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
-                    />
-                  )}
-                </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                <p className="text-gold text-sm tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  {project.category}
-                </p>
-                <h3 className="text-2xl font-serif text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                  {project.title}
-                </h3>
-              </div>
-            </TiltCard>
-            </Link>
+              <Link href={`/work/${project.slug}`}>
+                <TiltCard className="relative overflow-hidden rounded-2xl h-full block">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    {project.image.endsWith(".mp4") ? (
+                      <video
+                        src={project.image}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
+                      />
+                    )}
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                    <p className="text-gold text-sm tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      {project.category}
+                    </p>
+                    <h3 className="text-2xl font-serif text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      {project.title}
+                    </h3>
+                  </div>
+                </TiltCard>
+              </Link>
             </motion.div>
           ))}
         </div>
