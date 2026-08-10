@@ -7,6 +7,10 @@ import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 
+import { AboutSection } from "@/components/sections/AboutSection";
+
+import { MarqueeSection } from "@/components/sections/about/MarqueeSection";
+
 export default function Home() {
   return (
     <>
@@ -18,6 +22,8 @@ export default function Home() {
         <PortfolioSection />
         <ProcessSection />
         <TestimonialsSection />
+        <AboutSection />
+        <MarqueeSection />
       </main>
       <Footer />
     </>

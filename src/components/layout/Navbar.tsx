@@ -11,6 +11,8 @@ const navLinks = [
   { name: "Work", href: "/work" },
   { name: "About", href: "/about" },
   { name: "Blog", href: "/blog" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -38,10 +40,6 @@ export function Navbar() {
             {link.name}
           </Link>
         ))}
-        {/* Dropdown placeholder for Pages */}
-        <div className="relative group cursor-pointer text-xs uppercase tracking-widest font-medium text-foreground/80 hover:text-gold transition-colors flex items-center gap-1">
-          Pages <ChevronDown size={14} />
-        </div>
       </nav>
 
       <Button

@@ -1,12 +1,16 @@
 "use client";
 
 import { motion } from "motion/react";
+import { ParticleBackground } from "@/components/animations/ParticleBackground";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 px-4 sm:px-6 overflow-hidden">
+      {/* Particle Constellation Background */}
+      <ParticleBackground />
+      
       {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}

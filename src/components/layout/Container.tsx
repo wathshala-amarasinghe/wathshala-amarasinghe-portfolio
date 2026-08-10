@@ -11,7 +11,7 @@ export function Container<T extends ElementType = "div">({
   className,
   ...props
 }: ContainerProps<T>) {
-  const Component = as ?? "div";
+  const Component = (as ?? "div") as any;
 
   return (
     <Component

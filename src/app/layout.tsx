@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { PageLoader } from "@/components/ui/PageLoader";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -29,8 +31,10 @@ export default function RootLayout({
       className={`${playfair.variable} ${outfit.variable} h-full antialiased bg-background text-foreground dark`}
     >
       <body className="min-h-full flex flex-col font-sans overflow-x-hidden bg-background text-foreground selection:bg-gold selection:text-background">
+        <PageLoader />
         <CustomCursor />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );
