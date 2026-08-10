@@ -69,13 +69,13 @@ export default async function WorkSinglePage({
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover filter grayscale contrast-125"
+                className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
               />
             ) : (
               <img
                 src={post.frontmatter.image}
                 alt={post.frontmatter.title}
-                className="w-full h-full object-cover filter grayscale contrast-125"
+                className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
               />
             )}
           </div>

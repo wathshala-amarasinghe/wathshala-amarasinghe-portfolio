@@ -22,7 +22,7 @@ export function BlogGrid({ posts }: { posts: any[] }) {
                 <img
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter grayscale contrast-125"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-black/50 backdrop-blur-sm">

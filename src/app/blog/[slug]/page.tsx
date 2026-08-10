@@ -69,7 +69,7 @@ export default async function BlogSinglePage({
             <img
               src={post.frontmatter.image}
               alt={post.frontmatter.title}
-              className="w-full h-full object-cover filter grayscale contrast-125"
+              className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100"
             />
           </div>
         </div>

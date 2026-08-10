@@ -81,7 +81,7 @@ export function TestimonialsSection() {
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover filter grayscale contrast-125"
+                  className="w-12 h-12 rounded-full object-cover filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
                 />
                 <div>
                   <h4 className="font-serif text-foreground">

@@ -60,7 +60,7 @@ export function AboutContent() {
             </p>
           </div>
 
-          <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden filter grayscale contrast-125">
+          <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500 cursor-pointer">
             <img
               src="/profile/profile-photo.jpeg"
               alt="Workspace"

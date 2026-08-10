@@ -77,11 +77,11 @@ export function AboutSection() {
           transition={{ duration: 0.8 }}
           className="flex justify-center mb-24 relative"
         >
-          <div className="w-[500px] max-w-full aspect-square relative z-10">
+          <div className="w-[500px] max-w-full aspect-square relative z-10 group cursor-pointer">
             <img
               src="/profile/profile-photo.jpeg"
               alt="Portrait"
-              className="w-full h-full object-cover filter grayscale contrast-125"
+              className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-500"
             />
             {/* Fade effect at the bottom of the image to blend into background */}
             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none"></div>

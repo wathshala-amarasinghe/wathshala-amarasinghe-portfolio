@@ -104,12 +104,12 @@ export default function ContactPage() {
       <Navbar />
       <main className="min-h-screen pt-32 pb-16 flex items-center justify-center relative overflow-hidden">
         {/* Left side portrait */}
-        <div className="hidden lg:block absolute left-0 top-0 w-1/2 h-full z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background z-10" />
+        <div className="hidden lg:block absolute left-0 top-0 w-1/2 h-full z-0 group cursor-pointer">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background z-10 pointer-events-none" />
           <img
             src="/profile/profile-photo.jpeg"
             alt="Portrait"
-            className="w-full h-full object-cover filter grayscale contrast-125 object-top"
+            className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-500 object-top"
           />
         </div>
 

@@ -19,12 +19,12 @@ export function HeroSection() {
         className="z-10 flex flex-col items-center text-center space-y-8"
       >
         {/* Portrait placeholder */}
-        <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border border-white/10 shadow-2xl shadow-gold/10 mb-8">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10" />
+        <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border border-white/10 shadow-2xl shadow-gold/10 mb-8 group cursor-pointer">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10 pointer-events-none" />
           <img
             src="/profile/profile-photo.jpeg"
             alt="Portrait"
-            className="w-full h-full object-cover filter grayscale contrast-125"
+            className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-500"
           />
         </div>
 
