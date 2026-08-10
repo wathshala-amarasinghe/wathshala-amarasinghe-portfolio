@@ -1,32 +1,52 @@
-import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export const runtime = "nodejs";
+
+export async function POST(request: Request) {
   try {
-    const { name, email, message } = await req.json();
+    const { name, email, message } = await request.json();
 
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "All fields are required." },
         { status: 400 }
       );
     }
 
-    // Configure the email transporter using Gmail SMTP
+    const emailUser = process.env.EMAIL_USER;
+    const emailPassword = process.env.EMAIL_PASS;
+    // We can just use EMAIL_USER for from and to address to keep your .env simple!
+    const fromAddress = process.env.EMAIL_USER;
+    const toAddress = process.env.EMAIL_USER;
+
+    if (!emailUser || !emailPassword || !fromAddress || !toAddress) {
+      console.error("Required email environment variables are missing.");
+
+      return NextResponse.json(
+        { error: "Email service is not configured." },
+        { status: 500 }
+      );
+    }
+
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: emailUser,
+        pass: emailPassword,
       },
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
     });
 
-    // Email options
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send to yourself
-      replyTo: email, // So you can reply directly to the sender
-      subject: `New Portfolio Message from ${name}`,
+    await transporter.sendMail({
+      from: `"Wathshala Portfolio" <${fromAddress}>`,
+      to: toAddress,
+      replyTo: email,
+      subject: `Portfolio message from ${name}`,
       text: `
 Name: ${name}
 Email: ${email}
@@ -34,27 +54,29 @@ Email: ${email}
 Message:
 ${message}
       `,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <br />
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
-      `,
-    };
-
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    });
 
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: "Message sent successfully." },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Failed to send email:", error);
+    const mailError = error as {
+      message?: string;
+      code?: string;
+      command?: string;
+      responseCode?: number;
+    };
+
+    console.error("Contact email error:", {
+      message: mailError.message,
+      code: mailError.code,
+      command: mailError.command,
+      responseCode: mailError.responseCode,
+    });
+
     return NextResponse.json(
-      { error: "Failed to send email" },
+      { error: "Failed to send message. Please try again." },
       { status: 500 }
     );
   }
