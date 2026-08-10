@@ -12,7 +12,7 @@ export function Footer() {
       {/* Background large portrait faded */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-full opacity-10 pointer-events-none mix-blend-luminosity flex items-start justify-center">
         <img
-          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
+          src="/profile/profile-photo.jpeg"
           alt="Background Portrait"
           className="w-full h-auto object-cover mask-image-b"
           style={{

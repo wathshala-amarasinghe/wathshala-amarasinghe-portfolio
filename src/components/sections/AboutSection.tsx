@@ -79,7 +79,7 @@ export function AboutSection() {
         >
           <div className="w-[500px] max-w-full aspect-square relative z-10">
             <img
-              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
+              src="/profile/profile-photo.jpeg"
               alt="Portrait"
               className="w-full h-full object-cover filter grayscale contrast-125"
             />

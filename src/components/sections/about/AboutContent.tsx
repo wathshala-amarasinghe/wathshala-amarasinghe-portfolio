@@ -62,7 +62,7 @@ export function AboutContent() {
 
           <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden filter grayscale contrast-125">
             <img
-              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1200&auto=format&fit=crop"
+              src="/profile/profile-photo.jpeg"
               alt="Workspace"
               className="w-full h-full object-cover"
             />

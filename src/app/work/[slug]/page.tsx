@@ -62,11 +62,22 @@ export default async function WorkSinglePage({
         {/* Big Image */}
         <div className="max-w-7xl mx-auto px-6 w-full mb-24">
           <div className="aspect-[21/9] w-full rounded-sm overflow-hidden border border-white/5 bg-[#111]">
-            <img
-              src={post.frontmatter.image}
-              alt={post.frontmatter.title}
-              className="w-full h-full object-cover filter grayscale contrast-125"
-            />
+            {post.frontmatter.image?.endsWith('.mp4') ? (
+              <video
+                src={post.frontmatter.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover filter grayscale contrast-125"
+              />
+            ) : (
+              <img
+                src={post.frontmatter.image}
+                alt={post.frontmatter.title}
+                className="w-full h-full object-cover filter grayscale contrast-125"
+              />
+            )}
           </div>
         </div>
 

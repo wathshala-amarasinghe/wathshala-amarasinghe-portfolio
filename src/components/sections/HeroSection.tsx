@@ -22,7 +22,7 @@ export function HeroSection() {
         <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border border-white/10 shadow-2xl shadow-gold/10 mb-8">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10" />
           <img
-            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop"
+            src="/profile/profile-photo.jpeg"
             alt="Portrait"
             className="w-full h-full object-cover filter grayscale contrast-125"
           />

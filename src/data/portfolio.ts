@@ -14,7 +14,7 @@ export const personalInformation = {
   email: "wathshaladulashan@outlook.com",
   introduction:
     "Designing thoughtful digital experiences across healthcare, FinTech, and corporate products.",
-  resumePath: null,
+  resumePath: "/CV/Wathshala-Dulashan-CV.pdf",
 } satisfies PersonalInformation;
 
 export const navigation = [

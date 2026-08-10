@@ -10,25 +10,25 @@ const defaultProjects = [
     title: "E-Commerce Redesign",
     category: "Web Design",
     image:
-      "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=800&auto=format&fit=crop",
+      "/projects/Medi-Connect-Web.mp4",
   },
   {
     title: "Fintech Dashboard",
     category: "UI/UX Design",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      "/projects/TrackMYSavings.jpg",
   },
   {
     title: "Marketing Website",
     category: "Development",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      "/projects/TrackMySavings2.jpg",
   },
   {
     title: "Real Estate Portal",
     category: "Web Design",
     image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
+      "/projects/aaa.jpg",
   },
 ];
 
@@ -83,12 +83,23 @@ export function PortfolioSection({
               <Link href={`/work/${project.slug || "e-commerce-platform"}`}>
               <TiltCard className="relative overflow-hidden rounded-2xl h-full block">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
-                />
-              </div>
+                  {project.image.endsWith('.mp4') ? (
+                    <video
+                      src={project.image}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
+                    />
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75 group-hover:brightness-100"
+                    />
+                  )}
+                </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
                 <p className="text-gold text-sm tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   {project.category}

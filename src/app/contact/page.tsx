@@ -107,7 +107,7 @@ export default function ContactPage() {
         <div className="hidden lg:block absolute left-0 top-0 w-1/2 h-full z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background z-10" />
           <img
-            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
+            src="/profile/profile-photo.jpeg"
             alt="Portrait"
             className="w-full h-full object-cover filter grayscale contrast-125 object-top"
           />
