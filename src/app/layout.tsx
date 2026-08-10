@@ -4,6 +4,8 @@ import "./globals.css";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { PageLoader } from "@/components/ui/PageLoader";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -75,9 +77,12 @@ export default function RootLayout({
       className={`${playfair.variable} ${outfit.variable} h-full antialiased bg-background text-foreground dark`}
     >
       <body className="min-h-full flex flex-col font-sans overflow-x-hidden bg-background text-foreground selection:bg-gold selection:text-background">
+        <ScrollProgress />
         <PageLoader />
         <CustomCursor />
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
         <ScrollToTop />
       </body>
     </html>

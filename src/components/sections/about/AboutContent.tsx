@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { TextReveal } from "@/components/animations/TextReveal";
 
 const socials = [
   { name: "GitHub", href: "https://github.com/wathshala-amarasinghe" },
@@ -95,12 +96,8 @@ export function AboutContent() {
           </h2>
 
           <div className="space-y-6 text-foreground/60 font-light text-sm md:text-base leading-relaxed mb-12">
-            <p>
-              I&apos;m Wathshala Amarasinghe, a UI/UX Designer and Software Engineering graduate (BSc Hons, Plymouth University) with hands-on experience designing intuitive digital products for healthcare and financial systems. Currently working as an Associate Software Engineer at Medi Connect (Pvt) Ltd.
-            </p>
-            <p>
-              I bring a strong foundation in usability, accessibility (WCAG), and design systems. Whether it&apos;s an enterprise EMR system, a personal finance tracker, or a corporate marketing site — I&apos;m passionate about crafting interfaces that are both beautiful and functionally excellent. My workflow spans research, wireframing, high-fidelity prototyping in Figma, and front-end implementation with React and Next.js.
-            </p>
+            <TextReveal text="I'm Wathshala Amarasinghe, a UI/UX Designer and Software Engineering graduate (BSc Hons, Plymouth University) with hands-on experience designing intuitive digital products for healthcare and financial systems. Currently working as an Associate Software Engineer at Medi Connect (Pvt) Ltd." />
+            <TextReveal text="I bring a strong foundation in usability, accessibility (WCAG), and design systems. Whether it's an enterprise EMR system, a personal finance tracker, or a corporate marketing site — I'm passionate about crafting interfaces that are both beautiful and functionally excellent. My workflow spans research, wireframing, high-fidelity prototyping in Figma, and front-end implementation with React and Next.js." />
           </div>
 
           <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500 cursor-pointer">
@@ -151,9 +148,13 @@ export function AboutContent() {
                     <div className="flex items-center gap-3 flex-wrap mb-1">
                       <h3 className="text-foreground font-serif text-lg md:text-xl">{exp.title}</h3>
                       {exp.current && (
-                        <span className="border border-gold/40 text-gold text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full">
+                        <motion.span
+                          animate={{ opacity: [0.6, 1, 0.6] }}
+                          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                          className="border border-gold/40 text-gold text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+                        >
                           Current
-                        </span>
+                        </motion.span>
                       )}
                     </div>
                     <p className="text-gold/80 text-sm font-light">{exp.org} — {exp.location}</p>

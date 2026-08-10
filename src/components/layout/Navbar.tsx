@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Button } from "../ui/Button";
+import { Magnetic } from "@/components/animations/Magnetic";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -40,13 +41,15 @@ export function Navbar() {
         ))}
       </nav>
 
-      <Button
-        asChild
-        variant="outline"
-        className="rounded-full border-white/10 uppercase tracking-widest text-xs h-9 px-6 hover:bg-gold hover:text-black hover:border-gold transition-colors"
-      >
-        <Link href="/contact">Let&apos;s Talk</Link>
-      </Button>
+      <Magnetic>
+        <Button
+          asChild
+          variant="outline"
+          className="rounded-full border-white/10 uppercase tracking-widest text-xs h-9 px-6 hover:bg-gold hover:text-black hover:border-gold transition-colors"
+        >
+          <Link href="/contact">Let&apos;s Talk</Link>
+        </Button>
+      </Magnetic>
     </motion.header>
   );
 }

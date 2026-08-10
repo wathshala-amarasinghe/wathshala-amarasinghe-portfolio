@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   const mdxProjects = getMdxData("work");
   
-  // Map MDX data to match the PortfolioSection expected format
   const projects = mdxProjects.map(p => ({
     title: p.frontmatter.title,
     category: p.frontmatter.category,

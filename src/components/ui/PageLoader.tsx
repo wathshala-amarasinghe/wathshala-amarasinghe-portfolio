@@ -7,7 +7,6 @@ export function PageLoader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // A small delay to let the initial animation play out
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2200);

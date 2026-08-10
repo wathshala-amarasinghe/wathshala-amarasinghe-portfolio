@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowUpRight, Compass } from "lucide-react";
+import { ArrowUpRight, Compass, MapPin, Mail, Phone } from "lucide-react";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
 
-// Custom SVG icons for social media
 const InstagramIcon = ({ size = 24 }: { size?: number }) => (
   <svg
     width={size}
@@ -114,7 +113,7 @@ const socials = [
   {
     name: "Dribbble",
     href: "https://dribbble.com/wathshala",
-    icon: Compass, // Using compass as placeholder for dribbble
+    icon: Compass,
   },
 ];
 

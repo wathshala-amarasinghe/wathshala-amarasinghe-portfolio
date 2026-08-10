@@ -12,7 +12,6 @@ export function ContactForm() {
     const form = e.currentTarget;
 
     try {
-      // Replace with your Formspree ID or other endpoint
       const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
         method: "POST",
         body: new FormData(form),

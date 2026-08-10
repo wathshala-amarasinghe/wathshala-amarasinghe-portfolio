@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Counter } from "@/components/animations/Counter";
 
 const stats = [
-  { label: "Years Experience", value: "4+" },
-  { label: "Projects Completed", value: "10+" },
-  { label: "Enterprise Systems Designed", value: "5+" },
+  { label: "Years Experience", value: 4, suffix: "+" },
+  { label: "Projects Completed", value: 10, suffix: "+" },
+  { label: "Enterprise Systems Designed", value: 5, suffix: "+" },
 ];
 
 export function StatsSection() {
@@ -23,7 +24,8 @@ export function StatsSection() {
               className="flex flex-col items-center justify-center pt-8 md:pt-0"
             >
               <h3 className="text-4xl md:text-5xl font-serif text-gold mb-2">
-                {stat.value}
+                <Counter value={stat.value} />
+                {stat.suffix}
               </h3>
               <p className="text-foreground/60 font-light tracking-wide uppercase text-sm">
                 {stat.label}

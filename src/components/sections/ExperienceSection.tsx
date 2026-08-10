@@ -119,7 +119,15 @@ export function ExperienceSection() {
                 }`}
               >
                 <div className="absolute left-6 md:left-1/2 top-6 -translate-x-1/2 z-10">
-                  <div className={`w-3 h-3 rounded-full border-2 ${exp.current ? "bg-gold border-gold shadow-[0_0_12px_rgba(212,175,55,0.6)]" : "bg-background border-white/30"}`} />
+                  {exp.current ? (
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      className="w-3 h-3 rounded-full border-2 bg-gold border-gold shadow-[0_0_12px_rgba(212,175,55,0.6)]"
+                    />
+                  ) : (
+                    <div className="w-3 h-3 rounded-full border-2 bg-background border-white/30" />
+                  )}
                 </div>
 
                 <div
@@ -135,9 +143,13 @@ export function ExperienceSection() {
                             {exp.title}
                           </h3>
                           {exp.current && (
-                            <span className="border border-gold/40 text-gold text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full">
+                            <motion.span
+                              animate={{ opacity: [0.6, 1, 0.6] }}
+                              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                              className="border border-gold/40 text-gold text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full"
+                            >
                               Current
-                            </span>
+                            </motion.span>
                           )}
                         </div>
                         <div className="flex items-center gap-1.5 mb-1">
