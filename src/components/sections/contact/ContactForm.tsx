@@ -12,12 +12,20 @@ export function ContactForm() {
     const form = e.currentTarget;
 
     try {
-      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      };
+
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: new FormData(form),
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
