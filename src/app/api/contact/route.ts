@@ -15,10 +15,16 @@ export async function POST(request: Request) {
     }
 
     const emailUser = process.env.EMAIL_USER;
-    const emailPassword = process.env.EMAIL_PASS;
-    // We can just use EMAIL_USER for from and to address to keep your .env simple!
-    const fromAddress = process.env.EMAIL_USER;
-    const toAddress = process.env.EMAIL_USER;
+    const emailPassword = process.env.EMAIL_PASSWORD;
+    const fromAddress = process.env.EMAIL_FROM_ADDRESS;
+    const toAddress = process.env.EMAIL_TO_ADDRESS;
+
+    console.log("CONTACT_EMAIL_CONFIG", {
+      hasEmailUser: Boolean(process.env.EMAIL_USER),
+      hasEmailPassword: Boolean(process.env.EMAIL_PASSWORD),
+      hasFromAddress: Boolean(process.env.EMAIL_FROM_ADDRESS),
+      hasToAddress: Boolean(process.env.EMAIL_TO_ADDRESS),
+    });
 
     if (!emailUser || !emailPassword || !fromAddress || !toAddress) {
       console.error("Required email environment variables are missing.");
@@ -61,18 +67,12 @@ ${message}
       { status: 200 }
     );
   } catch (error) {
-    const mailError = error as {
-      message?: string;
-      code?: string;
-      command?: string;
-      responseCode?: number;
-    };
-
-    console.error("Contact email error:", {
-      message: mailError.message,
-      code: mailError.code,
-      command: mailError.command,
-      responseCode: mailError.responseCode,
+    console.error("CONTACT_MAIL_ERROR", {
+      message: error instanceof Error ? error.message : String(error),
+      code:
+        typeof error === "object" && error !== null && "code" in error
+          ? (error as any).code
+          : undefined,
     });
 
     return NextResponse.json(
