@@ -3,6 +3,14 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { TextReveal } from "@/components/animations/TextReveal";
+import { 
+  FaJava, FaHtml5, FaCss3Alt, FaReact, FaBootstrap, FaFigma, FaGithub, FaDocker, FaUniversalAccess
+} from "react-icons/fa";
+import { 
+  SiJavascript, SiTypescript, SiPhp, SiNextdotjs, SiTailwindcss, SiVite, 
+  SiFramer, SiMysql, SiMongodb, SiPhpmyadmin, SiXampp, SiPostman
+} from "react-icons/si";
+import { Layers, MonitorSmartphone, MousePointer2, PenTool } from "lucide-react";
 
 const socials = [
   { name: "GitHub", href: "https://github.com/wathshala-amarasinghe" },
@@ -11,10 +19,51 @@ const socials = [
 ];
 
 const skillGroups = [
-  { label: "Programming", skills: ["Java", "JavaScript", "TypeScript", "PHP", "HTML", "CSS"] },
-  { label: "Frameworks", skills: ["React.js", "Next.js", "Tailwind CSS", "Bootstrap", "Vite"] },
-  { label: "UI/UX & Design", skills: ["Figma", "Adobe XD", "Framer", "Wireframing", "Prototyping", "Design Systems", "WCAG Accessibility"] },
-  { label: "Database & Tools", skills: ["MySQL", "MongoDB", "phpMyAdmin", "XAMPP", "GitHub", "Docker", "Postman"] },
+  { 
+    label: "Programming", 
+    skills: [
+      { name: "Java", icon: FaJava, color: "#f89820" },
+      { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
+      { name: "PHP", icon: SiPhp, color: "#777bb4" },
+      { name: "HTML", icon: FaHtml5, color: "#e34f26" },
+      { name: "CSS", icon: FaCss3Alt, color: "#1572b6" }
+    ] 
+  },
+  { 
+    label: "Frameworks", 
+    skills: [
+      { name: "React.js", icon: FaReact, color: "#61dafb" },
+      { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+      { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06b6d4" },
+      { name: "Bootstrap", icon: FaBootstrap, color: "#7952b3" },
+      { name: "Vite", icon: SiVite, color: "#646cff" }
+    ] 
+  },
+  { 
+    label: "UI/UX & Design", 
+    skills: [
+      { name: "Figma", icon: FaFigma, color: "#f24e1e" },
+      { name: "Adobe XD", icon: PenTool, color: "#ff61f6" },
+      { name: "Framer", icon: SiFramer, color: "#0055FF" },
+      { name: "Wireframing", icon: MousePointer2, color: "#c5a059" },
+      { name: "Prototyping", icon: MonitorSmartphone, color: "#c5a059" },
+      { name: "Design Systems", icon: Layers, color: "#c5a059" },
+      { name: "WCAG Accessibility", icon: FaUniversalAccess, color: "#00A4E4" }
+    ] 
+  },
+  { 
+    label: "Database & Tools", 
+    skills: [
+      { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+      { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+      { name: "phpMyAdmin", icon: SiPhpmyadmin, color: "#6C78AF" },
+      { name: "XAMPP", icon: SiXampp, color: "#FB7A24" },
+      { name: "GitHub", icon: FaGithub, color: "#ffffff" },
+      { name: "Docker", icon: FaDocker, color: "#2496ed" },
+      { name: "Postman", icon: SiPostman, color: "#FF6C37" }
+    ] 
+  },
 ];
 
 const experiences = [
@@ -100,7 +149,7 @@ export function AboutContent() {
             <TextReveal text="I bring a strong foundation in usability, accessibility (WCAG), and design systems. Whether it's an enterprise EMR system, a personal finance tracker, or a corporate marketing site — I'm passionate about crafting interfaces that are both beautiful and functionally excellent. My workflow spans research, wireframing, high-fidelity prototyping in Figma, and front-end implementation with React and Next.js." />
           </div>
 
-          <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500 cursor-pointer">
+          <div className="w-full aspect-21/9 rounded-2xl overflow-hidden filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500 cursor-pointer">
             <img
               src="/profile/profile-photo.jpeg"
               alt="Wathshala Amarasinghe"
@@ -188,15 +237,19 @@ export function AboutContent() {
             {skillGroups.map((group, i) => (
               <div key={i} className={i > 0 ? "border-t border-white/5 pt-6" : ""}>
                 <p className="text-foreground/40 text-xs uppercase tracking-widest mb-3">{group.label}</p>
-                <div className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="border border-white/10 rounded-full px-4 py-1.5 text-[11px] text-foreground/70 uppercase tracking-widest hover:border-gold/40 hover:text-gold transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                <div className="flex flex-wrap gap-3">
+                  {group.skills.map((skill) => {
+                    const Icon = skill.icon;
+                    return (
+                      <span
+                        key={skill.name}
+                        className="flex items-center gap-2 border border-white/10 bg-card rounded-full px-4 py-2 text-[11px] text-foreground/70 uppercase tracking-widest hover:border-gold/40 hover:bg-[#1a1a1a] transition-all group cursor-default"
+                      >
+                        <Icon size={14} style={{ color: skill.color }} className="opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+                        <span className="group-hover:text-gold transition-colors">{skill.name}</span>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             ))}

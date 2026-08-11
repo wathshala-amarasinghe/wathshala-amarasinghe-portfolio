@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { StatsSection } from "@/components/sections/StatsSection";
+import { SkillsMarqueeSection } from "@/components/sections/SkillsMarqueeSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
@@ -47,6 +48,7 @@ export default function Home() {
       <main className="flex flex-col min-h-screen">
         <HeroSection />
         <StatsSection />
+        <SkillsMarqueeSection />
         <ServicesSection />
         <PortfolioSection />
         <ExperienceSection />
