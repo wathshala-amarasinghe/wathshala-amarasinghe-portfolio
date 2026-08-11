@@ -13,7 +13,7 @@ export function AboutHero() {
       >
         {/* Portrait placeholder */}
         <div className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden border border-white/10 shadow-2xl mb-4 group cursor-pointer">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent to-background/80 z-10 pointer-events-none" />
           <img
             src="/profile/profile-photo.jpeg"
             alt="Portrait of Wathshala Amarasinghe"

@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 export function MarqueeSection() {
   return (
-    <div className="w-full overflow-hidden py-4 bg-[#0a0a0a] text-gold/60 border-y border-white/5 flex whitespace-nowrap mt-12">
+    <div className="w-full overflow-hidden py-4 bg-background text-gold/60 border-y border-white/5 flex whitespace-nowrap mt-12">
       <motion.div
         className="flex items-center space-x-8"
         animate={{ x: [0, -2000] }}
