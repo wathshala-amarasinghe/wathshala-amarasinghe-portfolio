@@ -1,7 +1,25 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import { useRef } from "react";
+
+function Word({
+  word,
+  progress,
+  range,
+}: {
+  word: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+}) {
+  const opacity = useTransform(progress, range, [0.2, 1]);
+  return (
+    <span className="relative">
+      <span className="absolute opacity-20">{word}</span>
+      <motion.span style={{ opacity }}>{word}</motion.span>
+    </span>
+  );
+}
 
 export function TextReveal({ text }: { text: string }) {
   const containerRef = useRef<HTMLParagraphElement>(null);
@@ -19,13 +37,13 @@ export function TextReveal({ text }: { text: string }) {
         const start = i / words.length;
         const end = start + 1 / words.length;
 
-        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
-
         return (
-          <span key={i} className="relative">
-            <span className="absolute opacity-20">{word}</span>
-            <motion.span style={{ opacity }}>{word}</motion.span>
-          </span>
+          <Word
+            key={i}
+            word={word}
+            progress={scrollYProgress}
+            range={[start, end]}
+          />
         );
       })}
     </p>
