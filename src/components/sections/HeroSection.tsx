@@ -19,9 +19,11 @@ const charVariants: Variants = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 px-4 sm:px-6 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center px-4 sm:px-6 overflow-hidden">
       <ParticleBackground />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-200 h-100 bg-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
+
+      <div className="flex-1 w-full flex flex-col items-center justify-center pt-24 sm:pt-32 pb-12 z-10">
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -71,12 +73,13 @@ export function HeroSection() {
           A BSc Software Engineering graduate crafting intuitive digital experiences for healthcare, FinTech, and enterprise products.
         </p>
       </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="flex flex-col items-center gap-2 pb-8 sm:pb-12 z-10"
       >
         <span className="text-xs uppercase tracking-widest text-foreground/40 font-medium">
           Scroll
