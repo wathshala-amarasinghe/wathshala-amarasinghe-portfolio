@@ -7,9 +7,10 @@ import { SkillsMarqueeSection } from "@/components/sections/SkillsMarqueeSection
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { ProcessSection } from "@/components/sections/ProcessSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { MarqueeSection } from "@/components/sections/about/MarqueeSection";
+
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
@@ -52,7 +53,7 @@ export default function Home() {
         <ServicesSection />
         <PortfolioSection />
         <ExperienceSection />
-        <TestimonialsSection />
+        <ProcessSection />
         <AboutSection />
         <MarqueeSection />
       </main>

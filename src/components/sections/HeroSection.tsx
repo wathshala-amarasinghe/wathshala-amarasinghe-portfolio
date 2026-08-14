@@ -19,7 +19,7 @@ const charVariants: Variants = {
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center px-4 sm:px-6 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col items-center px-4 sm:px-6 overflow-hidden">
       <ParticleBackground />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-200 h-100 bg-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
@@ -73,7 +73,6 @@ export function HeroSection() {
           A BSc Software Engineering graduate crafting intuitive digital experiences for healthcare, FinTech, and enterprise products.
         </p>
 
-        {/* CTA Button Group */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
           <a href="#projects">
             <motion.span
@@ -86,7 +85,7 @@ export function HeroSection() {
             </motion.span>
           </a>
           <a
-            href="/cv/Wathshala-Dulashan-CV.pdf"
+            href="/CV/Wathshala-Dulashan-CV.pdf"
             download="Wathshala-Dulashan-CV.pdf"
           >
             <motion.span

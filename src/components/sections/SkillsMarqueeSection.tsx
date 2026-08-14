@@ -11,20 +11,17 @@ import {
 import { Layers, MonitorSmartphone, MousePointer2, PenTool } from "lucide-react";
 
 const skills = [
-  // Programming
   { name: "Java", icon: FaJava, color: "#f89820" },
   { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
   { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
   { name: "PHP", icon: SiPhp, color: "#777bb4" },
   { name: "HTML", icon: FaHtml5, color: "#e34f26" },
   { name: "CSS", icon: FaCss3Alt, color: "#1572b6" },
-  // Frameworks
   { name: "React.js", icon: FaReact, color: "#61dafb" },
   { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06b6d4" },
   { name: "Bootstrap", icon: FaBootstrap, color: "#7952b3" },
   { name: "Vite", icon: SiVite, color: "#646cff" },
-  // UI/UX & Design
   { name: "Figma", icon: FaFigma, color: "#f24e1e" },
   { name: "Adobe XD", icon: PenTool, color: "#ff61f6" },
   { name: "Framer", icon: SiFramer, color: "#0055FF" },
@@ -32,7 +29,6 @@ const skills = [
   { name: "Prototyping", icon: MonitorSmartphone, color: "#c5a059" },
   { name: "Design Systems", icon: Layers, color: "#c5a059" },
   { name: "WCAG Accessibility", icon: FaUniversalAccess, color: "#00A4E4" },
-  // Database & Tools
   { name: "MySQL", icon: SiMysql, color: "#4479A1" },
   { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
   { name: "phpMyAdmin", icon: SiPhpmyadmin, color: "#6C78AF" },

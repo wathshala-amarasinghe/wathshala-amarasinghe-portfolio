@@ -191,7 +191,6 @@ export function ExperienceSection() {
           </div>
         </div>
 
-        {/* CV Download CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +199,7 @@ export function ExperienceSection() {
           className="flex justify-center mt-16"
         >
           <a
-            href="/cv/Wathshala-Dulashan-CV.pdf"
+            href="/CV/Wathshala-Dulashan-CV.pdf"
             download="Wathshala-Dulashan-CV.pdf"
             className="group inline-flex items-center gap-3 border border-gold/40 text-gold px-8 py-3.5 rounded-full text-sm font-medium tracking-widest uppercase hover:bg-gold/10 hover:border-gold transition-all duration-300"
           >

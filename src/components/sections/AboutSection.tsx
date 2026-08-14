@@ -106,7 +106,7 @@ export function AboutSection() {
                 </a>
               ))}
               <a
-                href="/cv/Wathshala-Dulashan-CV.pdf"
+                href="/CV/Wathshala-Dulashan-CV.pdf"
                 download="Wathshala-Dulashan-CV.pdf"
                 className="inline-flex items-center gap-2 border border-gold/50 text-gold px-5 py-2 rounded-full text-xs font-medium tracking-widest uppercase hover:bg-gold/10 hover:border-gold transition-colors"
               >
