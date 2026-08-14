@@ -46,21 +46,21 @@ export function ContactForm() {
         name="name"
         required
         placeholder="NAME"
-        className="w-full bg-card px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:text-foreground/30 text-xs tracking-widest uppercase"
+        className="w-full bg-card px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:opacity-30 text-xs tracking-widest uppercase"
       />
       <input
         type="email"
         name="email"
         required
         placeholder="EMAIL"
-        className="w-full bg-card px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:text-foreground/30 text-xs tracking-widest uppercase"
+        className="w-full bg-card px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:opacity-30 text-xs tracking-widest uppercase"
       />
       <textarea
         rows={5}
         name="message"
         required
         placeholder="MESSAGE"
-        className="w-full bg-card px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:text-foreground/30 resize-none text-xs tracking-widest uppercase"
+        className="w-full bg-card px-4 py-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold transition-colors placeholder:opacity-30 resize-none text-xs tracking-widest uppercase"
       />
 
       {status === "error" && (
