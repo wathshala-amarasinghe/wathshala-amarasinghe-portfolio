@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Download } from "lucide-react";
 
 const socialIcons = [
   {
@@ -91,7 +92,7 @@ export function AboutSection() {
               Hi, I&apos;m Wathshala Amarasinghe — a UI/UX Designer and Software Engineering graduate with hands-on experience building digital products for healthcare and financial systems. I specialise in translating complex requirements into clean, functional interfaces through research, wireframing, and high-fidelity design. I&apos;m passionate about accessibility, design systems, and collaborating in agile teams to deliver scalable solutions.
             </p>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               {socialIcons.map((icon) => (
                 <a
                   key={icon.name}
@@ -104,6 +105,14 @@ export function AboutSection() {
                   {icon.icon}
                 </a>
               ))}
+              <a
+                href="/cv/Wathshala-Dulashan-CV.pdf"
+                download="Wathshala-Dulashan-CV.pdf"
+                className="inline-flex items-center gap-2 border border-gold/50 text-gold px-5 py-2 rounded-full text-xs font-medium tracking-widest uppercase hover:bg-gold/10 hover:border-gold transition-colors"
+              >
+                <Download size={13} />
+                Download CV
+              </a>
             </div>
           </motion.div>
         </div>

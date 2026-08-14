@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Briefcase, MapPin, Calendar } from "lucide-react";
+import { Briefcase, MapPin, Calendar, Download } from "lucide-react";
 
 const experiences = [
   {
@@ -190,6 +190,30 @@ export function ExperienceSection() {
             ))}
           </div>
         </div>
+
+        {/* CV Download CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center mt-16"
+        >
+          <a
+            href="/cv/Wathshala-Dulashan-CV.pdf"
+            download="Wathshala-Dulashan-CV.pdf"
+            className="group inline-flex items-center gap-3 border border-gold/40 text-gold px-8 py-3.5 rounded-full text-sm font-medium tracking-widest uppercase hover:bg-gold/10 hover:border-gold transition-all duration-300"
+          >
+            <motion.span
+              animate={{ y: [0, 3, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="inline-flex"
+            >
+              <Download size={15} />
+            </motion.span>
+            Download Full CV
+          </a>
+        </motion.div>
       </div>
     </section>
   );

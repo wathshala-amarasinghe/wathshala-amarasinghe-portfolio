@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "motion/react";
 import { ParticleBackground } from "@/components/animations/ParticleBackground";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Download, ArrowRight } from "lucide-react";
 
 const titleVariants: Variants = {
   hidden: { opacity: 0 },
@@ -72,6 +72,33 @@ export function HeroSection() {
         <p className="max-w-xl text-foreground/60 text-lg sm:text-xl font-light leading-relaxed">
           A BSc Software Engineering graduate crafting intuitive digital experiences for healthcare, FinTech, and enterprise products.
         </p>
+
+        {/* CTA Button Group */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
+          <a href="#projects">
+            <motion.span
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 bg-gold text-background px-7 py-3 rounded-full text-sm font-medium tracking-wider uppercase cursor-pointer hover:bg-gold/90 transition-colors"
+            >
+              View My Work
+              <ArrowRight size={15} />
+            </motion.span>
+          </a>
+          <a
+            href="/cv/Wathshala-Dulashan-CV.pdf"
+            download="Wathshala-Dulashan-CV.pdf"
+          >
+            <motion.span
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 border border-gold/50 text-gold px-7 py-3 rounded-full text-sm font-medium tracking-wider uppercase cursor-pointer hover:bg-gold/10 hover:border-gold transition-colors"
+            >
+              <Download size={15} />
+              Download CV
+            </motion.span>
+          </a>
+        </div>
       </motion.div>
       </div>
 
