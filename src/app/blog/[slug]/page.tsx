@@ -87,7 +87,7 @@ export default async function BlogSinglePage({
           </h1>
           
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto mb-16">
-            <div className="border border-white/10 rounded-full px-8 py-3 bg-[#0a0a0a]/50 flex items-center gap-4">
+            <div className="border border-white/10 rounded-full px-8 py-3 bg-background/50 flex items-center gap-4">
                 <span className="text-[10px] text-foreground/40 uppercase tracking-[0.2em]">
                   DATE
                 </span>
@@ -95,7 +95,7 @@ export default async function BlogSinglePage({
                   {post.frontmatter.date}
                 </span>
             </div>
-            <div className="border border-white/10 rounded-full px-8 py-3 bg-[#0a0a0a]/50 flex items-center gap-4">
+            <div className="border border-white/10 rounded-full px-8 py-3 bg-background/50 flex items-center gap-4">
                 <span className="text-[10px] text-foreground/40 uppercase tracking-[0.2em]">
                   CATEGORY
                 </span>
@@ -108,7 +108,7 @@ export default async function BlogSinglePage({
 
         {/* Hero Image */}
         <div className="w-full max-w-7xl mx-auto px-6 mb-24">
-          <div className="aspect-[21/9] w-full rounded-sm overflow-hidden border border-white/5">
+          <div className="aspect-21/9 w-full rounded-sm overflow-hidden border border-white/5">
             <img
               src={post.frontmatter.image}
               alt={post.frontmatter.title}

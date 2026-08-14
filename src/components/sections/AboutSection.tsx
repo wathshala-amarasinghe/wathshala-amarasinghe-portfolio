@@ -58,13 +58,13 @@ export function AboutSection() {
           transition={{ duration: 0.8 }}
           className="flex justify-center mb-24 relative"
         >
-          <div className="w-[500px] max-w-full aspect-square relative z-10 group cursor-pointer">
+          <div className="w-125 max-w-full aspect-square relative z-10 group cursor-pointer">
             <img
               src="/profile/profile-photo.jpeg"
               alt="Portrait of Wathshala Amarasinghe"
               className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-500"
             />
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none"></div>
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-[#050505] to-transparent pointer-events-none"></div>
           </div>
         </motion.div>
 

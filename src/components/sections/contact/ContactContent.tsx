@@ -122,7 +122,7 @@ export function ContactContent() {
     <main className="min-h-screen pt-32 pb-16 flex items-center justify-center relative overflow-hidden">
       {/* Left side portrait */}
       <div className="hidden lg:block absolute left-0 top-0 w-1/2 h-full z-0 group cursor-pointer">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-r from-transparent to-background z-10 pointer-events-none" />
         <img
           src="/profile/profile-photo.jpeg"
           alt="Portrait of Wathshala Amarasinghe"
@@ -150,7 +150,7 @@ export function ContactContent() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="border border-white/5 p-8 bg-[#0a0a0a]/80 backdrop-blur-sm rounded-sm mb-6"
+            className="border border-white/5 p-8 bg-background/80 backdrop-blur-sm rounded-sm mb-6"
           >
             <ContactForm />
           </motion.div>
@@ -169,7 +169,7 @@ export function ContactContent() {
                   href={social.href}
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex items-center justify-between p-4 border border-white/5 bg-[#0a0a0a]/80 backdrop-blur-sm hover:border-gold/30 hover:bg-[#151515] transition-all group rounded-sm"
+                  className="flex items-center justify-between p-4 border border-white/5 bg-background/80 backdrop-blur-sm hover:border-gold/30 hover:bg-card transition-all group rounded-sm"
                 >
                   <div className="flex items-center gap-3">
                     <Icon

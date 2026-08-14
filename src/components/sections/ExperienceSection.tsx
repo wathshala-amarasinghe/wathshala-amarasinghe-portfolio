@@ -104,7 +104,7 @@ export function ExperienceSection() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/40 via-white/10 to-transparent md:-translate-x-px" />
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-linear-to-b from-gold/40 via-white/10 to-transparent md:-translate-x-px" />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (

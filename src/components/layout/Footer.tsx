@@ -10,7 +10,7 @@ export function Footer() {
       className="relative pt-32 pb-12 overflow-hidden border-t border-white/10"
     >
       {/* Background large portrait faded */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-full opacity-10 pointer-events-none mix-blend-luminosity flex items-start justify-center">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-full opacity-10 pointer-events-none mix-blend-luminosity flex items-start justify-center">
         <img
           src="/profile/profile-photo.jpeg"
           alt="Background Portrait"

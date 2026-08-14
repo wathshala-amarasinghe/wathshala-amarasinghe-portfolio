@@ -17,8 +17,8 @@ export function BlogGrid({ posts }: { posts: any[] }) {
           className="perspective-1000 h-full"
         >
           <Link href={`/blog/${post.slug}`} className="block h-full">
-            <TiltCard className="bg-[#0a0a0a] border border-white/5 p-6 rounded-sm group cursor-pointer hover:border-gold/30 transition-colors flex flex-col h-full">
-              <div className="aspect-[16/10] rounded-sm overflow-hidden mb-6 relative">
+            <TiltCard className="bg-background border border-white/5 p-6 rounded-sm group cursor-pointer hover:border-gold/30 transition-colors flex flex-col h-full">
+              <div className="aspect-16/10 rounded-sm overflow-hidden mb-6 relative">
                 <img
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
@@ -39,7 +39,7 @@ export function BlogGrid({ posts }: { posts: any[] }) {
                 {post.frontmatter.title}
               </h2>
 
-              <p className="text-foreground/50 text-sm font-light leading-relaxed mb-8 flex-grow">
+              <p className="text-foreground/50 text-sm font-light leading-relaxed mb-8 grow">
                 {post.frontmatter.description}
               </p>
 

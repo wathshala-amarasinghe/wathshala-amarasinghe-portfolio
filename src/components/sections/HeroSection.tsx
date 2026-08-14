@@ -21,7 +21,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 px-4 sm:px-6 overflow-hidden">
       <ParticleBackground />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-200 h-100 bg-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -30,7 +30,7 @@ export function HeroSection() {
         className="z-10 flex flex-col items-center text-center space-y-8"
       >
         <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border border-white/10 shadow-2xl shadow-gold/10 mb-8 group cursor-pointer">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent to-background/80 z-10 pointer-events-none" />
           <img
             src="/profile/profile-photo.jpeg"
             alt="Portrait of Wathshala Amarasinghe"

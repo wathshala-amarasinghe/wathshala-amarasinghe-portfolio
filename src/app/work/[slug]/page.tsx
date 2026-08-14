@@ -88,7 +88,7 @@ export default async function WorkSinglePage({
             ].map((meta) => (
               <div
                 key={meta.label}
-                className="border border-white/10 rounded-full px-8 py-3 bg-[#0a0a0a]/50 flex items-center gap-4"
+                className="border border-white/10 rounded-full px-8 py-3 bg-background/50 flex items-center gap-4"
               >
                 <span className="text-[10px] text-foreground/40 uppercase tracking-[0.2em]">
                   {meta.label}
@@ -103,7 +103,7 @@ export default async function WorkSinglePage({
 
         {/* Big Image */}
         <div className="max-w-7xl mx-auto px-6 w-full mb-24">
-          <div className="aspect-[21/9] w-full rounded-sm overflow-hidden border border-white/5 bg-[#111]">
+          <div className="aspect-21/9 w-full rounded-sm overflow-hidden border border-white/5 bg-[#111]">
             {post.frontmatter.image?.endsWith('.mp4') ? (
               <video
                 src={post.frontmatter.image}

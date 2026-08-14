@@ -22,7 +22,7 @@ export function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: "-100%" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505] overflow-hidden"
+          className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-[#050505] overflow-hidden"
         >
           {/* Loading Animation */}
           <div className="relative flex flex-col items-center">
@@ -56,7 +56,7 @@ export function PageLoader() {
             </div>
             
             {/* Loading Bar */}
-            <div className="w-48 h-[1px] bg-white/10 mt-8 relative overflow-hidden">
+            <div className="w-48 h-px bg-white/10 mt-8 relative overflow-hidden">
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "0%" }}

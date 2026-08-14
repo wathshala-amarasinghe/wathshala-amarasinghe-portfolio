@@ -62,7 +62,7 @@ export function ProcessSection() {
               } pl-12 md:w-full`}
             >
               {/* Dot */}
-              <div className="absolute left-[-5px] md:left-auto md:right-[-5px] md:[&_div]:left-[-5px] top-1/2 -translate-y-1/2 w-[10px] h-[10px] rounded-full bg-gold shadow-[0_0_15px_rgba(212,175,55,0.5)] z-10"></div>
+              <div className="absolute -left-1.25 md:left-auto md:-right-1.25 md:[&_div]:-left-1.25 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-gold shadow-[0_0_15px_rgba(212,175,55,0.5)] z-10"></div>
 
               <div className="bg-card hover:bg-card-hover transition-colors border border-white/5 p-8 rounded-2xl w-full">
                 <span className="text-gold font-serif text-5xl opacity-20 absolute top-4 right-8 select-none">

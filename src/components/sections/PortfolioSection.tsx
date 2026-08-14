@@ -79,7 +79,7 @@ export function PortfolioSection({
             >
               <Link href={`/work/${project.slug}`}>
                 <TiltCard className="relative overflow-hidden rounded-2xl h-full block">
-                  <div className="aspect-[4/3] overflow-hidden">
+                  <div className="aspect-4/3 overflow-hidden">
                     {project.image.endsWith(".mp4") ? (
                       <video
                         src={project.image}
@@ -97,7 +97,7 @@ export function PortfolioSection({
                       />
                     )}
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
                     <p className="text-gold text-sm tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                       {project.category}
                     </p>
