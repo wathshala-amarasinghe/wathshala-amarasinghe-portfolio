@@ -1,55 +1,148 @@
+/* ═══════════════════════════════════════════════
+   Global Styles — Wathshala Amarasinghe Portfolio
+   ═══════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Syne:wght@600..800&display=swap");
+@import "../styles/tokens.css";
+@import "../styles/motion.css";
+
 @import "tailwindcss";
 
-@theme {
-  --color-gold: #c5a059;
-  --color-gold-light: #e2c07b;
-  --color-gold-dark: #a37c35;
-  --color-background: #0a0a0a;
-  --color-foreground: #ededed;
-  --color-card: #151515;
-  --color-card-hover: #1e1e1e;
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-inter);
-  --animate-marquee: marquee 30s linear infinite;
+/* ── Base Reset & Defaults ───────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - 2rem));
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    font-weight: var(--weight-regular);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-height: 100dvh;
+  }
+
+  /* ── Typography Defaults ─────────────────────── */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-snug);
+    color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: var(--text-hero);
+    letter-spacing: var(--tracking-tight);
+  }
+  h2 {
+    font-size: var(--text-5xl);
+  }
+  h3 {
+    font-size: var(--text-3xl);
+  }
+  h4 {
+    font-size: var(--text-2xl);
+  }
+  h5 {
+    font-size: var(--text-xl);
+  }
+  h6 {
+    font-size: var(--text-lg);
+  }
+
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    max-width: 68ch;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    display: block;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  /* Hide default cursor on desktop devices where we show the custom cursor */
+  @media (pointer: fine) {
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select {
+      cursor: none !important;
     }
   }
 }
 
-@utility text-balance {
-  text-wrap: balance;
+/* ── Selection ────────────────────────────────── */
+::selection {
+  background-color: var(--color-accent-primary-dim);
+  color: var(--color-text-primary);
 }
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+/* ── Scrollbar ────────────────────────────────── */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-divider) transparent;
+  }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background-color: var(--color-divider);
+  border-radius: var(--radius-full);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #c5a059;
+
+/* ── Reduced Motion: disable smooth scroll ────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

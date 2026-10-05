@@ -1,21 +1,30 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { MarqueeSection } from "@/components/sections/about/MarqueeSection";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import { getMdxBySlug, getMdxFiles } from "@/lib/mdx";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { notFound } from "next/navigation";
-import { JsonLd } from "@/components/seo/JsonLd";
+// ─────────────────────────────────────────────────────────────────────────────
+//  /work/[slug] — Dynamic case study page
+//
+//  Renders a generic CaseStudyLayout for most projects.
+//  For projects with a dedicated case study component (e.g. "kavon"),
+//  the custom component is rendered inside the PortfolioShell directly,
+//  bypassing the placeholder prose layout.
+// ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { projects } from "@/data/projects";
+import { PortfolioShell } from "@/components/layout/portfolio-shell";
+import { CaseStudyLayout } from "@/components/projects/case-study-layout";
+import { KavonCaseStudy } from "@/components/projects/kavon-case-study";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
-export async function generateStaticParams() {
-  const files = getMdxFiles("work");
-  return files.map((file) => ({
-    slug: file.replace(/\.mdx$/, ""),
+// ── Static params (for static generation) ────────────────────────────────────
+
+export function generateStaticParams() {
+  return projects.map((p) => ({
+    slug: p.slug,
   }));
 }
+
+// ── Per-page metadata ─────────────────────────────────────────────────────────
 
 export async function generateMetadata({
   params,
@@ -23,124 +32,79 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getMdxBySlug("work", slug);
+  const project = projects.find((p) => p.slug === slug);
 
-  if (!post) {
-    return {};
+  if (!project || project.status === "draft") {
+    return { title: "Case Study Not Found" };
+  }
+
+  // KAVON-specific metadata
+  if (slug === "kavon") {
+    return {
+      title: "KAVON — Full-Stack E-commerce Case Study",
+      description:
+        "I designed and built KAVON's online store: a responsive Next.js storefront, protected admin dashboard, and shared Express/MongoDB API with server-side validation of prices, stock, discounts and order totals.",
+      openGraph: {
+        title: "KAVON — Full-Stack E-commerce Case Study",
+        description:
+          "UI/UX design, frontend development and backend integration for a bold Sri Lankan streetwear brand.",
+        images: ["/images/projects/kavon/storefront-hero.jpg"],
+      },
+    };
   }
 
   return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.description || `${post.frontmatter.title} - A ${post.frontmatter.category} project by Wathshala Amarasinghe.`,
-    alternates: {
-      canonical: `/work/${slug}`,
-    },
-    openGraph: {
-      images: post.frontmatter.image ? [post.frontmatter.image] : [],
-    },
+    title: project.title,
+    description: project.shortDescription,
   };
 }
 
-export default async function WorkSinglePage({
+// ── Page component ────────────────────────────────────────────────────────────
+
+export default async function WorkPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getMdxBySlug("work", slug);
+  const project = projects.find((p) => p.slug === slug);
 
-  if (!post) {
+  if (!project || project.status === "draft") {
     notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: post.frontmatter.title,
-    description: post.frontmatter.description || `Case study: ${post.frontmatter.title}`,
-    url: `${baseUrl}/work/${slug}`,
-    image: post.frontmatter.image ? `${baseUrl}${post.frontmatter.image}` : undefined,
-    author: {
-      "@type": "Person",
-      name: "Wathshala Amarasinghe"
-    }
-  };
+  // ── KAVON: dedicated case study ───────────────────────────────────────────
+  if (slug === "kavon") {
+    return (
+      <PortfolioShell>
+        <KavonCaseStudy />
+      </PortfolioShell>
+    );
+  }
 
+  // ── Generic: placeholder layout for all other projects ────────────────────
   return (
-    <>
-      <JsonLd data={jsonLd} />
-      <Navbar />
-      <main className="flex flex-col min-h-screen pt-32">
-        {/* Header Section */}
-        <div className="text-center px-6 pt-16 mb-12">
-          <h1 className="text-5xl md:text-7xl font-serif tracking-tight text-foreground font-light mb-16 max-w-4xl mx-auto leading-tight">
-            {post.frontmatter.title}
-          </h1>
-
-          {/* Metadata Pills */}
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto mb-16">
-            {[
-              { label: "CLIENT", value: post.frontmatter.client },
-              { label: "CATEGORY", value: post.frontmatter.category },
-              { label: "TIMELINE", value: post.frontmatter.timeline },
-              { label: "WEBSITE", value: post.frontmatter.website },
-            ].map((meta) => (
-              <div
-                key={meta.label}
-                className="border border-white/10 rounded-full px-8 py-3 bg-background/50 flex items-center gap-4"
-              >
-                <span className="text-[10px] text-foreground/40 uppercase tracking-[0.2em]">
-                  {meta.label}
-                </span>
-                <span className="text-xs text-foreground/80 tracking-widest uppercase">
-                  {meta.value}
-                </span>
-              </div>
-            ))}
-          </div>
+    <PortfolioShell>
+      <div className="px-8 pt-8 sm:px-12 lg:px-16">
+        <Link
+          href="/#work"
+          className="inline-flex items-center gap-2 text-sm font-medium text-[--color-text-secondary] transition-colors hover:text-[--color-accent-primary]"
+        >
+          <ArrowLeft size={16} />
+          Back to all work
+        </Link>
+      </div>
+      <CaseStudyLayout project={project}>
+        <p>
+          This is a detailed case study for <strong>{project.title}</strong>.
+          Here you would place your UX research, wireframes, and full
+          high-fidelity screenshots.
+        </p>
+        {/* Placeholder content for now */}
+        <div className="mt-12 flex h-64 w-full items-center justify-center rounded-2xl border-2 border-white/10 bg-white/5 text-[--color-text-muted]">
+          Case study content section
         </div>
-
-        {/* Big Image */}
-        <div className="max-w-7xl mx-auto px-6 w-full mb-24">
-          <div className="aspect-21/9 w-full rounded-sm overflow-hidden border border-white/5 bg-[#111]">
-            {post.frontmatter.image?.endsWith('.mp4') ? (
-              <video
-                src={post.frontmatter.image}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
-              />
-            ) : (
-              <img
-                src={post.frontmatter.image}
-                alt={post.frontmatter.title}
-                className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-all duration-500"
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Article Body */}
-        <article className="max-w-3xl mx-auto px-6 w-full mb-24 text-foreground/70 font-light leading-relaxed space-y-8 prose prose-invert prose-headings:font-serif prose-headings:font-light">
-          <MDXRemote source={post.content} />
-        </article>
-
-        {/* Next Project / Back CTA */}
-        <div className="text-center pb-24">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-gold hover:gap-4 transition-all uppercase tracking-widest text-xs border border-white/10 rounded-full px-8 py-4 hover:bg-white/5"
-          >
-            <ArrowLeft size={16} /> BACK TO WORK
-          </Link>
-        </div>
-
-        <MarqueeSection />
-      </main>
-      <Footer />
-    </>
+      </CaseStudyLayout>
+    </PortfolioShell>
   );
 }

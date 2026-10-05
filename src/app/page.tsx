@@ -1,63 +1,24 @@
-import type { Metadata } from "next";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { StatsSection } from "@/components/sections/StatsSection";
-import { SkillsMarqueeSection } from "@/components/sections/SkillsMarqueeSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { PortfolioSection } from "@/components/sections/PortfolioSection";
-import { ExperienceSection } from "@/components/sections/ExperienceSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { MarqueeSection } from "@/components/sections/about/MarqueeSection";
-
-import { JsonLd } from "@/components/seo/JsonLd";
-
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+import { PortfolioShell } from "@/components/layout/portfolio-shell";
+import { HeroSection } from "@/components/sections/hero-section";
+import { AboutSection } from "@/components/sections/about-section";
+import { ExperienceSection } from "@/components/sections/experience-section";
+import { SelectedWorkSection } from "@/components/sections/selected-work-section";
+import { PracticeSection } from "@/components/sections/practice-section";
+import { TechSection } from "@/components/sections/tech-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { ContactSection } from "@/components/sections/contact-section";
 
 export default function Home() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
-  const personJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Wathshala Amarasinghe",
-    url: baseUrl,
-    jobTitle: "UI/UX Designer & Business Analyst",
-    image: `${baseUrl}/profile/profile-photo.jpeg`,
-    sameAs: [
-      "https://github.com/wathshala-amarasinghe",
-      "https://www.linkedin.com/in/wathshala-amarasinghe",
-    ],
-    address: { "@type": "PostalAddress", addressCountry: "LK" },
-  };
-
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Wathshala Amarasinghe Portfolio",
-    url: baseUrl,
-  };
-
   return (
-    <>
-      <JsonLd data={personJsonLd} />
-      <JsonLd data={websiteJsonLd} />
-      <Navbar />
-      <main className="flex flex-col min-h-screen">
-        <HeroSection />
-        <StatsSection />
-        <SkillsMarqueeSection />
-        <ServicesSection />
-        <PortfolioSection />
-        <ExperienceSection />
-        <ProcessSection />
-        <AboutSection />
-        <MarqueeSection />
-      </main>
-      <Footer />
-    </>
+    <PortfolioShell>
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <SelectedWorkSection />
+      <PracticeSection />
+      <TechSection id="tech" />
+      <TestimonialsSection />
+      <ContactSection />
+    </PortfolioShell>
   );
 }
