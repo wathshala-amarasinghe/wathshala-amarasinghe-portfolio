@@ -2,7 +2,11 @@
 //  Experience & Education Data — Real CV data
 // ─────────────────────────────────────────────
 
-import type { ExperienceItem, EducationItem } from "@/types/portfolio";
+import type {
+  ExperienceItem,
+  EducationItem,
+  CertificationItem,
+} from "@/types/portfolio";
 
 export const experience: ExperienceItem[] = [
   {
@@ -79,5 +83,17 @@ export const education: EducationItem[] = [
     startYear: 2022,
     endYear: 2025,
     location: "Homagama, Sri Lanka",
+  },
+];
+
+export const certifications: CertificationItem[] = [
+  {
+    id: "figma-to-lottie",
+    title: "Figma to Lottie",
+    issuer: "LottieFiles",
+    awardedDate: "2026-10-06",
+    imagePath: "/images/educational/Figma_to_Lottie.jpeg",
+    imageAlt:
+      "LottieFiles for Figma course certificate awarded to Wathshala Amarasinghe for completing Figma to Lottie",
   },
 ];

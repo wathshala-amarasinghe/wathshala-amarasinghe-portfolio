@@ -83,6 +83,15 @@ export interface EducationItem {
   location: string;
 }
 
+export interface CertificationItem {
+  id: string;
+  title: string;
+  issuer: string;
+  awardedDate: string; // "YYYY-MM-DD"
+  imagePath: string;
+  imageAlt: string;
+}
+
 // ── Navigation ───────────────────────────────
 
 export interface NavSection {

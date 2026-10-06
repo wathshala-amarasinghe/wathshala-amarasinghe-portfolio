@@ -7,8 +7,12 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";
-import { experience, education } from "@/data/experience";
+import { experience, education, certifications } from "@/data/experience";
+import type { CertificationItem } from "@/types/portfolio";
+import Image from "next/image";
+import { Eye, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 function AnimatedTimeline({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,6 +72,154 @@ function formatDate(dateStr: string | "present") {
     "Dec",
   ];
   return `${months[parseInt(month, 10) - 1]} ${year}`;
+}
+
+function formatAwardDate(date: string) {
+  const [year, month, day] = date.split("-");
+  return `${day}/${month}/${year}`;
+}
+
+function CertificateArtwork({
+  certificate,
+}: {
+  certificate: CertificationItem;
+}) {
+  return (
+    <div className="relative isolate overflow-hidden rounded-3xl border border-white/10 bg-[#09090b] p-2 shadow-2xl">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-[#6B191F] via-[#A91F27] to-[#6B191F]"
+      />
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-white">
+        <Image
+          src={certificate.imagePath}
+          alt={certificate.imageAlt}
+          fill
+          sizes="(max-width: 640px) calc(100vw - 3rem), 480px"
+          className="object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
+function CertificateCredential({
+  certificate,
+}: {
+  certificate: CertificationItem;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
+  const titleId = `${certificate.id}-certificate-title`;
+  const openCertificate = () => {
+    setIsPreviewVisible(false);
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
+
+  return (
+    <>
+      <div
+        className="group/certificate relative"
+        onMouseEnter={() => setIsPreviewVisible(true)}
+        onMouseLeave={() => setIsPreviewVisible(false)}
+      >
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          onClick={openCertificate}
+          onFocus={() => setIsPreviewVisible(true)}
+          onBlur={() => setIsPreviewVisible(false)}
+          className="flex w-full items-start justify-between gap-4 rounded-2xl border border-white/8 bg-white/3 px-4 py-4 text-left transition-colors hover:border-[#A91F27]/45 hover:bg-[#6B191F]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A91F27]"
+        >
+          <span>
+            <span className="font-display block text-lg font-bold text-[--color-text-primary] transition-colors group-hover/certificate:text-white">
+              {certificate.title}
+            </span>
+            <span className="mt-1 block text-sm text-[--color-text-muted]">
+              {certificate.issuer} · Awarded{" "}
+              {formatAwardDate(certificate.awardedDate)}
+            </span>
+          </span>
+          <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-black/25 text-white/65 transition-colors group-hover/certificate:border-[#A91F27]/50 group-hover/certificate:text-white">
+            <Eye aria-hidden="true" size={17} />
+          </span>
+        </button>
+
+        <span className="mt-2 hidden text-xs text-[--color-text-muted] lg:block">
+          Hover or focus to preview · Click to enlarge
+        </span>
+        <button
+          type="button"
+          onClick={openCertificate}
+          className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#A91F27]/45 bg-[#6B191F]/15 px-4 py-2 text-sm font-semibold text-white lg:hidden"
+        >
+          <Eye aria-hidden="true" size={16} />
+          View certificate
+        </button>
+      </div>
+
+      {isPreviewVisible &&
+        !isOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div className="pointer-events-none fixed top-1/2 left-1/2 z-90 hidden w-80 -translate-x-1/2 -translate-y-1/2 lg:block">
+            <CertificateArtwork certificate={certificate} />
+          </div>,
+          document.body
+        )}
+
+      {isOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+            className="fixed inset-0 z-100 flex items-end justify-center bg-black/80 p-4 backdrop-blur-md sm:items-center"
+            onMouseDown={(event) => {
+              if (event.currentTarget === event.target) setIsOpen(false);
+            }}
+          >
+            <div className="max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-4xl border border-white/10 bg-[--color-surface] p-4 shadow-2xl sm:p-6">
+              <div className="mb-4 flex items-center justify-between gap-4 px-1">
+                <div>
+                  <span className="text-xs font-semibold tracking-[0.16em] text-[#E5636C] uppercase">
+                    Credential
+                  </span>
+                  <h4
+                    id={titleId}
+                    className="mt-1 text-xl font-bold text-white"
+                  >
+                    {certificate.title}
+                  </h4>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close certificate"
+                  onClick={() => setIsOpen(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10"
+                >
+                  <X aria-hidden="true" size={19} />
+                </button>
+              </div>
+              <CertificateArtwork certificate={certificate} />
+            </div>
+          </div>,
+          document.body
+        )}
+    </>
+  );
 }
 
 export function ExperienceSection() {
@@ -185,6 +337,22 @@ export function ExperienceSection() {
                         </>
                       )}
                     </span>
+
+                    {certifications.length > 0 && (
+                      <div className="mt-5 border-t border-white/8 pt-5">
+                        <span className="mb-3 block text-xs font-semibold tracking-[0.16em] text-[#E5636C] uppercase">
+                          Certificates
+                        </span>
+                        <div className="flex flex-col gap-3">
+                          {certifications.map((certificate) => (
+                            <CertificateCredential
+                              key={certificate.id}
+                              certificate={certificate}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Reveal>
               ))}

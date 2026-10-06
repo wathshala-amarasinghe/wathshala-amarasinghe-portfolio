@@ -72,6 +72,49 @@ test.describe("Homepage", () => {
     ).toBeVisible();
   });
 
+  test("shows the education certificate on desktop and mobile", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const educationSection = page.locator("#work-experience");
+    const certificateTrigger = educationSection
+      .getByRole("button", { name: /Figma to Lottie/i })
+      .first();
+
+    await expect(certificateTrigger).toBeVisible();
+    await expect(certificateTrigger).toContainText("LottieFiles");
+    await expect(certificateTrigger).toContainText("06/10/2026");
+
+    const isMobile = await page.evaluate(() => window.innerWidth < 1024);
+    if (isMobile) {
+      await educationSection
+        .getByRole("button", { name: "View certificate", exact: true })
+        .click();
+      const certificateDialog = page.getByRole("dialog", {
+        name: "Figma to Lottie",
+      });
+      await expect(certificateDialog).toBeVisible();
+      await expect(
+        certificateDialog.getByRole("heading", {
+          name: "Figma to Lottie",
+        })
+      ).toBeVisible();
+      await expect(
+        certificateDialog.getByRole("img", {
+          name: /LottieFiles for Figma course certificate/i,
+        })
+      ).toBeVisible();
+    } else {
+      await certificateTrigger.hover();
+      await expect(
+        page.getByRole("img", {
+          name: /LottieFiles for Figma course certificate/i,
+        })
+      ).toBeVisible();
+    }
+  });
+
   test("accessibility check", async ({ page }) => {
     await page.goto("/");
     // Ensure animations don't interfere with initial a11y checks
