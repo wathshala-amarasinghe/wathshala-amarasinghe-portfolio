@@ -95,7 +95,7 @@ export function ProfileSidebar({ className }: { className?: string }) {
       </div>
 
       {/* Gradient Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#08090d] via-[#08090d]/60 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-[#08090d] via-[#08090d]/60 to-transparent" />
 
       {/* Top Header (Logo & Socials) */}
       <div className="relative z-10 flex w-full items-start justify-between p-6">

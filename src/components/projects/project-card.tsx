@@ -5,22 +5,29 @@
 // ─────────────────────────────────────────────
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import type { Project } from "@/types/portfolio";
 import { ArrowUpRight } from "lucide-react";
 import { Tag } from "@/components/ui/tag";
 import { cn } from "@/lib/cn";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 export function ProjectCard({ project }: { project: Project }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (project.slug === "kavon" && project.gallery.length > 0) {
+    if (
+      !prefersReducedMotion &&
+      project.slug === "kavon" &&
+      project.gallery.length > 0
+    ) {
       const timer = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % project.gallery.length);
       }, 3000);
       return () => clearInterval(timer);
     }
-  }, [project.slug, project.gallery.length]);
+  }, [prefersReducedMotion, project.slug, project.gallery.length]);
   const CardWrapper = project.status === "published" ? "a" : "div";
   const href =
     project.status === "published" ? `/work/${project.slug}` : undefined;
@@ -34,30 +41,34 @@ export function ProjectCard({ project }: { project: Project }) {
         project.status === "published" && "hover-lift cursor-pointer"
       )}
     >
-      <div className="relative mb-6 aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] border-[3px] border-white/5 bg-black/40 backdrop-blur-xl sm:aspect-[16/9]">
+      <div className="relative mb-6 aspect-4/3 w-full overflow-hidden rounded-[2.5rem] border-[3px] border-white/5 bg-black/40 backdrop-blur-xl sm:aspect-video">
         {project.slug === "kavon" && project.gallery.length > 0 ? (
-          <div 
+          <div
             className="flex h-full transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {project.gallery.map((img, i) => (
-              <img
-                key={i}
-                src={img.src}
-                alt={img.alt}
-                className="h-full w-full shrink-0 object-cover"
-              />
+            {project.gallery.map((img) => (
+              <div key={img.src} className="relative h-full w-full shrink-0">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             ))}
           </div>
         ) : project.coverImage ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={project.coverImage.src}
             alt={project.coverImage.alt}
-            className="h-full w-full object-cover transition-transform duration-[--duration-cinematic] group-hover:scale-105"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover transition-transform duration-[--duration-cinematic] group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[--color-surface] to-[--color-divider] opacity-50" />
+          <div className="absolute inset-0 bg-linear-to-br from-[--color-surface] to-[--color-divider] opacity-50" />
         )}
       </div>
 

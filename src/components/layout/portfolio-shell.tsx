@@ -26,7 +26,10 @@ export function PortfolioShell({ children }: PortfolioShellProps) {
     <div className="relative min-h-screen bg-[--color-bg]">
       <Preloader />
       {/* Global Background Video (Optional) */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      >
         <video
           autoPlay
           loop

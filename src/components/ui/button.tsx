@@ -26,11 +26,11 @@ const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-[--color-accent-primary] text-[--color-text-primary] hover:brightness-110",
   secondary:
-    "bg-[--color-raised] text-[--color-text-primary] border-2 border-[--color-divider] hover:border-[#6B191F] hover:text-[#6B191F]",
+    "bg-[--color-raised] text-[--color-text-primary] border-2 border-[--color-divider] hover:border-[--color-accent-primary] hover:text-[--color-accent-primary]",
   ghost:
     "text-[--color-text-secondary] hover:text-[--color-text-primary] hover:bg-[--color-raised]",
   outline:
-    "border-2 border-[#6B191F] text-[#6B191F] hover:bg-[--color-accent-primary-dim]",
+    "border-2 border-[--color-accent-primary] text-[--color-accent-primary] hover:bg-[--color-accent-primary-dim]",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -52,10 +52,18 @@ export function Button({
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if (as === "a") {
-    const { as: _as, variant: _v, size: _s, ...rest } = props as AnchorProps;
-    return <a className={classes} {...rest} />;
+    return (
+      <a
+        className={classes}
+        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      />
+    );
   }
 
-  const { as: _as, variant: _v, size: _s, ...rest } = props as ButtonProps;
-  return <button className={classes} {...rest} />;
+  return (
+    <button
+      className={classes}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
+    />
+  );
 }

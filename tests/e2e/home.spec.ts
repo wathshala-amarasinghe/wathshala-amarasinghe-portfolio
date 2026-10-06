@@ -8,7 +8,7 @@ test.describe("Homepage", () => {
     // Verify hero text exists (filtering out the sidebar h1)
     await expect(
       page.getByRole("heading", { level: 1, name: /digital products/i })
-    ).toContainText(/form/i);
+    ).toContainText(/people love to use/i);
 
     // Verify navigation renders (on desktop)
     const isMobile = await page.evaluate(() => window.innerWidth < 1024);

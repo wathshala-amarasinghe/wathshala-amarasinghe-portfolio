@@ -176,7 +176,6 @@ function Lightbox({
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div
       role="dialog"
       aria-modal="true"
@@ -254,7 +253,7 @@ function TechDisclosure() {
         aria-expanded={open}
         aria-controls="tech-details-panel"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between px-6 py-4 text-left text-sm font-semibold text-[--color-text-secondary] transition-colors hover:bg-[--color-raised] hover:text-[--color-text-primary] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[--color-accent-primary]"
+        className="flex w-full items-center justify-between px-6 py-4 text-left text-sm font-semibold text-[--color-text-secondary] transition-colors hover:bg-[--color-raised] hover:text-[--color-text-primary] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[--color-accent-primary]"
       >
         <span>Technical details</span>
         {open ? (
@@ -376,16 +375,16 @@ export function KavonCaseStudy() {
 
               <h1
                 id="kavon-title"
-                className="font-display text-[length:var(--text-5xl)] leading-[1.05] font-black tracking-tight text-[--color-text-primary]"
+                className="font-display text-(length:--text-5xl) leading-[1.05] font-black tracking-tight text-[--color-text-primary]"
               >
                 KAVON
               </h1>
 
-              <p className="max-w-[52ch] text-[length:var(--text-xl)] leading-snug font-medium text-[--color-text-secondary]">
+              <p className="max-w-[52ch] text-(length:--text-xl) leading-snug font-medium text-[--color-text-secondary]">
                 An online store for a bold streetwear brand.
               </p>
 
-              <p className="max-w-[60ch] text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+              <p className="max-w-[60ch] text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                 I designed and built KAVON&apos;s online store, bringing its
                 bold streetwear identity into the shopping experience. My work
                 covered the customer website, admin tools, and the connections
@@ -448,19 +447,19 @@ export function KavonCaseStudy() {
 
               <h2
                 id="section-brief"
-                className="font-display mb-6 text-[length:var(--text-3xl)] leading-snug font-bold tracking-tight text-[--color-text-primary]"
+                className="font-display mb-6 text-(length:--text-3xl) leading-snug font-bold tracking-tight text-[--color-text-primary]"
               >
                 What the project needed
               </h2>
 
               <div className="flex max-w-[65ch] flex-col gap-4">
-                <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                   The goal was to give KAVON a strong online presence while
                   keeping product selection, delivery costs and checkout easy to
                   understand. The store also needed tools to manage products and
                   orders behind the scenes.
                 </p>
-                <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                   I designed the interfaces, built the customer-facing Next.js
                   storefront, implemented the admin dashboard, and connected
                   both to a shared Express API backed by MongoDB. The API
@@ -496,7 +495,7 @@ export function KavonCaseStudy() {
               <SectionLabel n="02" label="Interface decisions" />
               <h2
                 id="section-decisions"
-                className="font-display mb-16 text-[length:var(--text-3xl)] leading-snug font-bold tracking-tight text-[--color-text-primary]"
+                className="font-display mb-16 text-(length:--text-3xl) leading-snug font-bold tracking-tight text-[--color-text-primary]"
               >
                 Three decisions that shaped the experience
               </h2>
@@ -515,12 +514,12 @@ export function KavonCaseStudy() {
 
               <div className="max-w-[65ch]">
                 <h3
-                  className="font-display mb-3 text-[length:var(--text-2xl)] font-bold tracking-tight text-[--color-text-primary]"
+                  className="font-display mb-3 text-(length:--text-2xl) font-bold tracking-tight text-[--color-text-primary]"
                   style={{ color: "var(--color-text-primary)" }}
                 >
                   A — Finding the right product
                 </h3>
-                <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                   The catalog page combines a persistent left-side filter panel
                   with a responsive product grid. Customers can narrow results
                   by category (Oversized, Hoodies, T-Shirts, and more), apply a
@@ -542,10 +541,10 @@ export function KavonCaseStudy() {
                 />
 
                 <div>
-                  <h3 className="font-display mb-3 text-[length:var(--text-2xl)] font-bold tracking-tight text-[--color-text-primary]">
+                  <h3 className="font-display mb-3 text-(length:--text-2xl) font-bold tracking-tight text-[--color-text-primary]">
                     B — Making product choices clearer
                   </h3>
-                  <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                  <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                     On the product page, colour swatches, size buttons and a
                     per-size availability indicator appear before the Add to
                     Cart action. When a size is low in stock the page surfaces
@@ -561,10 +560,10 @@ export function KavonCaseStudy() {
             <Reveal>
               <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
                 <div className="order-2 lg:order-1 lg:max-w-[52ch]">
-                  <h3 className="font-display mb-3 text-[length:var(--text-2xl)] font-bold tracking-tight text-[--color-text-primary]">
+                  <h3 className="font-display mb-3 text-(length:--text-2xl) font-bold tracking-tight text-[--color-text-primary]">
                     C — Knowing what is in the order
                   </h3>
-                  <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                  <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                     The cart shows each selected variant — product name, chosen
                     size, quantity controls — alongside the order summary: line
                     totals, an estimated shipping cost and any active discount.
@@ -574,7 +573,7 @@ export function KavonCaseStudy() {
                   </p>
                 </div>
 
-                <div className="order-1 w-full lg:order-2 lg:w-[460px]">
+                <div className="order-1 w-full lg:order-2 lg:w-115">
                   <Screenshot
                     src="/images/projects/kavon/08-tactical-tee-cart.jpg"
                     alt="KAVON cart page showing two products with size and quantity controls on the left, and an order summary panel with subtotal, shipping, discount and order total on the right"
@@ -597,12 +596,12 @@ export function KavonCaseStudy() {
 
               <h2
                 id="section-admin"
-                className="font-display mb-6 text-[length:var(--text-3xl)] leading-snug font-bold tracking-tight text-[--color-text-primary]"
+                className="font-display mb-6 text-(length:--text-3xl) leading-snug font-bold tracking-tight text-[--color-text-primary]"
               >
                 Behind the storefront
               </h2>
 
-              <p className="mb-10 max-w-[65ch] max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+              <p className="mb-10 max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                 I also built the tools behind the storefront, so products, stock
                 and orders could be managed through the same platform. The admin
                 dashboard is a separate protected Next.js application that
@@ -627,13 +626,13 @@ export function KavonCaseStudy() {
 
               <h2
                 id="section-reflection"
-                className="font-display mb-6 text-[length:var(--text-3xl)] leading-snug font-bold tracking-tight text-[--color-text-primary]"
+                className="font-display mb-6 text-(length:--text-3xl) leading-snug font-bold tracking-tight text-[--color-text-primary]"
               >
                 What I built, and what comes next
               </h2>
 
               <div className="flex max-w-[65ch] flex-col gap-5">
-                <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                   The project connects a responsive storefront, customer
                   accounts, an authenticated checkout flow and store management
                   in one platform. It shows how I bring interface design and
@@ -648,7 +647,7 @@ export function KavonCaseStudy() {
                   </span>
                 </div>
 
-                <p className="max-w-none text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                <p className="max-w-none text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                   Next, I&apos;d focus on clearer product photography and
                   testing the full order journey end to end — from account
                   verification through to delivery status updates. Card payments
@@ -676,12 +675,12 @@ export function KavonCaseStudy() {
 
                 <h2
                   id="section-closing"
-                  className="font-display mb-3 text-[length:var(--text-3xl)] font-bold tracking-tight text-[--color-text-primary]"
+                  className="font-display mb-3 text-(length:--text-3xl) font-bold tracking-tight text-[--color-text-primary]"
                 >
                   Have a project in mind?
                 </h2>
 
-                <p className="mb-8 max-w-[52ch] text-[length:var(--text-base)] leading-relaxed text-[--color-text-secondary]">
+                <p className="mb-8 max-w-[52ch] text-(length:--text-base) leading-relaxed text-[--color-text-secondary]">
                   I&apos;m currently open for new opportunities in UI/UX design
                   and frontend development.
                 </p>

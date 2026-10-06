@@ -104,19 +104,17 @@ export function CustomCursor() {
       <div
         ref={cursorRef}
         className={cn(
-          "pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6B191F] transition-opacity duration-300",
+          "pointer-events-none fixed top-0 left-0 z-9999 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6B191F] transition-opacity duration-300",
           isVisible ? "opacity-100" : "opacity-0"
         )}
       />
       {/* Trailing Ring */}
       <div
         ref={followerRef}
+        data-hovering={isHovering}
         className={cn(
-          "pointer-events-none fixed top-0 left-0 z-[9998] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#6B191F]/50 transition-all duration-300 ease-out",
-          isVisible ? "opacity-100" : "opacity-0",
-          isHovering
-            ? "h-14 w-14 scale-150 border-[#6B191F] bg-[#6B191F]/10"
-            : "scale-100"
+          "pointer-events-none fixed top-0 left-0 z-9998 h-8 w-8 -translate-x-1/2 -translate-y-1/2 scale-100 rounded-full border border-[#6B191F]/50 transition-all duration-300 ease-out data-[hovering=true]:h-14 data-[hovering=true]:w-14 data-[hovering=true]:scale-150 data-[hovering=true]:border-[#6B191F] data-[hovering=true]:bg-[#6B191F]/10",
+          isVisible ? "opacity-100" : "opacity-0"
         )}
       />
     </>

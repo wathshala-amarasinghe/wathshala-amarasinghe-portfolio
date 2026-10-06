@@ -65,7 +65,7 @@ export function HeroSection() {
               </span>
               {/* Underline accent */}
               <span
-                className="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#6B191F] opacity-40"
+                className="absolute -bottom-1 left-0 h-0.75 w-full rounded-full bg-[#6B191F] opacity-40"
                 aria-hidden="true"
               />
             </span>{" "}

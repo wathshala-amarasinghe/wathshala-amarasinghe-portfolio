@@ -47,7 +47,10 @@ export function ContactForm() {
       setTimeout(() => setStatus("idle"), 6000);
     } catch (err: unknown) {
       setStatus("error");
-      const errorMsg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      const errorMsg =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again.";
       setErrorMessage(errorMsg);
     } finally {
       setIsSubmitting(false);

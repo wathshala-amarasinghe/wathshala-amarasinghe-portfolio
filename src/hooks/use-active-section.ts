@@ -8,7 +8,7 @@
 //  and update the profile sidebar context.
 // ─────────────────────────────────────────────
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface UseActiveSectionOptions {
   /** Selector for section elements. Defaults to "section[id]" */
@@ -46,8 +46,10 @@ export function useActiveSection({
         }
       });
 
-      if (currentActiveId && currentActiveId !== activeId) {
-        setActiveId(currentActiveId);
+      if (currentActiveId) {
+        setActiveId((previousId) =>
+          previousId === currentActiveId ? previousId : currentActiveId
+        );
       }
     };
 
@@ -56,7 +58,7 @@ export function useActiveSection({
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [selector, activeId]);
+  }, [selector]);
 
   return activeId;
 }

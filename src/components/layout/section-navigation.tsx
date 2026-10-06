@@ -98,21 +98,15 @@ export function SectionNavigation({ className }: { className?: string }) {
 
         {/* Separator */}
         <div
-          className={cn(
-            "my-2 h-px w-6 bg-white/10 transition-all duration-300",
-            showScrollTop ? "opacity-100" : "my-0 h-0 opacity-0"
-          )}
+          data-hidden={!showScrollTop}
+          className="my-2 h-px w-6 bg-white/10 opacity-100 transition-all duration-300 data-[hidden=true]:my-0 data-[hidden=true]:h-0 data-[hidden=true]:opacity-0"
         />
 
         {/* Scroll to Top */}
         <button
           onClick={scrollToTop}
-          className={cn(
-            "flex items-center justify-center rounded-full text-white/50 transition-all duration-300 hover:bg-white/5 hover:text-white",
-            showScrollTop
-              ? "visible h-12 w-12 opacity-100"
-              : "invisible h-0 w-0 opacity-0"
-          )}
+          data-hidden={!showScrollTop}
+          className="visible flex h-12 w-12 items-center justify-center rounded-full text-white/50 opacity-100 transition-all duration-300 hover:bg-white/5 hover:text-white data-[hidden=true]:invisible data-[hidden=true]:h-0 data-[hidden=true]:w-0 data-[hidden=true]:opacity-0"
           aria-label="Scroll to top"
         >
           <ArrowUp size={18} />

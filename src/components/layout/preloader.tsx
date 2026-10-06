@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
 
@@ -26,10 +26,13 @@ export function Preloader() {
   if (!isLoading) return null;
 
   return (
-    <div className="preloader-overlay fixed inset-0 z-50 flex items-center justify-center bg-[#08090D]">
+    <div
+      aria-hidden="true"
+      className="preloader-overlay fixed inset-0 z-50 flex items-center justify-center bg-[--color-bg]"
+    >
       <div className="flex flex-col items-center gap-4">
-        <div className="h-16 w-16 animate-spin rounded-full border-4 border-[#6B191F]/30 border-t-[#6B191F]" />
-        <span className="font-display animate-pulse text-sm font-semibold tracking-widest text-[#6B191F] uppercase">
+        <div className="h-16 w-16 animate-spin rounded-full border-4 border-[--color-accent-primary]/30 border-t-[--color-accent-primary] motion-reduce:animate-none" />
+        <span className="font-display animate-pulse text-sm font-semibold tracking-widest text-[--color-accent-primary] uppercase motion-reduce:animate-none">
           Loading...
         </span>
       </div>

@@ -11,9 +11,9 @@
 //   - User prefers reduced motion
 // ─────────────────────────────────────────────
 
-import { useRef, useEffect, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/cn";
 

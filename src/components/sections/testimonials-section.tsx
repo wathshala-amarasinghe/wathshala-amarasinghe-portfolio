@@ -25,18 +25,18 @@ export function TestimonialsSection() {
               className="rounded-2xl border-[3px] border-[--color-divider] bg-[--color-surface] p-8"
             >
               <p className="mb-6 text-lg leading-relaxed text-[--color-text-primary] italic">
-                &quot;Wathshala is an incredible UI/UX engineer who always bridges
-                the gap between design and development effortlessly. A true
-                asset to any team.&quot;
+                &quot;Wathshala is an incredible UI/UX engineer who always
+                bridges the gap between design and development effortlessly. A
+                true asset to any team.&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[--color-raised] text-sm font-bold text-[--color-text-muted]">
                   J.D.
                 </div>
                 <div>
-                  <h4 className="font-bold text-[--color-text-primary]">
+                  <p className="font-bold text-[--color-text-primary]">
                     John Doe
-                  </h4>
+                  </p>
                   <p className="text-sm text-[--color-text-muted]">
                     Product Manager
                   </p>

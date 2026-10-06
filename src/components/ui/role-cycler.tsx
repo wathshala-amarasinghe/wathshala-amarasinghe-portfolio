@@ -59,7 +59,7 @@ export function RoleCycler() {
       <span className="text-[#6B191F] italic">{displayed}</span>
       {/* Blinking cursor */}
       <span
-        className="ml-[2px] inline-block h-[1em] w-[3px] animate-pulse bg-[#6B191F] align-baseline"
+        className="ml-0.5 inline-block h-[1em] w-0.75 animate-pulse bg-[#6B191F] align-baseline"
         aria-hidden="true"
       />
     </span>

@@ -34,7 +34,7 @@ export function LeftSidebarArea() {
       {showProject ? (
         <ProjectContext />
       ) : (
-        <ProfileSidebar className="h-full w-full rounded-[32px] bg-[--color-surface] shadow-xl" />
+        <ProfileSidebar className="h-full w-full rounded-4xl bg-[--color-surface] shadow-xl" />
       )}
     </div>
   );

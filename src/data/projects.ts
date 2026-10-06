@@ -78,16 +78,56 @@ export const projects: Project[] = [
     },
     heroMedia: null,
     gallery: [
-      { type: "image", src: "/images/projects/kavon/01-home-hero.jpg", alt: "KAVON home hero" },
-      { type: "image", src: "/images/projects/kavon/02-home-collections.jpg", alt: "KAVON collections" },
-      { type: "image", src: "/images/projects/kavon/03-shop-catalog.jpg", alt: "KAVON shop catalog" },
-      { type: "image", src: "/images/projects/kavon/04-tactical-tee-product.jpg", alt: "KAVON tactical tee product" },
-      { type: "image", src: "/images/projects/kavon/05-tactical-tee-back-details.jpg", alt: "KAVON tactical tee back details" },
-      { type: "image", src: "/images/projects/kavon/06-tactical-tee-size-guide.jpg", alt: "KAVON tactical tee size guide" },
-      { type: "image", src: "/images/projects/kavon/07-tactical-tee-fit-finder.jpg", alt: "KAVON tactical tee fit finder" },
-      { type: "image", src: "/images/projects/kavon/08-tactical-tee-cart.jpg", alt: "KAVON tactical tee cart" },
-      { type: "image", src: "/images/projects/kavon/09-order-tracking.jpg", alt: "KAVON order tracking" },
-      { type: "image", src: "/images/projects/kavon/10-brand-story.jpg", alt: "KAVON brand story" }
+      {
+        type: "image",
+        src: "/images/projects/kavon/01-home-hero.jpg",
+        alt: "KAVON home hero",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/02-home-collections.jpg",
+        alt: "KAVON collections",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/03-shop-catalog.jpg",
+        alt: "KAVON shop catalog",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/04-tactical-tee-product.jpg",
+        alt: "KAVON tactical tee product",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/05-tactical-tee-back-details.jpg",
+        alt: "KAVON tactical tee back details",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/06-tactical-tee-size-guide.jpg",
+        alt: "KAVON tactical tee size guide",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/07-tactical-tee-fit-finder.jpg",
+        alt: "KAVON tactical tee fit finder",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/08-tactical-tee-cart.jpg",
+        alt: "KAVON tactical tee cart",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/09-order-tracking.jpg",
+        alt: "KAVON order tracking",
+      },
+      {
+        type: "image",
+        src: "/images/projects/kavon/10-brand-story.jpg",
+        alt: "KAVON brand story",
+      },
     ],
     status: "published",
     featured: true,

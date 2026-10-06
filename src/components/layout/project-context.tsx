@@ -6,7 +6,6 @@
 // ─────────────────────────────────────────────
 
 import { projects } from "@/data/projects";
-import { cn } from "@/lib/cn";
 import { useEffect, useState, useRef } from "react";
 
 export function ProjectContext() {
@@ -40,8 +39,8 @@ export function ProjectContext() {
   const displayIndex = activeIndex === -1 ? 1 : activeIndex + 1;
 
   return (
-    <aside className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-[32px] bg-[--color-surface] p-8 shadow-xl transition-all duration-500">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#6B191F]/20 via-transparent to-transparent opacity-50 transition-opacity" />
+    <aside className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-4xl bg-[--color-surface] p-8 shadow-xl transition-all duration-500">
+      <div className="absolute inset-0 bg-linear-to-br from-[#6B191F]/20 via-transparent to-transparent opacity-50 transition-opacity" />
 
       <div className="relative z-10 flex flex-col gap-6">
         {/* Logo placeholder */}

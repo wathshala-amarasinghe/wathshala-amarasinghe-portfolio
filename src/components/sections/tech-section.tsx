@@ -91,7 +91,7 @@ function TechSkill({ name, description, percentage, icon }: TechSkillProps) {
       </div>
 
       <div className="flex w-full items-center justify-end sm:w-1/2">
-        <div className="relative flex h-10 w-full max-w-[300px] items-center overflow-hidden rounded-full border border-white/10 bg-black/40 backdrop-blur-md">
+        <div className="relative flex h-10 w-full max-w-75 items-center overflow-hidden rounded-full border border-white/10 bg-black/40 backdrop-blur-md">
           <div
             ref={barRef}
             className="absolute top-0 left-0 h-full rounded-full bg-[#6B191F]/80"

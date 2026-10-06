@@ -42,7 +42,7 @@ function AnimatedTimeline({ children }: { children: React.ReactNode }) {
       {/* Filled (animated maroon line from top) */}
       <div
         ref={fillRef}
-        className="absolute top-0 left-0 w-px bg-gradient-to-b from-[#6B191F] to-[#A91F27] transition-none"
+        className="absolute top-0 left-0 w-px bg-linear-to-b from-[#6B191F] to-[#A91F27] transition-none"
         style={{ height: `${fillHeight}%` }}
       />
       {children}
@@ -98,7 +98,7 @@ export function ExperienceSection() {
                   className="relative"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute top-1.5 -left-[31px] h-3 w-3 rounded-full border-2 border-[#6B191F] bg-[#6B191F] shadow-[0_0_12px_rgba(107,25,31,0.7)]" />
+                  <div className="absolute top-1.5 -left-7.75 h-3 w-3 rounded-full border-2 border-[#6B191F] bg-[#6B191F] shadow-[0_0_12px_rgba(107,25,31,0.7)]" />
 
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline sm:gap-4">
@@ -158,7 +158,7 @@ export function ExperienceSection() {
                   className="relative"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute top-1.5 -left-[31px] h-3 w-3 rounded-full border border-white/30 bg-white/20" />
+                  <div className="absolute top-1.5 -left-7.75 h-3 w-3 rounded-full border border-white/30 bg-white/20" />
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col justify-between gap-1">
                       <h4 className="text-xl font-bold text-[--color-text-primary]">
