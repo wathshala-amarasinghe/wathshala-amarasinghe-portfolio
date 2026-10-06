@@ -426,7 +426,7 @@ export function KavonCaseStudy() {
             {/* Hero image — full width */}
             <Reveal delay={0.15}>
               <Screenshot
-                src="/images/projects/kavon/01-home-hero.jpg"
+                src="/images/projects/web_development/kavon/01-home-hero.jpg"
                 alt="KAVON storefront homepage showing the hero banner 'WEAR POWER. WEAR KAVON.' with navigation, search and featured collections"
                 caption="KAVON storefront — homepage with hero banner, navigation bar and featured collections."
                 onOpen={openLightbox}
@@ -505,7 +505,7 @@ export function KavonCaseStudy() {
             <Reveal className="mb-24">
               <div className="mb-8">
                 <Screenshot
-                  src="/images/projects/kavon/03-shop-catalog.jpg"
+                  src="/images/projects/web_development/kavon/03-shop-catalog.jpg"
                   alt="KAVON product catalog showing filter sidebar with category chips, price slider and sort dropdown, and a 3-column grid of streetwear products"
                   caption="Shop page — category filters, price range slider, and sort controls narrow a full catalogue of streetwear products."
                   onOpen={openLightbox}
@@ -534,7 +534,7 @@ export function KavonCaseStudy() {
             <Reveal className="mb-24">
               <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
                 <Screenshot
-                  src="/images/projects/kavon/04-tactical-tee-product.jpg"
+                  src="/images/projects/web_development/kavon/04-tactical-tee-product.jpg"
                   alt="KAVON product detail page showing hoodie photograph, colour swatches, size buttons, stock indicator, delivery estimate and Add to Cart button"
                   caption="Product page — colour, size, stock and delivery information sit directly above the purchase action."
                   onOpen={openLightbox}
@@ -575,7 +575,7 @@ export function KavonCaseStudy() {
 
                 <div className="order-1 w-full lg:order-2 lg:w-115">
                   <Screenshot
-                    src="/images/projects/kavon/08-tactical-tee-cart.jpg"
+                    src="/images/projects/web_development/kavon/08-tactical-tee-cart.jpg"
                     alt="KAVON cart page showing two products with size and quantity controls on the left, and an order summary panel with subtotal, shipping, discount and order total on the right"
                     caption="Cart — variant details and the running total are visible before checkout begins."
                     onOpen={openLightbox}

@@ -48,7 +48,7 @@ export async function generateMetadata({
         title: "KAVON — Full-Stack E-commerce Case Study",
         description:
           "UI/UX design, frontend development and backend integration for a bold Sri Lankan streetwear brand.",
-        images: ["/images/projects/kavon/storefront-hero.jpg"],
+        images: ["/images/projects/web_development/kavon/01-home-hero.jpg"],
       },
     };
   }

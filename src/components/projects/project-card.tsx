@@ -15,6 +15,7 @@ import { useReducedMotion } from "@/hooks/use-reduced-motion";
 export function ProjectCard({ project }: { project: Project }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
+  const isBrandVisual = project.categories.includes("Brand & Visual");
 
   useEffect(() => {
     if (
@@ -53,7 +54,12 @@ export function ProjectCard({ project }: { project: Project }) {
           className="absolute -top-1/4 -right-[8%] h-3/4 w-1/2 rounded-full bg-[--color-accent-primary] opacity-20 blur-3xl"
         />
 
-        <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/15 bg-black/75 shadow-[0_24px_70px_rgba(0,0,0,0.55)]">
+        <div
+          className={cn(
+            "relative h-full w-full overflow-hidden rounded-3xl border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.55)]",
+            isBrandVisual ? "bg-[#f8efe4]" : "bg-black/75"
+          )}
+        >
           {project.slug === "kavon" && project.gallery.length > 0 ? (
             <div
               className="flex h-full transition-transform duration-1000 ease-in-out"
@@ -77,7 +83,12 @@ export function ProjectCard({ project }: { project: Project }) {
               alt={project.coverImage.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-[--duration-cinematic] group-hover:scale-105"
+              className={cn(
+                "transition-transform duration-[--duration-cinematic]",
+                isBrandVisual
+                  ? "object-contain"
+                  : "object-cover group-hover:scale-105"
+              )}
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-black/80 via-[--color-surface] to-[--color-accent-primary]/30 px-6 text-center">

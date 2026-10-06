@@ -32,7 +32,7 @@ test.describe("Homepage", () => {
     const workSection = page.locator("#work");
     const projectCards = workSection.locator("[data-project]");
 
-    await expect(projectCards).toHaveCount(6);
+    await expect(projectCards).toHaveCount(7);
 
     await workSection
       .getByRole("button", { name: "Web Development", exact: true })
@@ -43,6 +43,15 @@ test.describe("Homepage", () => {
         cards.map((card) => card.dataset.project)
       )
     ).toEqual(["kavon", "smart-web-pos", "event-management"]);
+    const kavonPreview = workSection
+      .locator('[data-project="kavon"] img')
+      .first();
+    await expect(kavonPreview).toBeVisible();
+    await expect
+      .poll(() =>
+        kavonPreview.evaluate((image: HTMLImageElement) => image.naturalWidth)
+      )
+      .toBeGreaterThan(0);
 
     await workSection
       .getByRole("button", { name: "UI/UX Design", exact: true })
@@ -60,8 +69,19 @@ test.describe("Homepage", () => {
     ).toBeVisible();
     await expect(projectCards.first()).toHaveAttribute(
       "data-project",
-      "beverly-hills-hiriketiya"
+      "nation-spice"
     );
+    const nationSpiceLogo = projectCards.first().getByRole("img", {
+      name: /Nation Spice logo/i,
+    });
+    await expect(nationSpiceLogo).toBeVisible();
+    await expect
+      .poll(() =>
+        nationSpiceLogo.evaluate(
+          (image: HTMLImageElement) => image.naturalWidth
+        )
+      )
+      .toBeGreaterThan(0);
 
     await workSection
       .getByRole("button", { name: "Video Editing", exact: true })
