@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
+  icons: {
+    icon: {
+      url: "/images/profile/my_logo.png",
+      type: "image/png",
+    },
+    shortcut: "/images/profile/my_logo.png",
+    apple: "/images/profile/my_logo.png",
+  },
 };
 
 export default function RootLayout({
