@@ -55,7 +55,7 @@ export function SectionNavigation({ className }: { className?: string }) {
       className={cn("flex flex-col items-center justify-start pt-2", className)}
     >
       {/* Top Badges — stacked above nav pill, right aligned */}
-      <div className="mb-4 flex w-full flex-col items-end gap-2">
+      <div className="mb-4 flex w-17.5 flex-col items-end gap-2">
         {/* Available for Work */}
         <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 shadow-2xl backdrop-blur-2xl">
           <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.8)]"></span>

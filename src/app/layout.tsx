@@ -5,7 +5,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { SkipLink } from "@/components/ui/skip-link";
-import { CustomCursor } from "@/components/motion/custom-cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.locale} className="antialiased">
       <body>
-        <CustomCursor />
         <SkipLink />
         {children}
       </body>

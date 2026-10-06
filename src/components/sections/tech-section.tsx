@@ -1,33 +1,120 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
+import { cn } from "@/lib/cn";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Container } from "@/components/ui/container";
-import {
-  Code,
-  PenTool,
-  Layout,
-  Layers,
-  Terminal,
-  Database,
-  Cloud,
-  Server,
-  Command,
-  Activity,
-} from "lucide-react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface TechSkillProps {
   name: string;
   description: string;
   percentage: number;
-  icon: React.ReactNode;
+  icon: string;
+  iconSurface?: string;
 }
 
-function TechSkill({ name, description, percentage, icon }: TechSkillProps) {
+interface TechTool {
+  name: string;
+  icon: string;
+  iconSurface?: string;
+}
+
+const mainSkills: TechSkillProps[] = [
+  {
+    name: "Product Design & Design Systems",
+    description: "Figma, component systems, and polished product interfaces",
+    percentage: 90,
+    icon: "/icons/tech/figma.svg",
+    iconSurface: "bg-white",
+  },
+  {
+    name: "UX Research & Prototyping",
+    description: "User flows, wireframes, testing, and validated decisions",
+    percentage: 85,
+    icon: "/icons/tech/maze.png",
+  },
+  {
+    name: "Framer & Interaction Design",
+    description: "High-fidelity prototypes, motion, and launch-ready pages",
+    percentage: 80,
+    icon: "/icons/tech/framer.svg",
+    iconSurface: "bg-white",
+  },
+  {
+    name: "React & Next.js",
+    description: "Responsive, component-based frontend implementation",
+    percentage: 85,
+    icon: "/icons/tech/react.svg",
+    iconSurface: "bg-[#071b27]",
+  },
+  {
+    name: "TypeScript & Tailwind CSS",
+    description: "Accessible interaction logic and responsive UI styling",
+    percentage: 80,
+    icon: "/icons/tech/typescript.svg",
+    iconSurface: "bg-white",
+  },
+];
+
+const techTools: TechTool[] = [
+  { name: "Figma", icon: "/icons/tech/figma.svg", iconSurface: "bg-white" },
+  {
+    name: "FigJam",
+    icon: "/icons/tech/figma.svg",
+    iconSurface: "bg-[#fff2cc]",
+  },
+  {
+    name: "Framer",
+    icon: "/icons/tech/framer.svg",
+    iconSurface: "bg-white",
+  },
+  { name: "Maze", icon: "/icons/tech/maze.png" },
+  { name: "Miro", icon: "/icons/tech/miro.svg" },
+  { name: "Adobe Photoshop", icon: "/icons/tech/photoshop.svg" },
+  { name: "HTML5", icon: "/icons/tech/html5.svg" },
+  { name: "CSS3", icon: "/icons/tech/css3.svg" },
+  { name: "Tailwind CSS", icon: "/icons/tech/tailwindcss.svg" },
+  { name: "JavaScript", icon: "/icons/tech/javascript.svg" },
+  { name: "TypeScript", icon: "/icons/tech/typescript.svg" },
+  { name: "React", icon: "/icons/tech/react.svg" },
+  {
+    name: "Next.js",
+    icon: "/icons/tech/nextjs.svg",
+    iconSurface: "bg-white",
+  },
+  { name: "VS Code", icon: "/icons/tech/vscode.svg" },
+  { name: "Git", icon: "/icons/tech/git.svg" },
+  {
+    name: "GitHub",
+    icon: "/icons/tech/github.svg",
+    iconSurface: "bg-white",
+  },
+  { name: "Node.js", icon: "/icons/tech/nodejs.svg" },
+  { name: "Postman", icon: "/icons/tech/postman.svg" },
+  {
+    name: "ChatGPT",
+    icon: "/icons/tech/openai.svg",
+    iconSurface: "bg-white",
+  },
+  {
+    name: "GitHub Copilot",
+    icon: "/icons/tech/github-copilot.svg",
+    iconSurface: "bg-white",
+  },
+];
+
+function TechSkill({
+  name,
+  description,
+  percentage,
+  icon,
+  iconSurface,
+}: TechSkillProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -79,8 +166,20 @@ function TechSkill({ name, description, percentage, icon }: TechSkillProps) {
       className="flex flex-col justify-between gap-4 border-b border-[--color-divider] py-4 last:border-0 sm:flex-row sm:items-center"
     >
       <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-white/5 bg-white/5 text-[--color-text-primary]">
-          {icon}
+        <div
+          className={cn(
+            "flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg",
+            iconSurface
+          )}
+        >
+          <Image
+            src={icon}
+            alt=""
+            width={34}
+            height={34}
+            aria-hidden="true"
+            className="h-8.5 w-8.5 object-contain"
+          />
         </div>
         <div>
           <h3 className="font-display text-lg font-bold text-[--color-text-primary]">
@@ -110,52 +209,6 @@ function TechSkill({ name, description, percentage, icon }: TechSkillProps) {
 }
 
 export function TechSection({ id }: { id: string }) {
-  const mainSkills = [
-    {
-      name: "Figma & UI/UX Design",
-      description: "Prototyping, wireframing, and user flows",
-      percentage: 90,
-      icon: <PenTool size={20} />,
-    },
-    {
-      name: "React & Next.js",
-      description: "Frontend web development frameworks",
-      percentage: 85,
-      icon: <Code size={20} />,
-    },
-    {
-      name: "HTML5, CSS3 & Tailwind CSS",
-      description: "Responsive web interfaces & styling",
-      percentage: 90,
-      icon: <Layout size={20} />,
-    },
-    {
-      name: "JavaScript & TypeScript",
-      description: "Interactive components & logic",
-      percentage: 80,
-      icon: <Terminal size={20} />,
-    },
-    {
-      name: "Databases & Backend",
-      description: "Node.js, PostgreSQL, Supabase, Prisma",
-      percentage: 75,
-      icon: <Database size={20} />,
-    },
-  ];
-
-  const otherTools = [
-    { name: "Adobe XD", icon: <PenTool size={20} /> },
-    { name: "Miro", icon: <Layers size={20} /> },
-    { name: "Bootstrap", icon: <Layout size={20} /> },
-    { name: "Node.js", icon: <Server size={20} /> },
-    { name: "SQL & MySQL", icon: <Database size={20} /> },
-    { name: "PostgreSQL", icon: <Database size={20} /> },
-    { name: "Supabase", icon: <Cloud size={20} /> },
-    { name: "Prisma ORM", icon: <Database size={20} /> },
-    { name: "Git & GitHub", icon: <Command size={20} /> },
-    { name: "Agile/Scrum", icon: <Activity size={20} /> },
-  ];
-
   return (
     <section id={id} className="py-24 sm:py-32">
       <Container size="xl" className="px-8 sm:px-12 lg:px-16">
@@ -184,21 +237,38 @@ export function TechSection({ id }: { id: string }) {
 
         <Reveal>
           <h3 className="font-display mb-6 text-xl font-bold text-[--color-text-primary]">
-            Other tools I use
+            Tools & technologies I use
           </h3>
-          <div className="flex flex-wrap gap-4">
-            {otherTools.map((tool, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 rounded-2xl border-2 border-white/5 bg-white/5 px-4 py-3 backdrop-blur-md transition-colors hover:bg-white/10"
+          <ul
+            className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-5 xl:grid-cols-6"
+            aria-label="Tools and technologies"
+          >
+            {techTools.map((tool) => (
+              <li
+                key={tool.name}
+                className="group flex min-h-30 flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-center shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl motion-reduce:transform-none motion-reduce:transition-none"
               >
-                <div className="text-white/70">{tool.icon}</div>
-                <span className="text-sm font-medium text-[--color-text-primary]">
+                <span
+                  className={cn(
+                    "flex h-14 w-14 items-center justify-center rounded-2xl bg-black/20 shadow-lg ring-1 ring-white/10",
+                    tool.iconSurface
+                  )}
+                >
+                  <Image
+                    src={tool.icon}
+                    alt=""
+                    width={38}
+                    height={38}
+                    aria-hidden="true"
+                    className="h-9.5 w-9.5 object-contain transition-transform duration-300 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
+                  />
+                </span>
+                <span className="text-xs font-semibold text-[--color-text-primary]">
                   {tool.name}
                 </span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </Reveal>
       </Container>
     </section>

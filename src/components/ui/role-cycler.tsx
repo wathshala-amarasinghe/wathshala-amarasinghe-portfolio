@@ -7,7 +7,7 @@
 
 import { useEffect, useState } from "react";
 
-const ROLES = ["UI/UX Designer", "UI/UX Engineer", "Product Designer"];
+const ROLES = ["Associate Software Engineer", "UI/UX Designer", "Product Designer" , "Freelancer"];
 
 const TYPING_SPEED = 80; // ms per character
 const DELETING_SPEED = 45; // ms per character

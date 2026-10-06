@@ -101,18 +101,6 @@
   ol {
     list-style: none;
   }
-
-  /* Hide default cursor on desktop devices where we show the custom cursor */
-  @media (pointer: fine) {
-    body,
-    a,
-    button,
-    input,
-    textarea,
-    select {
-      cursor: none !important;
-    }
-  }
 }
 
 /* ── Selection ────────────────────────────────── */

@@ -26,6 +26,52 @@ test.describe("Homepage", () => {
     expect(box.width).toBeLessThanOrEqual(box.viewport);
   });
 
+  test("filters projects by discipline", async ({ page }) => {
+    await page.goto("/");
+
+    const workSection = page.locator("#work");
+    const projectCards = workSection.locator("[data-project]");
+
+    await expect(projectCards).toHaveCount(6);
+
+    await workSection
+      .getByRole("button", { name: "Web Development", exact: true })
+      .click();
+    await expect(projectCards).toHaveCount(3);
+    expect(
+      await projectCards.evaluateAll((cards) =>
+        cards.map((card) => card.dataset.project)
+      )
+    ).toEqual(["kavon", "smart-web-pos", "event-management"]);
+
+    await workSection
+      .getByRole("button", { name: "UI/UX Design", exact: true })
+      .click();
+    await expect(projectCards).toHaveCount(6);
+
+    await workSection
+      .getByRole("button", { name: "Graphic & Logo Design", exact: true })
+      .click();
+    await expect(projectCards).toHaveCount(1);
+    await expect(
+      workSection.getByRole("heading", {
+        name: "Graphic & Logo Design",
+      })
+    ).toBeVisible();
+    await expect(projectCards.first()).toHaveAttribute(
+      "data-project",
+      "beverly-hills-hiriketiya"
+    );
+
+    await workSection
+      .getByRole("button", { name: "Video Editing", exact: true })
+      .click();
+    await expect(projectCards).toHaveCount(0);
+    await expect(
+      workSection.getByRole("heading", { name: "Video Editing" })
+    ).toBeVisible();
+  });
+
   test("accessibility check", async ({ page }) => {
     await page.goto("/");
     // Ensure animations don't interfere with initial a11y checks
