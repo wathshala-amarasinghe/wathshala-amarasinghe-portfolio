@@ -1,9 +1,5 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  SelectedWorkSection — Homepage projects
-// ─────────────────────────────────────────────
-
 import { useState } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -112,13 +108,13 @@ export function SelectedWorkSection() {
                 <button
                   key={filter.id}
                   type="button"
+                  data-active={isActive}
                   aria-pressed={isActive}
                   onClick={() => setActiveFilter(filter.id)}
                   className={cn(
                     "rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-[--duration-fast] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-accent-primary]",
-                    isActive
-                      ? "border-[--color-accent-primary] bg-[--color-accent-primary] text-[--color-text-primary]"
-                      : "border-white/10 bg-white/5 text-[--color-text-secondary] hover:border-white/20 hover:bg-white/10 hover:text-[--color-text-primary]"
+                    "data-[active=true]:border-[--color-accent-primary] data-[active=true]:bg-[--color-accent-primary] data-[active=true]:text-[--color-text-primary]",
+                    "data-[active=false]:border-white/10 data-[active=false]:bg-white/5 data-[active=false]:text-[--color-text-secondary] data-[active=false]:hover:border-white/20 data-[active=false]:hover:bg-white/10 data-[active=false]:hover:text-[--color-text-primary]"
                   )}
                 >
                   {filter.label}

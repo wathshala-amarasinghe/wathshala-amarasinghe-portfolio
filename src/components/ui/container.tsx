@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  Container — Layout utility
-// ─────────────────────────────────────────────
-
 import { cn } from "@/lib/cn";
 import type { HTMLAttributes } from "react";
 

@@ -14,12 +14,11 @@ export function Preloader() {
       },
     });
 
-    // Simple fade out animation for the loader
     tl.to(".preloader-overlay", {
       opacity: 0,
       duration: 0.8,
       ease: "power2.inOut",
-      delay: 0.5, // Keep it visible for a short moment
+      delay: 0.5,
     });
   });
 

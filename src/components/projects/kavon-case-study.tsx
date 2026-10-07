@@ -1,20 +1,5 @@
 "use client";
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  KavonCaseStudy — Full case study page content for KAVON.net
-//
-//  Sections:
-//   1. Project introduction (hero image + role + CTAs)
-//   2. What the project needed
-//   3. Three interface decisions (catalog / product / cart)
-//   4. Behind the storefront (admin + technical disclosure)
-//   5. What I built and what comes next
-//   6. Closing actions (contact / live site / back to projects)
-//
-//  Uses only existing libraries (GSAP via Reveal, lucide-react, cn).
-//  Respects prefers-reduced-motion via the Reveal component.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import {
@@ -33,16 +18,11 @@ import { Tag } from "@/components/ui/tag";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-// ── Constants ─────────────────────────────────────────────────────────────────
-
 const LIVE_URL = "https://kavon-net-official.vercel.app/";
 const REPO_URL = "https://github.com/wathshala-amarasinghe/kavon.net";
 
-/** Kavon red — a deliberate in-context accent, not a global token override */
 const KAVON_RED = "#C8102E";
 const KAVON_RED_DIM = "rgba(200, 16, 46, 0.12)";
-
-// ── Types ─────────────────────────────────────────────────────────────────────
 
 interface LightboxImage {
   src: string;
@@ -50,9 +30,6 @@ interface LightboxImage {
   caption: string;
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
-
-/** Thin red rule used as a visual accent between section fragments */
 function KavonRule({ className }: { className?: string }) {
   return (
     <div
@@ -63,7 +40,6 @@ function KavonRule({ className }: { className?: string }) {
   );
 }
 
-/** Metadata pill row: Role · Year · Type */
 function MetaPills() {
   const pills = ["UI/UX Design", "Frontend Development", "Backend Integration"];
   return (
@@ -86,7 +62,6 @@ function MetaPills() {
   );
 }
 
-/** Compact section label with a pre-label number */
 function SectionLabel({ n, label }: { n: string; label: string }) {
   return (
     <div className="mb-8 flex items-center gap-3">
@@ -104,7 +79,6 @@ function SectionLabel({ n, label }: { n: string; label: string }) {
   );
 }
 
-/** Caption typography used below screenshots */
 function Caption({ children }: { children: React.ReactNode }) {
   return (
     <p className="mt-3 max-w-none text-sm leading-snug text-[--color-text-muted] italic">
@@ -113,7 +87,6 @@ function Caption({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Screenshot with optional lightbox trigger */
 function Screenshot({
   src,
   alt,
@@ -145,7 +118,6 @@ function Screenshot({
           decoding="async"
           className="w-full object-cover transition-transform duration-[--duration-cinematic] group-hover:scale-[1.015]"
         />
-        {/* Hover overlay */}
         <span className="absolute inset-0 flex items-center justify-center rounded-[--radius-xl] bg-black/40 opacity-0 transition-opacity duration-[--duration-moderate] group-hover:opacity-100 group-focus-visible:opacity-100">
           <ZoomIn
             size={28}
@@ -161,7 +133,6 @@ function Screenshot({
   );
 }
 
-/** Full-screen image lightbox */
 function Lightbox({
   image,
   onClose,
@@ -211,7 +182,6 @@ function Lightbox({
   );
 }
 
-/** Collapsible technical details disclosure */
 function TechDisclosure() {
   const [open, setOpen] = useState(false);
 
@@ -288,8 +258,6 @@ function TechDisclosure() {
   );
 }
 
-// ── Admin capability diagram (text-based, no invented screenshot) ─────────────
-
 function AdminCapabilities() {
   const capabilities = [
     {
@@ -331,8 +299,6 @@ function AdminCapabilities() {
   );
 }
 
-// ── Main export ───────────────────────────────────────────────────────────────
-
 export function KavonCaseStudy() {
   const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(
     null
@@ -348,11 +314,9 @@ export function KavonCaseStudy() {
 
   return (
     <>
-      {/* ── Lightbox ── */}
       <Lightbox image={lightboxImage} onClose={closeLightbox} />
 
       <article className="pb-32">
-        {/* ── Back navigation ── */}
         <div className="pt-8 pb-0">
           <Container size="lg">
             <Link
@@ -365,9 +329,6 @@ export function KavonCaseStudy() {
           </Container>
         </div>
 
-        {/* ════════════════════════════════════════════════════════════
-            SECTION 1 — Project introduction
-        ════════════════════════════════════════════════════════════ */}
         <section aria-labelledby="kavon-title" className="pt-14 pb-20">
           <Container size="lg">
             <Reveal className="mb-10 flex flex-col gap-5">
@@ -423,7 +384,6 @@ export function KavonCaseStudy() {
               </div>
             </Reveal>
 
-            {/* Hero image — full width */}
             <Reveal delay={0.15}>
               <Screenshot
                 src="/images/projects/web_development/kavon/01-home-hero.jpg"
@@ -437,9 +397,6 @@ export function KavonCaseStudy() {
           </Container>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
-            SECTION 2 — What the project needed
-        ════════════════════════════════════════════════════════════ */}
         <section aria-labelledby="section-brief" className="py-20">
           <Container size="md">
             <Reveal>
@@ -486,9 +443,6 @@ export function KavonCaseStudy() {
           </Container>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
-            SECTION 3 — Three decisions
-        ════════════════════════════════════════════════════════════ */}
         <section aria-labelledby="section-decisions" className="py-20">
           <Container size="lg">
             <Reveal>
@@ -501,7 +455,6 @@ export function KavonCaseStudy() {
               </h2>
             </Reveal>
 
-            {/* — Decision A: Catalog — wide screenshot */}
             <Reveal className="mb-24">
               <div className="mb-8">
                 <Screenshot
@@ -530,7 +483,6 @@ export function KavonCaseStudy() {
               </div>
             </Reveal>
 
-            {/* — Decision B: Product — image/text split */}
             <Reveal className="mb-24">
               <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
                 <Screenshot
@@ -556,7 +508,6 @@ export function KavonCaseStudy() {
               </div>
             </Reveal>
 
-            {/* — Decision C: Cart — focused detail */}
             <Reveal>
               <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
                 <div className="order-2 lg:order-1 lg:max-w-[52ch]">
@@ -586,9 +537,6 @@ export function KavonCaseStudy() {
           </Container>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
-            SECTION 4 — Behind the storefront
-        ════════════════════════════════════════════════════════════ */}
         <section aria-labelledby="section-admin" className="py-20">
           <Container size="md">
             <Reveal>
@@ -616,9 +564,6 @@ export function KavonCaseStudy() {
           </Container>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
-            SECTION 5 — What I built and what comes next
-        ════════════════════════════════════════════════════════════ */}
         <section aria-labelledby="section-reflection" className="py-20">
           <Container size="md">
             <Reveal>
@@ -639,7 +584,6 @@ export function KavonCaseStudy() {
                   development together across the customer and admin experience.
                 </p>
 
-                {/* Divider between built and future */}
                 <div className="my-2 flex items-center gap-4">
                   <KavonRule />
                   <span className="text-xs font-semibold tracking-wider text-[--color-text-muted] uppercase">
@@ -659,9 +603,6 @@ export function KavonCaseStudy() {
           </Container>
         </section>
 
-        {/* ════════════════════════════════════════════════════════════
-            SECTION 6 — Closing actions
-        ════════════════════════════════════════════════════════════ */}
         <section aria-labelledby="section-closing" className="py-20">
           <Container size="md">
             <Reveal>

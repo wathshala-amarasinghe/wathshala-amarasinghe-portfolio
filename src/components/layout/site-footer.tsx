@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  SiteFooter
-// ─────────────────────────────────────────────
-
 import { profile } from "@/data/profile";
 
 export function SiteFooter() {

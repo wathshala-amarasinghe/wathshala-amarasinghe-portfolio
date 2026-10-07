@@ -1,12 +1,8 @@
 "use client";
-// ─────────────────────────────────────────────
-//  ProjectContext — Sidebar project-context panel
-//  Updates dynamically as the user scrolls
-//  through the project cards.
-// ─────────────────────────────────────────────
 
 import { projects } from "@/data/projects";
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 export function ProjectContext() {
   const [activeSlug, setActiveSlug] = useState(projects[0].slug);
@@ -18,7 +14,6 @@ export function ProjectContext() {
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        // Find the most visible intersecting card
         const visible = entries.find((e) => e.isIntersecting);
         if (visible) {
           const slug = visible.target.getAttribute("data-project");
@@ -43,13 +38,13 @@ export function ProjectContext() {
       <div className="absolute inset-0 bg-linear-to-br from-[#6B191F]/20 via-transparent to-transparent opacity-50 transition-opacity" />
 
       <div className="relative z-10 flex flex-col gap-6">
-        {/* Logo placeholder */}
         <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[#6B191F]/50 bg-black/30 p-1 backdrop-blur-md transition-transform">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/profile/my_logo.png"
             alt="Logo"
-            className="h-full w-full object-contain drop-shadow-md"
+            width={40}
+            height={40}
+            className="h-full w-full object-contain object-center drop-shadow-md"
           />
         </div>
 

@@ -1,10 +1,5 @@
-// ─────────────────────────────────────────────
-//  Navigation Data
-// ─────────────────────────────────────────────
-
 import type { NavSection } from "@/types/portfolio";
 
-/** Page sections used for scroll-spy and side navigation rail */
 export const navSections: NavSection[] = [
   { id: "hero", label: "Home", href: "#hero" },
   { id: "about", label: "About", href: "#about" },

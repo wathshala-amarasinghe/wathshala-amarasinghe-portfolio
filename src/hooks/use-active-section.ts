@@ -1,17 +1,8 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  useActiveSection
-//  Tracks which portfolio section is currently
-//  in the viewport using IntersectionObserver.
-//  Used to highlight the active nav-rail item
-//  and update the profile sidebar context.
-// ─────────────────────────────────────────────
-
 import { useEffect, useState } from "react";
 
 interface UseActiveSectionOptions {
-  /** Selector for section elements. Defaults to "section[id]" */
   selector?: string;
 }
 
@@ -33,11 +24,8 @@ export function useActiveSection({
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        // Calculate how close the top of the section is to a line ~30% down the screen
         const distance = Math.abs(rect.top - windowH * 0.3);
 
-        // If the section's top is somewhere above the bottom of the screen,
-        // and its bottom is below the top of the screen (i.e. it's visible)
         if (rect.top < windowH * 0.7 && rect.bottom > windowH * 0.1) {
           if (distance < minDistance) {
             minDistance = distance;
@@ -54,7 +42,6 @@ export function useActiveSection({
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Trigger once on mount
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);

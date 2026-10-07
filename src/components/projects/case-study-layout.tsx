@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  CaseStudyLayout — Standard case study page
-// ─────────────────────────────────────────────
-
 import type { Project } from "@/types/portfolio";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/motion/reveal";

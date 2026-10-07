@@ -127,19 +127,17 @@ function TechSkill({
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 85%", // Starts animation when element is 85% down the screen
+          start: "top 85%",
           toggleActions: "play none none none",
         },
       });
 
-      // Animate width from 0 to percentage
       tl.fromTo(
         barRef.current,
         { width: "0%" },
         { width: `${percentage}%`, duration: 1.5, ease: "power3.out" }
       );
 
-      // Animate the text number from 0 to percentage
       tl.fromTo(
         textRef.current,
         { innerText: 0 },
@@ -147,14 +145,14 @@ function TechSkill({
           innerText: percentage,
           duration: 1.5,
           ease: "power3.out",
-          snap: { innerText: 1 }, // Snap to whole numbers
+          snap: { innerText: 1 },
           onUpdate: function () {
             if (textRef.current) {
               textRef.current.innerHTML = `${Math.round(Number(textRef.current.innerText))}%`;
             }
           },
         },
-        "<" // start at the same time as the bar animation
+        "<"
       );
     },
     { scope: containerRef, dependencies: [percentage, prefersReducedMotion] }

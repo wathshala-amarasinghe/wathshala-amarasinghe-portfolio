@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  ProjectMetadata — Shared metadata display
-// ─────────────────────────────────────────────
-
 import type { Project } from "@/types/portfolio";
 
 export function ProjectMetadata({ project }: { project: Project }) {

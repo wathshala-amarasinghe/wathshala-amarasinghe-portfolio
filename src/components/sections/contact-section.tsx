@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  ContactSection — Homepage footer CTA
-// ─────────────────────────────────────────────
-
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/motion/reveal";
 import { ContactForm } from "@/components/ui/contact-form";

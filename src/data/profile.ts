@@ -1,9 +1,3 @@
-// ─────────────────────────────────────────────
-//  Profile Data
-//  Source of truth for Wathshala's identity.
-//  Update avatar/cvPath once assets are available.
-// ─────────────────────────────────────────────
-
 import type { Profile } from "@/types/portfolio";
 
 export const profile: Profile = {

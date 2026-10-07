@@ -5,25 +5,41 @@ test.describe("Homepage", () => {
   test("renders hero and projects", async ({ page }) => {
     await page.goto("/");
 
-    // Verify hero text exists (filtering out the sidebar h1)
     await expect(
       page.getByRole("heading", { level: 1, name: /digital products/i })
     ).toContainText(/people love to use/i);
 
-    // Verify navigation renders (on desktop)
     const isMobile = await page.evaluate(() => window.innerWidth < 1024);
-    if (!isMobile) {
+    if (isMobile) {
+      const profileCard = page.getByRole("complementary", { name: "Profile" });
+      await expect(profileCard).toBeVisible();
+      await expect(profileCard).toContainText("Wathshala Amarasinghe");
+      await expect(profileCard).toContainText("Sri Lanka");
+    } else {
       await expect(
         page.getByRole("navigation", { name: "Page sections" })
       ).toBeVisible();
     }
 
-    // No horizontal scroll
     const box = await page.evaluate(() => ({
       width: document.documentElement.scrollWidth,
       viewport: window.innerWidth,
     }));
     expect(box.width).toBeLessThanOrEqual(box.viewport);
+  });
+
+  test("shows a working scroll-to-top control", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+
+    const scrollTopButton = page.getByRole("button", {
+      name: "Scroll to top",
+    });
+    await expect(scrollTopButton).toBeVisible();
+    await scrollTopButton.click();
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeLessThan(10);
   });
 
   test("filters projects by discipline", async ({ page }) => {
@@ -52,6 +68,12 @@ test.describe("Homepage", () => {
         kavonPreview.evaluate((image: HTMLImageElement) => image.naturalWidth)
       )
       .toBeGreaterThan(0);
+    expect(
+      await kavonPreview.evaluate((image) => ({
+        fit: getComputedStyle(image).objectFit,
+        position: getComputedStyle(image).objectPosition,
+      }))
+    ).toEqual({ fit: "contain", position: "50% 50%" });
 
     await workSection
       .getByRole("button", { name: "UI/UX Design", exact: true })
@@ -82,6 +104,12 @@ test.describe("Homepage", () => {
         )
       )
       .toBeGreaterThan(0);
+    expect(
+      await nationSpiceLogo.evaluate((image) => ({
+        fit: getComputedStyle(image).objectFit,
+        position: getComputedStyle(image).objectPosition,
+      }))
+    ).toEqual({ fit: "contain", position: "50% 50%" });
 
     await workSection
       .getByRole("button", { name: "Video Editing", exact: true })
@@ -137,7 +165,6 @@ test.describe("Homepage", () => {
 
   test("accessibility check", async ({ page }) => {
     await page.goto("/");
-    // Ensure animations don't interfere with initial a11y checks
     await page.waitForLoadState("networkidle");
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();

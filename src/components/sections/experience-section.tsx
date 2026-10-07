@@ -1,8 +1,4 @@
 "use client";
-// ─────────────────────────────────────────────
-//  ExperienceSection — Employment & Education
-//  Animated timeline with scroll-fill color
-// ─────────────────────────────────────────────
 
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -27,7 +23,6 @@ function AnimatedTimeline({ children }: { children: React.ReactNode }) {
     const handleScroll = () => {
       const rect = container.getBoundingClientRect();
       const windowH = window.innerHeight;
-      // How far into the container we've scrolled
       const scrolled = windowH - rect.top;
       const total = rect.height;
       const percent = Math.min(Math.max(scrolled / total, 0), 1);
@@ -41,9 +36,7 @@ function AnimatedTimeline({ children }: { children: React.ReactNode }) {
 
   return (
     <div ref={containerRef} className="relative ml-3 flex flex-col gap-12 pl-6">
-      {/* Track (full height grey line) */}
       <div className="absolute top-0 left-0 h-full w-px bg-white/10" />
-      {/* Filled (animated maroon line from top) */}
       <div
         ref={fillRef}
         className="absolute top-0 left-0 w-px bg-linear-to-b from-[#6B191F] to-[#A91F27] transition-none"
@@ -234,7 +227,6 @@ export function ExperienceSection() {
         </Reveal>
 
         <div className="grid grid-cols-1 gap-24 lg:grid-cols-2 lg:gap-16">
-          {/* Experience Column */}
           <div className="flex flex-col gap-12">
             <Reveal delay={0.1}>
               <h3 className="font-display mb-8 border-b border-white/5 pb-4 text-2xl font-bold text-[--color-text-primary]">
@@ -249,7 +241,6 @@ export function ExperienceSection() {
                   delay={0.2 + i * 0.1}
                   className="relative"
                 >
-                  {/* Timeline dot */}
                   <div className="absolute top-1.5 -left-7.75 h-3 w-3 rounded-full border-2 border-[#6B191F] bg-[#6B191F] shadow-[0_0_12px_rgba(107,25,31,0.7)]" />
 
                   <div className="flex flex-col gap-2">
@@ -294,7 +285,6 @@ export function ExperienceSection() {
             </AnimatedTimeline>
           </div>
 
-          {/* Education Column */}
           <div className="flex flex-col gap-12">
             <Reveal delay={0.1}>
               <h3 className="font-display mb-8 border-b border-white/5 pb-4 text-2xl font-bold text-[--color-text-primary]">
@@ -309,7 +299,6 @@ export function ExperienceSection() {
                   delay={0.2 + i * 0.1}
                   className="relative"
                 >
-                  {/* Timeline dot */}
                   <div className="absolute top-1.5 -left-7.75 h-3 w-3 rounded-full border border-white/30 bg-white/20" />
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col justify-between gap-1">

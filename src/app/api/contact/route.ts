@@ -1,6 +1,3 @@
-// src/app/api/contact/route.ts
-// Sends email via Gmail SMTP using Nodemailer — no CORS, no third-party restrictions.
-
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 

@@ -1,12 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-//  /work/[slug] — Dynamic case study page
-//
-//  Renders a generic CaseStudyLayout for most projects.
-//  For projects with a dedicated case study component (e.g. "kavon"),
-//  the custom component is rendered inside the PortfolioShell directly,
-//  bypassing the placeholder prose layout.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
@@ -16,15 +7,11 @@ import { KavonCaseStudy } from "@/components/projects/kavon-case-study";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-// ── Static params (for static generation) ────────────────────────────────────
-
 export function generateStaticParams() {
   return projects.map((p) => ({
     slug: p.slug,
   }));
 }
-
-// ── Per-page metadata ─────────────────────────────────────────────────────────
 
 export async function generateMetadata({
   params,
@@ -38,7 +25,6 @@ export async function generateMetadata({
     return { title: "Case Study Not Found" };
   }
 
-  // KAVON-specific metadata
   if (slug === "kavon") {
     return {
       title: "KAVON — Full-Stack E-commerce Case Study",
@@ -59,8 +45,6 @@ export async function generateMetadata({
   };
 }
 
-// ── Page component ────────────────────────────────────────────────────────────
-
 export default async function WorkPage({
   params,
 }: {
@@ -73,7 +57,6 @@ export default async function WorkPage({
     notFound();
   }
 
-  // ── KAVON: dedicated case study ───────────────────────────────────────────
   if (slug === "kavon") {
     return (
       <PortfolioShell>
@@ -82,7 +65,6 @@ export default async function WorkPage({
     );
   }
 
-  // ── Generic: placeholder layout for all other projects ────────────────────
   return (
     <PortfolioShell>
       <div className="px-8 pt-8 sm:px-12 lg:px-16">
@@ -100,7 +82,6 @@ export default async function WorkPage({
           Here you would place your UX research, wireframes, and full
           high-fidelity screenshots.
         </p>
-        {/* Placeholder content for now */}
         <div className="mt-12 flex h-64 w-full items-center justify-center rounded-2xl border-2 border-white/10 bg-white/5 text-[--color-text-muted]">
           Case study content section
         </div>

@@ -1,10 +1,5 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  MobileMenu — Full-screen overlay nav
-//  Accessible, keyboard-navigable menu.
-// ─────────────────────────────────────────────
-
 import { useEffect, useRef } from "react";
 import { Mail } from "lucide-react";
 import { navSections } from "@/data/navigation";
@@ -19,16 +14,13 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
-  // Focus first link when opened
   useEffect(() => {
     if (isOpen) {
-      // Small delay to allow transition
       const t = setTimeout(() => firstLinkRef.current?.focus(), 50);
       return () => clearTimeout(t);
     }
   }, [isOpen]);
 
-  // Close on Escape key
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -37,7 +29,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  // Prevent body scroll while open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -61,7 +52,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           : "pointer-events-none opacity-0"
       )}
     >
-      {/* Scrim — click to close */}
       <div
         className="absolute inset-0 z-[-1]"
         onClick={onClose}

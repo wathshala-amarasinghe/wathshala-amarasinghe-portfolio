@@ -1,16 +1,9 @@
-// ─────────────────────────────────────────────
-//  Portfolio Type Definitions
-//  Single source of truth for all content types
-// ─────────────────────────────────────────────
-
 export type PublishedStatus = "draft" | "published";
-
-// ── Profile ──────────────────────────────────
 
 export interface SocialLink {
   label: string;
   href: string;
-  icon: string; // lucide icon name
+  icon: string;
 }
 
 export interface Profile {
@@ -20,12 +13,10 @@ export interface Profile {
   location: string;
   email: string;
   bio: string;
-  avatar: string | null; // null → show initials placeholder
-  cvPath: string | null; // null → hide download link
+  avatar: string | null;
+  cvPath: string | null;
   socials: SocialLink[];
 }
-
-// ── Projects ─────────────────────────────────
 
 export type ProjectCategory =
   | "Product Design"
@@ -39,7 +30,7 @@ export interface ProjectMedia {
   type: "image" | "video";
   src: string;
   alt: string;
-  poster?: string; // for video
+  poster?: string;
   width?: number;
   height?: number;
 }
@@ -53,20 +44,18 @@ export interface Project {
   shortDescription: string;
   role: string;
   tools: string[];
-  coverImage: ProjectMedia | null; // null → use gradient placeholder
+  coverImage: ProjectMedia | null;
   heroMedia: ProjectMedia | null;
   gallery: ProjectMedia[];
-  status: PublishedStatus; // "draft" hides case-study link
+  status: PublishedStatus;
   featured: boolean;
-  order: number; // display order on homepage
+  order: number;
 }
-
-// ── Experience ───────────────────────────────
 
 export interface ExperienceItem {
   company: string;
   title: string;
-  startDate: string; // "YYYY-MM"
+  startDate: string;
   endDate: string | "present";
   location: string;
   description: string;
@@ -87,12 +76,10 @@ export interface CertificationItem {
   id: string;
   title: string;
   issuer: string;
-  awardedDate: string; // "YYYY-MM-DD"
+  awardedDate: string;
   imagePath: string;
   imageAlt: string;
 }
-
-// ── Navigation ───────────────────────────────
 
 export interface NavSection {
   id: string;
@@ -106,13 +93,11 @@ export interface NavItem {
   external?: boolean;
 }
 
-// ── Site Config ──────────────────────────────
-
 export interface SiteConfig {
   name: string;
   title: string;
   description: string;
-  url: string; // placeholder until real domain supplied
+  url: string;
   locale: string;
   themeColor: string;
   twitterHandle: string | null;

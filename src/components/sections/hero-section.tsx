@@ -1,10 +1,5 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  HeroSection — Homepage introduction
-//  Includes typewriter role cycler + scroll arrow
-// ─────────────────────────────────────────────
-
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/motion/reveal";
 import { RoleCycler } from "@/components/ui/role-cycler";
@@ -52,7 +47,6 @@ export function HeroSection() {
     >
       <Container size="md" className="mx-0 ml-0 px-8 sm:px-12 lg:px-16">
         <Reveal stagger={0.15}>
-          {/* Small intro label */}
           <p className="mb-6 text-sm font-bold tracking-[0.25em] text-[#6B191F] uppercase">
             — UI/UX Engineer &amp; Product Designer
           </p>
@@ -63,7 +57,6 @@ export function HeroSection() {
               <span className="relative z-10 text-[#6B191F] italic">
                 people
               </span>
-              {/* Underline accent */}
               <span
                 className="absolute -bottom-1 left-0 h-0.75 w-full rounded-full bg-[#6B191F] opacity-40"
                 aria-hidden="true"
@@ -72,7 +65,6 @@ export function HeroSection() {
             <span className="text-[#E8D4C3]">love</span> to use.
           </h1>
 
-          {/* Typewriter role */}
           <div className="mb-8 flex items-baseline gap-3 text-xl font-medium text-[--color-text-secondary] sm:text-2xl">
             <span>Currently working as a</span>
             <RoleCycler />
@@ -85,7 +77,6 @@ export function HeroSection() {
         </Reveal>
       </Container>
 
-      {/* Scroll down arrow */}
       <ScrollDownArrow />
     </section>
   );

@@ -1,8 +1,3 @@
-// ─────────────────────────────────────────────
-//  Projects Data
-//  All case studies for Wathshala's portfolio.
-// ─────────────────────────────────────────────
-
 import type { Project } from "@/types/portfolio";
 
 export const projects: Project[] = [
@@ -190,10 +185,8 @@ export const projects: Project[] = [
   },
 ];
 
-/** Featured projects in display order */
 export const featuredProjects = projects
   .filter((p) => p.featured)
   .sort((a, b) => a.order - b.order);
 
-/** All projects in display order */
 export const allProjects = [...projects].sort((a, b) => a.order - b.order);

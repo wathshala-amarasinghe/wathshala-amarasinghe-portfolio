@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  PracticeSection — Capabilities overview
-// ─────────────────────────────────────────────
-
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";

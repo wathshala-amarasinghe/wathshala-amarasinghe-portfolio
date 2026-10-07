@@ -1,18 +1,18 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  RoleCycler — Animated role title component
-//  Cycles through titles with a typewriter effect
-// ─────────────────────────────────────────────
-
 import { useEffect, useState } from "react";
 
-const ROLES = ["Associate Software Engineer", "UI/UX Designer", "Product Designer" , "Freelancer"];
+const ROLES = [
+  "Associate Software Engineer",
+  "UI/UX Designer",
+  "Product Designer",
+  "Freelancer",
+];
 
-const TYPING_SPEED = 80; // ms per character
-const DELETING_SPEED = 45; // ms per character
-const PAUSE_AFTER_TYPE = 1800; // ms to wait after fully typed
-const PAUSE_AFTER_DELETE = 400; // ms to wait after fully deleted
+const TYPING_SPEED = 80;
+const DELETING_SPEED = 45;
+const PAUSE_AFTER_TYPE = 1800;
+const PAUSE_AFTER_DELETE = 400;
 
 export function RoleCycler() {
   const [displayed, setDisplayed] = useState("");
@@ -31,7 +31,6 @@ export function RoleCycler() {
         }, TYPING_SPEED);
         return () => clearTimeout(t);
       } else {
-        // Fully typed — pause
         const t = setTimeout(() => setPhase("deleting"), PAUSE_AFTER_TYPE);
         return () => clearTimeout(t);
       }
@@ -44,7 +43,6 @@ export function RoleCycler() {
         }, DELETING_SPEED);
         return () => clearTimeout(t);
       } else {
-        // Fully deleted — move to next role
         const t = setTimeout(() => {
           setRoleIndex((i) => (i + 1) % ROLES.length);
           setPhase("typing");
@@ -57,7 +55,6 @@ export function RoleCycler() {
   return (
     <span className="inline-flex items-baseline gap-0">
       <span className="text-[#6B191F] italic">{displayed}</span>
-      {/* Blinking cursor */}
       <span
         className="ml-0.5 inline-block h-[1em] w-0.75 animate-pulse bg-[#6B191F] align-baseline"
         aria-hidden="true"

@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  ProjectMedia — Handles image/video rendering
-// ─────────────────────────────────────────────
-
 import type { ProjectMedia as ProjectMediaType } from "@/types/portfolio";
 import { cn } from "@/lib/cn";
 

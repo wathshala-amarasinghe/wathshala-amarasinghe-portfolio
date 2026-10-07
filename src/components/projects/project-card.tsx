@@ -1,9 +1,5 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  ProjectCard — Homepage showcase card
-// ─────────────────────────────────────────────
-
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import type { Project } from "@/types/portfolio";
@@ -51,7 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
       >
         <div
           aria-hidden="true"
-          className="absolute -top-1/4 -right-[8%] h-3/4 w-1/2 rounded-full bg-[--color-accent-primary] opacity-20 blur-3xl"
+          className="absolute -top-1/4 right-[-8%] h-3/4 w-1/2 rounded-full bg-[--color-accent-primary] opacity-20 blur-3xl"
         />
 
         <div
@@ -72,7 +68,7 @@ export function ProjectCard({ project }: { project: Project }) {
                     alt={img.alt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
+                    className="object-contain object-center"
                   />
                 </div>
               ))}
@@ -85,9 +81,7 @@ export function ProjectCard({ project }: { project: Project }) {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className={cn(
                 "transition-transform duration-[--duration-cinematic]",
-                isBrandVisual
-                  ? "object-contain"
-                  : "object-cover group-hover:scale-105"
+                "object-contain object-center group-hover:scale-105"
               )}
             />
           ) : (

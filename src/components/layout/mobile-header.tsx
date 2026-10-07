@@ -1,12 +1,8 @@
 "use client";
 
-// ─────────────────────────────────────────────
-//  MobileHeader — Compact mobile navigation bar
-//  Sticky header shown only on small screens.
-// ─────────────────────────────────────────────
-
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { profile } from "@/data/profile";
 import { MobileMenu } from "./mobile-menu";
 
@@ -18,11 +14,12 @@ export function MobileHeader() {
       <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-[--color-divider] bg-[--color-bg]/90 px-5 backdrop-blur-md lg:hidden">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#6B191F]/30 bg-black/30 p-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/profile/my_logo.png"
               alt="Logo"
-              className="h-full w-full object-contain"
+              width={32}
+              height={32}
+              className="h-full w-full object-contain object-center"
             />
           </div>
           <div className="flex flex-col leading-none">

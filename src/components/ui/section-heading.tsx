@@ -1,11 +1,7 @@
-// ─────────────────────────────────────────────
-//  SectionHeading — Consistent section labels
-// ─────────────────────────────────────────────
-
 import { cn } from "@/lib/cn";
 
 interface SectionHeadingProps {
-  label?: string; // eyebrow / overline text
+  label?: string;
   title: React.ReactNode;
   subtitle?: string;
   align?: "left" | "center";

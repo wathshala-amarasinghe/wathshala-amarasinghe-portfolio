@@ -1,8 +1,3 @@
-// ─────────────────────────────────────────────
-//  SkipLink — Accessibility skip-navigation link
-//  Must be the first focusable element on the page.
-// ─────────────────────────────────────────────
-
 export function SkipLink() {
   return (
     <a

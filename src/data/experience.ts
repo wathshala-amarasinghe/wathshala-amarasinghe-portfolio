@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  Experience & Education Data — Real CV data
-// ─────────────────────────────────────────────
-
 import type {
   ExperienceItem,
   EducationItem,

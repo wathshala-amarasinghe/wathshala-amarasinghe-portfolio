@@ -27,7 +27,6 @@ export function ContactForm() {
     setErrorMessage("");
 
     try {
-      // Call our own server-side API route — no CORS, keys are secure
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

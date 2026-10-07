@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  Button Component
-// ─────────────────────────────────────────────
-
 import { cn } from "@/lib/cn";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 

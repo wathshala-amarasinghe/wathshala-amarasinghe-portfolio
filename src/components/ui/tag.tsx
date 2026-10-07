@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  Tag — Category / tool label pill
-// ─────────────────────────────────────────────
-
 import { cn } from "@/lib/cn";
 
 interface TagProps {

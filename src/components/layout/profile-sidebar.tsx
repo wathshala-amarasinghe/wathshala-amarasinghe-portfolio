@@ -1,16 +1,9 @@
-// ─────────────────────────────────────────────
-//  ProfileSidebar — Sticky left panel
-//  Server Component (no client interactivity)
-//  Shows name, title, bio, social links.
-//  Displays initials avatar when no image supplied.
-// ─────────────────────────────────────────────
-
 import { Globe, Download } from "lucide-react";
+import Image from "next/image";
 import { profile } from "@/data/profile";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
-// ── Social Icon SVGs ─────────────────────────
 function LinkedinIcon({ size = 16 }: { size?: number }) {
   return (
     <svg
@@ -76,14 +69,14 @@ export function ProfileSidebar({ className }: { className?: string }) {
         className
       )}
     >
-      {/* Background Image (Avatar) */}
       <div className="absolute inset-0 bg-[--color-surface]">
         {profile.avatar ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={profile.avatar}
             alt={profile.name}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 1023px) calc(100vw - 2rem), var(--sidebar-width)"
+            className="object-cover object-center"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-[--color-raised]">
@@ -94,21 +87,19 @@ export function ProfileSidebar({ className }: { className?: string }) {
         )}
       </div>
 
-      {/* Gradient Overlay for text readability */}
       <div className="absolute inset-0 bg-linear-to-t from-[#08090d] via-[#08090d]/60 to-transparent" />
 
-      {/* Top Header (Logo & Socials) */}
       <div className="relative z-10 flex w-full items-start justify-between p-6">
         <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[#6B191F]/50 bg-black/30 p-1 backdrop-blur-md">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/profile/my_logo.png"
             alt="Logo"
-            className="h-full w-full object-contain drop-shadow-md"
+            width={40}
+            height={40}
+            className="h-full w-full object-contain object-center drop-shadow-md"
           />
         </div>
 
-        {/* Top right Social Links */}
         {profile.socials.length > 0 && (
           <nav aria-label="Social links" className="flex flex-col gap-2">
             {profile.socials.map((social) => {
@@ -130,7 +121,6 @@ export function ProfileSidebar({ className }: { className?: string }) {
         )}
       </div>
 
-      {/* Bottom Content */}
       <div className="relative z-10 flex flex-col gap-4 p-6 pt-32">
         <div>
           <h1 className="font-display text-2xl leading-tight font-bold text-[--color-text-primary]">
