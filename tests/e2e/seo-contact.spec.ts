@@ -64,6 +64,14 @@ test.describe("SEO metadata", () => {
       ).toBeVisible();
       await expect(page.getByText("What I would validate next")).toBeVisible();
       await expect(page.getByText("Case study content section")).toHaveCount(0);
+      if (project.slug === "lumi") {
+        await expect(
+          page.getByRole("link", { name: "View design in Figma" })
+        ).toHaveAttribute(
+          "href",
+          "https://www.figma.com/design/ESDIGSF6TqnBSrnxZdBJTn/Untitled?node-id=0-1&p=f&t=lg3NcT2TffwlMpBT-0"
+        );
+      }
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
         `${productionUrl}/work/${project.slug}`

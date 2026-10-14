@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import type { Project } from "@/types/portfolio";
 import type { CaseStudyDetail } from "@/data/case-studies";
 import { Container } from "@/components/ui/container";
@@ -89,9 +89,20 @@ function LumiShowcase({ project }: { project: Project }) {
           <source src={project.heroMedia.src} type="video/mp4" />
           Your browser does not support embedded video playback.
         </video>
-        <figcaption className="px-2 pt-4 pb-1 text-sm leading-relaxed text-white/70">
-          Interactive prototype walkthrough. Playback starts only when you
-          choose to play it.
+        <figcaption className="flex flex-col items-start justify-between gap-4 px-2 pt-4 pb-1 text-sm leading-relaxed text-white/70 sm:flex-row sm:items-center">
+          <span>
+            Interactive prototype walkthrough. Playback starts only when you
+            choose to play it.
+          </span>
+          <a
+            href="https://www.figma.com/design/ESDIGSF6TqnBSrnxZdBJTn/Untitled?node-id=0-1&p=f&t=lg3NcT2TffwlMpBT-0"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex shrink-0 items-center gap-2 rounded-[--radius-md] bg-[--color-accent-primary] px-5 py-3 font-semibold text-[--color-text-primary] transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[--color-accent-primary]"
+          >
+            View design in Figma
+            <ExternalLink size={16} aria-hidden="true" />
+          </a>
         </figcaption>
       </figure>
 
