@@ -1,0 +1,76 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
+import { SkipLink } from "@/components/ui/skip-link";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: siteConfig.name,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    locale: "en_US",
+    images: [
+      {
+        url: siteConfig.ogImage ?? "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} portfolio`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [
+      {
+        url: siteConfig.ogImage ?? "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} portfolio`,
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: {
+      url: "/images/profile/my_logo.png",
+      type: "image/png",
+    },
+    shortcut: "/images/profile/my_logo.png",
+    apple: "/images/profile/my_logo.png",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang={siteConfig.locale} className="antialiased">
+      <body>
+        <SkipLink />
+        {children}
+      </body>
+    </html>
+  );
+}
