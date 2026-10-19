@@ -44,6 +44,7 @@ test.describe("SEO metadata", () => {
   });
 
   for (const project of [
+    { slug: "lmt-go", heading: "LMT GO" },
     { slug: "lumi", heading: "LUMI" },
     { slug: "smart-web-pos", heading: "Smart Web POS System" },
     { slug: "nation-spice", heading: "Nation Spice" },
@@ -71,6 +72,30 @@ test.describe("SEO metadata", () => {
           "href",
           "https://www.figma.com/design/ESDIGSF6TqnBSrnxZdBJTn/Untitled?node-id=0-1&p=f&t=lg3NcT2TffwlMpBT-0"
         );
+      }
+      if (project.slug === "lmt-go") {
+        const gallery = page.getByRole("region", {
+          name: "LMT GO design gallery",
+        });
+        await expect(
+          gallery.getByRole("link", { name: "View design in Figma" })
+        ).toHaveAttribute("href", /figma.com\/design\/HB65y3WTI8IODJDcGGZ79S/);
+        await expect(gallery.getByRole("img")).toHaveCount(8);
+        for (const image of await gallery.getByRole("img").all()) {
+          await image.scrollIntoViewIfNeeded();
+          await expect
+            .poll(() =>
+              image.evaluate(
+                (element: HTMLImageElement) => element.naturalWidth
+              )
+            )
+            .toBeGreaterThan(0);
+        }
+        expect(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= window.innerWidth
+          )
+        ).toBe(true);
       }
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         "href",
@@ -100,6 +125,7 @@ test.describe("SEO metadata", () => {
       `${productionUrl}/work/lumi`,
       `${productionUrl}/work/smart-web-pos`,
       `${productionUrl}/work/nation-spice`,
+      `${productionUrl}/work/lmt-go`,
     ]);
   });
 });

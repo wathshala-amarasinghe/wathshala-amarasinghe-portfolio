@@ -16,6 +16,23 @@ The site requests this video only on the homepage and never on mobile, reduced-m
 
 ## Public project assets
 
+### LMT GO
+
+Original Figma board exports are stored in `/images/projects/ui_ux/lmt-go/`:
+
+- `LMT GO app redesign-1.png` — app redesign showcase and project cover.
+- `LMT GO journey and bus tracking-2.png` — journey selection and bus tracking showcase.
+- `LMT GO Travel Wallet QR Showcase-3.png` — travel wallet and boarding QR showcase.
+- `everyday-travel.png` — wallet, QR access, search, tracking shortcuts and boarding instructions.
+- `journey-and-arrivals.png` — stops, fares, journey comparison and arrival states.
+- `wallet-and-passes.png` — balance privacy, payment selection and pass validity.
+- `tracking-and-maps.png` — demonstration maps, vehicle selection, stop progress and journey stages.
+- `project-overview.png` — project brief, scope, evidence and validation boundaries.
+
+Source: [LMT GO Figma project](https://www.figma.com/design/HB65y3WTI8IODJDcGGZ79S/LMT-GO--Lanka-Metro-Transit---Redesign-Project?node-id=0-1).
+The three supplied showcase images form the homepage slider and lead the case-study gallery. The original component boards follow them on the details page.
+Boards retain their original proportions and can be opened at full size from the case study. Next.js serves optimized display versions. The project is an independent redesign concept with demonstration data and passenger validation pending.
+
 ### LUMI
 
 - `/LUMI_UI/LUMI_VIDEO.mp4` — interactive prototype walkthrough used on the LUMI case-study page. It uses user-controlled playback and does not preload before the viewer starts it.

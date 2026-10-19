@@ -128,9 +128,66 @@ function LumiShowcase({ project }: { project: Project }) {
   );
 }
 
+function LmtGoShowcase({ project }: { project: Project }) {
+  return (
+    <section aria-label="LMT GO design gallery" className="space-y-8">
+      <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+        <div>
+          <h2 className="font-display text-2xl font-bold text-[var(--color-text-primary)]">
+            Passenger experience and component system
+          </h2>
+          <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
+            Explore the original design boards. Select an image to view it at
+            full size.
+          </p>
+        </div>
+        <a
+          href={project.figmaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex shrink-0 items-center gap-2 rounded-[var(--radius-md)] bg-[var(--color-accent-primary)] px-5 py-3 text-sm font-semibold text-[var(--color-text-primary)] transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent-primary)]"
+        >
+          View design in Figma
+          <ExternalLink size={16} aria-hidden="true" />
+        </a>
+      </div>
+      {project.gallery.map((media, index) => (
+        <figure
+          key={media.src}
+          className="overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-divider)] bg-[var(--color-surface)]"
+        >
+          <a
+            href={media.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View full-size: ${media.alt}`}
+            className="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent-primary)]"
+          >
+            <Image
+              src={media.src}
+              alt={media.alt}
+              width={media.width}
+              height={media.height}
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="h-auto w-full"
+            />
+          </a>
+          <figcaption className="px-5 py-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+            <span className="mr-3 font-mono text-[var(--color-text-muted)]">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            {media.alt}
+          </figcaption>
+        </figure>
+      ))}
+    </section>
+  );
+}
+
 export function ProjectCaseStudy({ project, detail }: ProjectCaseStudyProps) {
   const isSmartPos = project.slug === "smart-web-pos";
   const isLumi = project.slug === "lumi";
+  const isLmtGo = project.slug === "lmt-go";
 
   return (
     <article className="pb-24 sm:pb-32">
@@ -170,6 +227,8 @@ export function ProjectCaseStudy({ project, detail }: ProjectCaseStudyProps) {
             <SmartPosMap areas={detail.focusAreas} />
           ) : isLumi ? (
             <LumiShowcase project={project} />
+          ) : isLmtGo ? (
+            <LmtGoShowcase project={project} />
           ) : (
             <NationSpiceArtwork project={project} />
           )}
@@ -252,7 +311,7 @@ export function ProjectCaseStudy({ project, detail }: ProjectCaseStudyProps) {
                   id={`${project.slug}-elements`}
                   className="font-display text-3xl font-bold tracking-tight text-[--color-text-primary]"
                 >
-                  {isLumi
+                  {isLumi || isLmtGo
                     ? "What the prototype covers"
                     : "What forms the identity"}
                 </h2>

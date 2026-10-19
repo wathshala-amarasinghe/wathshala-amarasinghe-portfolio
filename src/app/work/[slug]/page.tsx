@@ -83,7 +83,12 @@ export default async function WorkPage({
     );
   }
 
-  if (slug === "lumi" || slug === "smart-web-pos" || slug === "nation-spice") {
+  if (
+    slug === "lmt-go" ||
+    slug === "lumi" ||
+    slug === "smart-web-pos" ||
+    slug === "nation-spice"
+  ) {
     return (
       <PortfolioShell>
         <ProjectCaseStudy project={project} detail={caseStudies[slug]} />

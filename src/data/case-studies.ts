@@ -18,9 +18,58 @@ export interface CaseStudyDetail {
 }
 
 export const caseStudies: Record<
-  "lumi" | "smart-web-pos" | "nation-spice",
+  "lmt-go" | "lumi" | "smart-web-pos" | "nation-spice",
   CaseStudyDetail
 > = {
+  "lmt-go": {
+    eyebrow: "Independent passenger-app redesign study",
+    headline: "Show your QR, find the right bus and follow your journey",
+    introduction:
+      "LMT GO is an independent UX redesign concept for Lanka Metro Transit. The study prioritises everyday boarding through a travel-wallet card, with optional journey planning and clearer bus information. The Figma project documents the brief, evidence boundaries and reusable interface components.",
+    challenge:
+      "Regular passengers need quick access to their boarding QR, while new riders need help choosing a route and following the correct vehicle. The design challenge is to make these next steps clear, with explicit fares, transfer stops and honest distinctions between live estimates, scheduled arrivals and unavailable information.",
+    contribution:
+      "I developed the product-design direction and reusable Figma components for the travel wallet, QR access, top-ups, journey search, passes, transaction filters, maps and tracking. The project overview records a review of the supplied app walkthrough, screenshots and three accessible public reviews; passenger sessions and real service integrations remain pending.",
+    decisions: [
+      {
+        title: "Put boarding first",
+        description:
+          "A travel-wallet card gives Show QR and Top Up direct prominence. Journey planning is optional, so the passenger does not need to choose a route simply to access the boarding credential.",
+      },
+      {
+        title: "Explain each travel state",
+        description:
+          "Journey cards show duration, fare, route codes and transfer stops. Tracking distinguishes the selected bus, reported stops, upcoming stops and the meaning of an arrival estimate at each journey stage.",
+      },
+      {
+        title: "Design for uncertainty",
+        description:
+          "Balance privacy, scheduled-only buses, unavailable live data, pass validity and recovery messages are represented as explicit component states. Text and icons support status colours.",
+      },
+    ],
+    focusLabel: "Passenger experience coverage",
+    focusAreas: [
+      "Travel wallet",
+      "Show QR",
+      "Top-ups",
+      "Journey planning",
+      "Bus selection",
+      "Stop progress",
+      "Live and scheduled arrivals",
+      "Passes",
+      "Transaction filters",
+      "Recovery states",
+    ],
+    resultTitle: "A documented redesign direction and reusable UI foundation",
+    result:
+      "The prepared design establishes a consistent wallet-first direction across boarding, planning and tracking. The shared file includes the project overview and component catalogues. It is an independent concept, not a commissioned or deployed transit service. Maps, vehicle movement, balances and fares are demonstration data; usability improvements have not yet been measured with passengers.",
+    nextSteps: [
+      "Test QR access, journey selection and recovery tasks with passengers.",
+      "Verify scanner behaviour, fare rules and payment confirmation with the service.",
+      "Validate stop reporting, vehicle identity and data freshness against real feeds.",
+      "Check language coverage, accessibility and low-connectivity behaviour on devices.",
+    ],
+  },
   lumi: {
     eyebrow: "UI/UX design and prototype case study",
     headline:

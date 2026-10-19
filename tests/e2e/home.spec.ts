@@ -71,7 +71,7 @@ test.describe("Homepage", () => {
     const workSection = page.locator("#work");
     const projectCards = workSection.locator("[data-project]");
 
-    await expect(projectCards).toHaveCount(4);
+    await expect(projectCards).toHaveCount(5);
 
     await workSection
       .getByRole("button", { name: "Web Development", exact: true })
@@ -101,12 +101,12 @@ test.describe("Homepage", () => {
     await workSection
       .getByRole("button", { name: "UI/UX Design", exact: true })
       .click();
-    await expect(projectCards).toHaveCount(3);
+    await expect(projectCards).toHaveCount(4);
     expect(
       await projectCards.evaluateAll((cards) =>
         cards.map((card) => card.dataset.project)
       )
-    ).toEqual(["kavon", "lumi", "smart-web-pos"]);
+    ).toEqual(["kavon", "lumi", "smart-web-pos", "lmt-go"]);
     const lumiPreview = workSection.locator('[data-project="lumi"] video');
     await lumiPreview.scrollIntoViewIfNeeded();
     await expect(lumiPreview).toBeVisible();

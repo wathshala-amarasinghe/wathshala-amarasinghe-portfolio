@@ -44,9 +44,11 @@ export interface Project {
   shortDescription: string;
   role: string;
   tools: string[];
+  figmaUrl?: string;
   coverImage: ProjectMedia | null;
   heroMedia: ProjectMedia | null;
   gallery: ProjectMedia[];
+  previewGallery?: ProjectMedia[];
   status: PublishedStatus;
   featured: boolean;
   order: number;

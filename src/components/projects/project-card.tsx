@@ -14,19 +14,19 @@ export function ProjectCard({ project }: { project: Project }) {
   const previewRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const isBrandVisual = project.categories.includes("Brand & Visual");
+  const previewImages = project.previewGallery ?? project.gallery;
+  const hasImageSlider =
+    (project.slug === "kavon" || project.slug === "lmt-go") &&
+    previewImages.length > 0;
 
   useEffect(() => {
-    if (
-      !prefersReducedMotion &&
-      project.slug === "kavon" &&
-      project.gallery.length > 0
-    ) {
+    if (!prefersReducedMotion && hasImageSlider) {
       const timer = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % project.gallery.length);
+        setCurrentIndex((prev) => (prev + 1) % previewImages.length);
       }, 3000);
       return () => clearInterval(timer);
     }
-  }, [prefersReducedMotion, project.slug, project.gallery.length]);
+  }, [prefersReducedMotion, hasImageSlider, previewImages.length]);
 
   useEffect(() => {
     if (
@@ -101,12 +101,12 @@ export function ProjectCard({ project }: { project: Project }) {
                 <source src={project.heroMedia.src} type="video/mp4" />
               )}
             </video>
-          ) : project.slug === "kavon" && project.gallery.length > 0 ? (
+          ) : hasImageSlider ? (
             <div
               className="flex h-full transition-transform duration-1000 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {project.gallery.map((img) => (
+              {previewImages.map((img) => (
                 <div key={img.src} className="relative h-full w-full shrink-0">
                   <Image
                     src={img.src}
