@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((project) => project.status === "published")
     .map((project) => ({
       url: `${siteConfig.url}/work/${project.slug}`,
+      lastModified: siteConfig.contentUpdatedAt,
       changeFrequency: "yearly",
       priority: 0.8,
     }));
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteConfig.url,
+      lastModified: siteConfig.contentUpdatedAt,
       changeFrequency: "monthly",
       priority: 1,
     },

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { profile } from "@/data/profile";
 import { SkipLink } from "@/components/ui/skip-link";
 import "./globals.css";
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
 
 export const metadata: Metadata = {
   title: {
@@ -50,6 +53,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: googleSiteVerification
+    ? { google: googleSiteVerification }
+    : undefined,
   icons: {
     icon: {
       url: "/images/profile/my_logo.png",
@@ -60,6 +66,49 @@ export const metadata: Metadata = {
   },
 };
 
+const personId = `${siteConfig.url}/#person`;
+const websiteId = `${siteConfig.url}/#website`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: profile.name,
+      url: siteConfig.url,
+      image: profile.avatar ? `${siteConfig.url}${profile.avatar}` : undefined,
+      jobTitle: profile.title,
+      description: profile.bio,
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "LK",
+      },
+      sameAs: profile.socials.map((social) => social.href),
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: siteConfig.url,
+      name: siteConfig.name,
+      description: siteConfig.description,
+      inLanguage: siteConfig.locale,
+      publisher: { "@id": personId },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteConfig.url}/#profile-page`,
+      url: siteConfig.url,
+      name: siteConfig.title,
+      description: siteConfig.description,
+      dateModified: siteConfig.contentUpdatedAt,
+      inLanguage: siteConfig.locale,
+      isPartOf: { "@id": websiteId },
+      mainEntity: { "@id": personId },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,6 +117,13 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.locale} className="antialiased">
       <body>
+        <script
+          id="portfolio-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
         <SkipLink />
         {children}
       </body>

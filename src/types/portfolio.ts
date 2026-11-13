@@ -100,6 +100,7 @@ export interface SiteConfig {
   title: string;
   description: string;
   url: string;
+  contentUpdatedAt: string;
   locale: string;
   themeColor: string;
   twitterHandle: string | null;

@@ -43,6 +43,44 @@ test.describe("SEO metadata", () => {
     expect(socialImage.headers()["content-type"]).toContain("image/png");
   });
 
+  test("identifies the portfolio owner with structured data", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const jsonLd = await page
+      .locator('script[type="application/ld+json"]#portfolio-structured-data')
+      .textContent();
+    expect(jsonLd).not.toBeNull();
+
+    const structuredData = JSON.parse(jsonLd ?? "{}") as {
+      "@graph": Array<Record<string, unknown>>;
+    };
+    const person = structuredData["@graph"].find(
+      (entry) => entry["@type"] === "Person"
+    );
+    const profilePage = structuredData["@graph"].find(
+      (entry) => entry["@type"] === "ProfilePage"
+    );
+
+    expect(person).toMatchObject({
+      name: "Wathshala Amarasinghe",
+      url: productionUrl,
+      jobTitle: "UI/UX Product Designer + Engineer",
+    });
+    expect(person?.sameAs).toEqual(
+      expect.arrayContaining([
+        "https://www.linkedin.com/in/wathshala-amarasinghe",
+        "https://www.behance.net/wathshalaamarasinghe",
+        "https://github.com/wathshala-amarasinghe",
+      ])
+    );
+    expect(profilePage).toMatchObject({
+      url: productionUrl,
+      mainEntity: { "@id": `${productionUrl}/#person` },
+    });
+  });
+
   for (const project of [
     { slug: "lmt-go", heading: "LMT GO" },
     { slug: "lumi", heading: "LUMI" },
@@ -127,6 +165,9 @@ test.describe("SEO metadata", () => {
       `${productionUrl}/work/nation-spice`,
       `${productionUrl}/work/lmt-go`,
     ]);
+    expect(xml.match(/<lastmod>2026-11-13<\/lastmod>/g)).toHaveLength(
+      locations.length
+    );
   });
 });
 

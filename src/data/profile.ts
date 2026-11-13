@@ -13,7 +13,7 @@ export const profile: Profile = {
   socials: [
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/in/wathshala-amarasinghe",
+      href: "https://www.linkedin.com/in/wathshala-amarasinghe",
       icon: "Linkedin",
     },
     {
