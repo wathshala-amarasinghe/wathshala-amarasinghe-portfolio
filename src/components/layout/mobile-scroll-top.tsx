@@ -20,6 +20,8 @@ export function MobileScrollTop() {
     <button
       type="button"
       data-visible={isVisible}
+      tabIndex={isVisible ? undefined : -1}
+      aria-hidden={!isVisible}
       onClick={() =>
         window.scrollTo({
           top: 0,

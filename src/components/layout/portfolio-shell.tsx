@@ -10,13 +10,17 @@ import { AmbientBackground } from "./ambient-background";
 
 interface PortfolioShellProps {
   children: ReactNode;
+  allowBackgroundMotion?: boolean;
 }
 
-export function PortfolioShell({ children }: PortfolioShellProps) {
+export function PortfolioShell({
+  children,
+  allowBackgroundMotion = false,
+}: PortfolioShellProps) {
   return (
     <div className="relative min-h-screen bg-[--color-bg]">
       <Preloader />
-      <AmbientBackground />
+      <AmbientBackground allowMotion={allowBackgroundMotion} />
 
       <div className="relative z-10">
         <MobileHeader />
@@ -32,7 +36,11 @@ export function PortfolioShell({ children }: PortfolioShellProps) {
             <LeftSidebarArea />
           </div>
 
-          <main id="main-content" className="w-full" tabIndex={-1}>
+          <main
+            id="main-content"
+            className="w-full min-w-0 scroll-mt-16 lg:scroll-mt-0"
+            tabIndex={-1}
+          >
             {children}
             <SiteFooter />
           </main>

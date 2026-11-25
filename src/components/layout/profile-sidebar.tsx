@@ -76,7 +76,7 @@ export function ProfileSidebar({ className }: { className?: string }) {
             alt={profile.name}
             fill
             loading="eager"
-            sizes="(max-width: 1023px) calc(100vw - 2rem), var(--sidebar-width)"
+            sizes="(max-width: 1023px) calc(100vw - 2rem), 376px"
             className="object-cover object-center"
           />
         ) : (
@@ -94,7 +94,7 @@ export function ProfileSidebar({ className }: { className?: string }) {
         <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[#6B191F]/50 bg-black/30 p-1 backdrop-blur-md">
           <Image
             src="/images/profile/my_logo.png"
-            alt="Logo"
+            alt=""
             width={40}
             height={40}
             className="h-full w-full object-contain object-center drop-shadow-md"
@@ -124,16 +124,17 @@ export function ProfileSidebar({ className }: { className?: string }) {
 
       <div className="relative z-10 flex flex-col gap-4 p-6 pt-32">
         <div>
-          <h1 className="font-display text-2xl leading-tight font-bold text-[--color-text-primary]">
-            Hey, I&apos;m a<br />
+          <p className="font-display text-2xl leading-tight font-bold text-[--color-text-primary]">
+            Hey, I&apos;m
+            <br />
             <span className="text-[#E8D4C3]">{profile.name}</span>
-          </h1>
+          </p>
           <p className="mt-4 text-sm leading-relaxed text-[--color-text-secondary]">
             {profile.tagline} Based in {profile.location}.
           </p>
         </div>
 
-        <div className="mt-4 flex flex-row items-stretch gap-2">
+        <div className="mt-4 flex flex-wrap items-stretch gap-2">
           <Button
             as="a"
             href="/#contact"

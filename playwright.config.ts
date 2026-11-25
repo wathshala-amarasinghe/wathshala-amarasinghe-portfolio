@@ -1,5 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const port = process.env.PORTFOLIO_TEST_PORT ?? "3000";
+const baseURL = `http://localhost:${port}`;
+const useProductionBuild = process.env.PORTFOLIO_TEST_PRODUCTION === "1";
+
 export default defineConfig({
   testDir: "./tests/e2e",
   timeout: 60_000,
@@ -9,7 +13,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: "html",
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL,
     trace: "on-first-retry",
   },
   projects: [
@@ -23,9 +27,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "node node_modules/next/dist/bin/next dev",
-    url: "http://localhost:3000",
-    reuseExistingServer: !process.env.CI,
+    command: `node node_modules/next/dist/bin/next ${useProductionBuild ? "start" : "dev"} --hostname localhost --port ${port}`,
+    url: baseURL,
+    reuseExistingServer: !process.env.CI && !useProductionBuild,
     timeout: 120000,
   },
 });

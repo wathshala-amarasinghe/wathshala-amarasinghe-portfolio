@@ -101,24 +101,13 @@ function CertificateCredential({
 }: {
   certificate: CertificationItem;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
   const titleId = `${certificate.id}-certificate-title`;
   const openCertificate = () => {
     setIsPreviewVisible(false);
-    setIsOpen(true);
+    dialogRef.current?.showModal();
   };
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
-    };
-
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [isOpen]);
 
   return (
     <>
@@ -163,54 +152,54 @@ function CertificateCredential({
       </div>
 
       {isPreviewVisible &&
-        !isOpen &&
         typeof document !== "undefined" &&
         createPortal(
-          <div className="pointer-events-none fixed top-1/2 left-1/2 z-90 hidden w-80 -translate-x-1/2 -translate-y-1/2 lg:block">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed top-1/2 left-1/2 z-90 hidden w-80 -translate-x-1/2 -translate-y-1/2 lg:block"
+          >
             <CertificateArtwork certificate={certificate} />
           </div>,
           document.body
         )}
 
-      {isOpen &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            className="fixed inset-0 z-100 flex items-end justify-center bg-black/80 p-4 backdrop-blur-md sm:items-center"
-            onMouseDown={(event) => {
-              if (event.currentTarget === event.target) setIsOpen(false);
-            }}
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={titleId}
+        className="fixed inset-x-0 bottom-4 mx-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-4xl border border-white/10 bg-[var(--color-surface)] p-4 shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-md sm:inset-y-0 sm:my-auto sm:p-6"
+        onClick={(event) => {
+          if (event.currentTarget !== event.target) return;
+          const box = event.currentTarget.getBoundingClientRect();
+          if (
+            event.clientX < box.left ||
+            event.clientX > box.right ||
+            event.clientY < box.top ||
+            event.clientY > box.bottom
+          ) {
+            dialogRef.current?.close();
+          }
+        }}
+      >
+        <div className="mb-4 flex items-center justify-between gap-4 px-1">
+          <div>
+            <span className="text-xs font-semibold tracking-[0.16em] text-[#E5636C] uppercase">
+              Credential
+            </span>
+            <h4 id={titleId} className="mt-1 text-xl font-bold text-white">
+              {certificate.title}
+            </h4>
+          </div>
+          <button
+            type="button"
+            aria-label="Close certificate"
+            onClick={() => dialogRef.current?.close()}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10"
           >
-            <div className="max-h-[calc(100dvh-2rem)] w-full max-w-lg overflow-y-auto rounded-4xl border border-white/10 bg-[--color-surface] p-4 shadow-2xl sm:p-6">
-              <div className="mb-4 flex items-center justify-between gap-4 px-1">
-                <div>
-                  <span className="text-xs font-semibold tracking-[0.16em] text-[#E5636C] uppercase">
-                    Credential
-                  </span>
-                  <h4
-                    id={titleId}
-                    className="mt-1 text-xl font-bold text-white"
-                  >
-                    {certificate.title}
-                  </h4>
-                </div>
-                <button
-                  type="button"
-                  aria-label="Close certificate"
-                  onClick={() => setIsOpen(false)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10"
-                >
-                  <X aria-hidden="true" size={19} />
-                </button>
-              </div>
-              <CertificateArtwork certificate={certificate} />
-            </div>
-          </div>,
-          document.body
-        )}
+            <X aria-hidden="true" size={19} />
+          </button>
+        </div>
+        <CertificateArtwork certificate={certificate} />
+      </dialog>
     </>
   );
 }
@@ -248,7 +237,7 @@ export function ExperienceSection() {
                       <h4 className="text-xl font-bold text-[--color-text-primary]">
                         {job.title}
                       </h4>
-                      <span className="text-sm font-medium whitespace-nowrap text-[#6B191F]">
+                      <span className="text-sm font-medium text-[var(--color-accent-text)]">
                         {formatDate(job.startDate)} — {formatDate(job.endDate)}
                       </span>
                     </div>
@@ -305,7 +294,7 @@ export function ExperienceSection() {
                       <h4 className="text-xl font-bold text-[--color-text-primary]">
                         {edu.degree}
                       </h4>
-                      <span className="text-sm font-semibold text-[#6B191F]">
+                      <span className="text-sm font-semibold text-[var(--color-accent-text)]">
                         Graduated: December 2025
                       </span>
                     </div>

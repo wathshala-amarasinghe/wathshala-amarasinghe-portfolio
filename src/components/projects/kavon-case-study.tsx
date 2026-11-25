@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -23,6 +23,7 @@ const LIVE_URL = "https://kavon-net-official.vercel.app/";
 const REPO_URL = "https://github.com/wathshala-amarasinghe/kavon.net";
 
 const KAVON_RED = "#C8102E";
+const KAVON_TEXT_RED = "#ff8494";
 const KAVON_RED_DIM = "rgba(200, 16, 46, 0.12)";
 
 interface LightboxImage {
@@ -52,7 +53,7 @@ function MetaPills() {
           className="inline-flex items-center rounded-sm px-3 py-1 text-xs font-semibold tracking-wider uppercase"
           style={{
             backgroundColor: KAVON_RED_DIM,
-            color: KAVON_RED,
+            color: KAVON_TEXT_RED,
             border: `1px solid rgba(200, 16, 46, 0.3)`,
           }}
         >
@@ -68,7 +69,7 @@ function SectionLabel({ n, label }: { n: string; label: string }) {
     <div className="mb-8 flex items-center gap-3">
       <span
         className="font-mono text-xs font-bold"
-        style={{ color: KAVON_RED }}
+        style={{ color: KAVON_TEXT_RED }}
         aria-hidden="true"
       >
         {n}
@@ -143,47 +144,50 @@ function Lightbox({
   image: LightboxImage | null;
   onClose: () => void;
 }) {
-  if (!image) return null;
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Escape") onClose();
-  };
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (image && dialog && !dialog.open) dialog.showModal();
+  }, [image]);
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Enlarged image: ${image.alt}`}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-8"
-      onKeyDown={handleKeyDown}
-      onClick={onClose}
+    <dialog
+      ref={dialogRef}
+      aria-label={image ? `Enlarged image: ${image.alt}` : "Enlarged image"}
+      className="fixed inset-0 m-auto max-h-dvh w-full max-w-5xl overflow-y-auto bg-transparent p-4 text-white backdrop:bg-black/90 backdrop:backdrop-blur-md sm:p-8"
+      onClose={onClose}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) dialogRef.current?.close();
+      }}
     >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close image"
-        className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-white"
-      >
-        <X size={20} />
-      </button>
+      {image && (
+        <>
+          <button
+            type="button"
+            onClick={() => dialogRef.current?.close()}
+            aria-label="Close image"
+            className="sticky top-0 z-10 ml-auto flex h-10 w-10 items-center justify-center rounded-full bg-black/80 text-white transition-colors hover:bg-black focus-visible:outline-2 focus-visible:outline-white"
+          >
+            <X size={20} />
+          </button>
 
-      <div
-        className="relative w-full max-w-5xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={1358}
-          height={933}
-          sizes="(max-width: 1024px) 100vw, 1024px"
-          className="h-auto w-full rounded-[--radius-xl] shadow-[--shadow-xl]"
-        />
-        <p className="mt-4 text-center text-sm text-white/60 italic">
-          {image.caption}
-        </p>
-      </div>
-    </div>
+          <div className="relative w-full">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={1358}
+              height={933}
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="h-auto max-h-[75dvh] w-full rounded-[--radius-xl] object-contain shadow-[--shadow-xl]"
+            />
+            <p className="mt-4 text-center text-sm text-white/60 italic">
+              {image.caption}
+            </p>
+          </div>
+        </>
+      )}
+    </dialog>
   );
 }
 
@@ -367,7 +371,7 @@ export function KavonCaseStudy() {
                   rel="noopener noreferrer"
                   size="md"
                   variant="primary"
-                  style={{ backgroundColor: KAVON_RED }}
+                  style={{ backgroundColor: KAVON_RED, color: "#fff" }}
                   className="gap-2 hover:brightness-110"
                 >
                   <ExternalLink size={15} aria-hidden="true" />
@@ -514,8 +518,8 @@ export function KavonCaseStudy() {
             </Reveal>
 
             <Reveal>
-              <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
-                <div className="order-2 lg:order-1 lg:max-w-[52ch]">
+              <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:items-start">
+                <div className="order-2 xl:order-1 xl:max-w-[52ch]">
                   <h3 className="font-display mb-3 text-(length:--text-2xl) font-bold tracking-tight text-[--color-text-primary]">
                     C — Knowing what is in the order
                   </h3>
@@ -529,7 +533,7 @@ export function KavonCaseStudy() {
                   </p>
                 </div>
 
-                <div className="order-1 w-full lg:order-2 lg:w-115">
+                <div className="order-1 min-w-0 xl:order-2">
                   <Screenshot
                     src="/images/projects/web_development/kavon/08-tactical-tee-cart.jpg"
                     alt="KAVON cart page showing two products with size and quantity controls on the left, and an order summary panel with subtotal, shipping, discount and order total on the right"
@@ -637,7 +641,7 @@ export function KavonCaseStudy() {
                     href="/#contact"
                     size="lg"
                     variant="primary"
-                    style={{ backgroundColor: KAVON_RED }}
+                    style={{ backgroundColor: KAVON_RED, color: "#fff" }}
                     className="gap-2 hover:brightness-110"
                   >
                     Let&apos;s talk

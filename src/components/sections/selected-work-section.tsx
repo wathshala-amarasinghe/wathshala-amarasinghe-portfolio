@@ -101,8 +101,8 @@ export function SelectedWorkSection() {
                   aria-pressed={isActive}
                   onClick={() => setActiveFilter(filter.id)}
                   className={cn(
-                    "rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-[--duration-fast] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-accent-primary]",
-                    "data-[active=true]:border-[--color-accent-primary] data-[active=true]:bg-[--color-accent-primary] data-[active=true]:text-[--color-text-primary]",
+                    "rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-[--duration-fast] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]",
+                    "data-[active=true]:border-[var(--color-accent-primary)] data-[active=true]:bg-[var(--color-accent-primary)] data-[active=true]:text-[var(--color-text-primary)]",
                     "data-[active=false]:border-white/10 data-[active=false]:bg-white/5 data-[active=false]:text-[--color-text-secondary] data-[active=false]:hover:border-white/20 data-[active=false]:hover:bg-white/10 data-[active=false]:hover:text-[--color-text-primary]"
                   )}
                 >
@@ -115,6 +115,9 @@ export function SelectedWorkSection() {
 
         <div>
           <div className="mb-6 flex flex-col gap-2 border-b border-[--color-divider] pb-4">
+            <span className="sr-only" role="status">
+              {visibleProjects.length} projects shown
+            </span>
             <h3 className="font-display text-2xl font-bold text-[--color-text-primary]">
               {activeFilterContent.heading}
             </h3>

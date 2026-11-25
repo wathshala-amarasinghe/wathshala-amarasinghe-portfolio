@@ -1,66 +1,21 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Project } from "@/types/portfolio";
 import { ArrowUpRight } from "lucide-react";
 import { Tag } from "@/components/ui/tag";
 import { cn } from "@/lib/cn";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 export function ProjectCard({ project }: { project: Project }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [shouldLoadLumiVideo, setShouldLoadLumiVideo] = useState(false);
-  const previewRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
   const isBrandVisual = project.categories.includes("Brand & Visual");
-  const previewImages = project.previewGallery ?? project.gallery;
-  const hasImageSlider =
-    (project.slug === "kavon" || project.slug === "lmt-go") &&
-    previewImages.length > 0;
-
-  useEffect(() => {
-    if (!prefersReducedMotion && hasImageSlider) {
-      const timer = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % previewImages.length);
-      }, 3000);
-      return () => clearInterval(timer);
-    }
-  }, [prefersReducedMotion, hasImageSlider, previewImages.length]);
-
-  useEffect(() => {
-    if (
-      project.slug !== "lumi" ||
-      project.heroMedia?.type !== "video" ||
-      prefersReducedMotion
-    ) {
-      return;
-    }
-
-    const preview = previewRef.current;
-    if (!preview) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoadLumiVideo(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px" }
-    );
-
-    observer.observe(preview);
-    return () => observer.disconnect();
-  }, [prefersReducedMotion, project.heroMedia?.type, project.slug]);
 
   const CardWrapper = project.status === "published" ? "a" : "div";
   const href =
     project.status === "published" ? `/work/${project.slug}` : undefined;
+  const titleId = `project-card-${project.slug}`;
 
   return (
     <CardWrapper
       href={href}
+      aria-labelledby={href ? titleId : undefined}
       data-project={project.slug}
       className={cn(
         "group block w-full",
@@ -80,53 +35,20 @@ export function ProjectCard({ project }: { project: Project }) {
         />
 
         <div
-          ref={previewRef}
           className={cn(
             "relative h-full w-full overflow-hidden rounded-3xl border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.55)]",
             isBrandVisual ? "bg-[#f8efe4]" : "bg-black/75"
           )}
         >
-          {project.slug === "lumi" && project.heroMedia?.type === "video" ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="none"
-              poster={project.heroMedia.poster}
-              aria-label={project.heroMedia.alt}
-              className="h-full w-full object-contain object-center"
-            >
-              {shouldLoadLumiVideo && (
-                <source src={project.heroMedia.src} type="video/mp4" />
-              )}
-            </video>
-          ) : hasImageSlider ? (
-            <div
-              className="flex h-full transition-transform duration-1000 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {previewImages.map((img) => (
-                <div key={img.src} className="relative h-full w-full shrink-0">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-contain object-center"
-                  />
-                </div>
-              ))}
-            </div>
-          ) : project.coverImage ? (
+          {project.coverImage ? (
             <Image
               src={project.coverImage.src}
               alt={project.coverImage.alt}
               fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 639px) calc(100vw - 6rem), (max-width: 1023px) calc(100vw - 9rem), calc(100vw - 46rem)"
               className={cn(
                 "transition-transform duration-[--duration-cinematic]",
-                "object-contain object-center group-hover:scale-105"
+                "object-contain object-center motion-safe:group-hover:scale-105"
               )}
             />
           ) : (
@@ -146,7 +68,10 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="flex flex-col gap-3">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-2xl font-bold text-[--color-text-primary]">
+          <h3
+            id={titleId}
+            className="font-display text-2xl font-bold text-[--color-text-primary]"
+          >
             {project.title}
           </h3>
           {project.status === "published" && (

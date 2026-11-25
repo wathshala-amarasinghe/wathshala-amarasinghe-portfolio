@@ -6,8 +6,7 @@ import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/cn";
 
-import { useGSAP as _hook } from "@gsap/react";
-gsap.registerPlugin(_hook);
+gsap.registerPlugin(useGSAP);
 
 interface RevealProps {
   children: ReactNode;
@@ -29,7 +28,13 @@ export function Reveal({
 
   useGSAP(
     () => {
-      if (!containerRef.current || prefersReducedMotion) return;
+      if (
+        !containerRef.current ||
+        prefersReducedMotion ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
 
       const target =
         stagger > 0
@@ -55,17 +60,12 @@ export function Reveal({
     {
       scope: containerRef,
       dependencies: [prefersReducedMotion, stagger, yOffset, delay],
+      revertOnUpdate: true,
     }
   );
 
   return (
-    <div
-      ref={containerRef}
-      className={cn(className)}
-      style={
-        prefersReducedMotion ? { opacity: 1, transform: "none" } : undefined
-      }
-    >
+    <div ref={containerRef} className={cn(className)}>
       {children}
     </div>
   );

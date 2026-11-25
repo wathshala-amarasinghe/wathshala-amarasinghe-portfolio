@@ -237,7 +237,6 @@ export const projects: Project[] = [
     status: "published",
     featured: false,
     order: 5,
-    previewGallery: lmtGoShowcaseImages,
   },
 ];
 

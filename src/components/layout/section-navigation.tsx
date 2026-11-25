@@ -11,7 +11,6 @@ import {
   Mail,
   ArrowUp,
   Layers,
-  MessageSquare,
   Monitor,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -24,7 +23,6 @@ const iconMap: Record<string, React.ElementType> = {
   work: Layers,
   services: Sparkles,
   tech: Monitor,
-  testimonials: MessageSquare,
   contact: Mail,
 };
 
@@ -41,7 +39,7 @@ export function SectionNavigation({ className }: { className?: string }) {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   };
 
   return (
@@ -51,7 +49,7 @@ export function SectionNavigation({ className }: { className?: string }) {
     >
       <div className="mb-4 flex w-17.5 flex-col items-end gap-2">
         <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1.5 shadow-2xl backdrop-blur-2xl">
-          <span className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.8)]"></span>
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.8)]"></span>
           <span className="text-[8px] font-bold tracking-wider whitespace-nowrap text-white/80 uppercase">
             Available for Work
           </span>

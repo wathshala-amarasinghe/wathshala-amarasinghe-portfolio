@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 test.describe("Homepage", () => {
-  test("loads decorative video only on eligible desktop sessions", async ({
+  test("lets desktop visitors start and stop decorative video", async ({
     page,
   }) => {
     await page.goto("/", { waitUntil: "networkidle" });
@@ -12,16 +12,21 @@ test.describe("Homepage", () => {
       'video source[src*="Wathshala-Portfolio-Wave-Background.mp4"]'
     );
 
+    await expect(backgroundVideo).toHaveCount(0);
+    const play = page.getByRole("button", { name: "Play background motion" });
     if (isMobile) {
-      await expect(backgroundVideo).toHaveCount(0);
+      await expect(play).toHaveCount(0);
     } else {
-      await expect(backgroundVideo).toHaveCount(0);
-      await page.dispatchEvent("body", "pointerdown");
+      await play.click();
       await expect(backgroundVideo).toHaveCount(1);
       await expect(backgroundVideo.locator("..")).toHaveAttribute(
         "preload",
         "none"
       );
+      await page
+        .getByRole("button", { name: "Stop background motion" })
+        .click();
+      await expect(backgroundVideo).toHaveCount(0);
     }
   });
 
@@ -107,17 +112,11 @@ test.describe("Homepage", () => {
         cards.map((card) => card.dataset.project)
       )
     ).toEqual(["kavon", "lumi", "smart-web-pos", "lmt-go"]);
-    const lumiPreview = workSection.locator('[data-project="lumi"] video');
+    const lumiPreview = workSection.locator('[data-project="lumi"] img');
     await lumiPreview.scrollIntoViewIfNeeded();
     await expect(lumiPreview).toBeVisible();
-    await expect(lumiPreview).toHaveAttribute(
-      "poster",
-      "/images/projects/ui_ux/lumi/lumi-home.webp"
-    );
-    await expect(lumiPreview.locator("source")).toHaveAttribute(
-      "src",
-      "/LUMI_UI/LUMI_VIDEO.mp4"
-    );
+    await expect(lumiPreview).toHaveAttribute("src", /lumi-home\.webp/);
+    await expect(workSection.locator("video")).toHaveCount(0);
 
     await workSection
       .getByRole("button", { name: "Graphic & Logo Design", exact: true })
@@ -187,16 +186,24 @@ test.describe("Homepage", () => {
     } else {
       await certificateTrigger.hover();
       await expect(
-        page.getByRole("img", {
-          name: /LottieFiles for Figma course certificate/i,
-        })
+        page
+          .locator('[aria-hidden="true"]')
+          .locator("img")
+          .filter({
+            visible: true,
+          })
+          .and(
+            page.locator('img[alt*="LottieFiles for Figma course certificate"]')
+          )
       ).toBeVisible();
     }
   });
 
   test("accessibility check", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     await page.waitForLoadState("networkidle");
+    await expect(page.locator("main h1")).toHaveCSS("opacity", "1");
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);

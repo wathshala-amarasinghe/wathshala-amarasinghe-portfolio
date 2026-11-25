@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { CONTACT_LIMITS } from "@/lib/contact";
 import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 export function ContactForm() {
+  const submissionInFlight = useRef(false);
   const [fields, setFields] = useState({
     user_name: "",
     user_email: "",
@@ -22,6 +24,8 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submissionInFlight.current) return;
+    submissionInFlight.current = true;
     setIsSubmitting(true);
     setStatus("idle");
     setErrorMessage("");
@@ -31,39 +35,43 @@ export function ContactForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(fields),
+        signal: AbortSignal.timeout(45_000),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => null);
 
-      if (!res.ok) {
-        throw new Error(
-          data.error ?? "Failed to send message. Please try again."
+      if (!res.ok || data?.success !== true) {
+        setStatus("error");
+        setErrorMessage(
+          typeof data?.error === "string"
+            ? data.error
+            : "Delivery could not be confirmed. Please try again later."
         );
+        return;
       }
 
       setStatus("success");
       setFields({ user_name: "", user_email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 6000);
-    } catch (err: unknown) {
+    } catch {
       setStatus("error");
-      const errorMsg =
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again.";
-      setErrorMessage(errorMsg);
+      setErrorMessage(
+        "Delivery could not be confirmed. Please try again later."
+      );
     } finally {
+      submissionInFlight.current = false;
       setIsSubmitting(false);
     }
   };
 
   const inputClass =
-    "w-full rounded-2xl border-2 border-white/10 bg-white/5 px-4 py-3 " +
-    "text-[--color-text-primary] placeholder:text-white/20 " +
-    "focus:border-[#6B191F] focus:outline-none focus:ring-1 focus:ring-[#6B191F] transition-all";
+    "w-full rounded-2xl border-2 border-[#8d7973] bg-white/5 px-4 py-3 " +
+    "text-[--color-text-primary] placeholder:text-white/60 " +
+    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)] transition-colors";
 
   return (
     <form
       onSubmit={handleSubmit}
+      aria-busy={isSubmitting}
       className="flex w-full max-w-lg flex-col gap-5 text-left"
     >
       <div className="flex flex-col gap-2">
@@ -78,7 +86,8 @@ export function ContactForm() {
           name="user_name"
           id="user_name"
           required
-          maxLength={80}
+          maxLength={CONTACT_LIMITS.name}
+          readOnly={isSubmitting}
           autoComplete="name"
           value={fields.user_name}
           onChange={handleChange}
@@ -99,7 +108,8 @@ export function ContactForm() {
           name="user_email"
           id="user_email"
           required
-          maxLength={254}
+          maxLength={CONTACT_LIMITS.email}
+          readOnly={isSubmitting}
           autoComplete="email"
           value={fields.user_email}
           onChange={handleChange}
@@ -119,7 +129,8 @@ export function ContactForm() {
           name="message"
           id="message"
           required
-          maxLength={5000}
+          maxLength={CONTACT_LIMITS.message}
+          readOnly={isSubmitting}
           rows={5}
           value={fields.message}
           onChange={handleChange}
@@ -150,19 +161,25 @@ export function ContactForm() {
         )}
       </Button>
 
-      {status === "success" && (
-        <div className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-green-500/10 px-4 py-3 text-sm text-green-400">
-          <CheckCircle2 size={16} />
-          Message sent! I&apos;ll get back to you soon.
+      <div className="-mt-5">
+        <div role="status">
+          {status === "success" && (
+            <div className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-green-500/10 px-4 py-3 text-sm text-green-400">
+              <CheckCircle2 size={16} />
+              Message sent! I&apos;ll get back to you soon.
+            </div>
+          )}
         </div>
-      )}
 
-      {status === "error" && (
-        <div className="mt-2 flex items-center gap-2 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-400">
-          <AlertCircle size={16} className="shrink-0" />
-          <span>{errorMessage}</span>
+        <div role="alert">
+          {status === "error" && (
+            <div className="mt-5 flex items-center gap-2 rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-400">
+              <AlertCircle size={16} className="shrink-0" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </form>
   );
 }

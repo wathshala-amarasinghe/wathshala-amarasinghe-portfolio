@@ -46,11 +46,20 @@ npm run test
 npm run build
 ```
 
-The Playwright configuration starts a local Next.js server and tests desktop and mobile Chromium. Contact tests use invalid or blocked payloads and do not intentionally send genuine messages.
+The Playwright configuration tests desktop and mobile Chromium. Contact tests use invalid payloads, pure validation checks, or intercepted browser requests. To run against the production build:
+
+```powershell
+npm run build
+$env:PORTFOLIO_TEST_PRODUCTION = '1'
+$env:PORTFOLIO_TEST_PORT = '3101'
+npm test -- --reporter=list
+```
 
 ## Contact delivery
 
-The endpoint is `POST /api/contact` and accepts JSON containing `user_name`, `user_email` and `message`. It validates types, lengths, email format, request size, content type and origin before asking Gmail to deliver the message.
+The endpoint is `POST /api/contact` and accepts JSON containing `user_name`, `user_email` and `message`. It checks the origin and content type, limits body reads to 16 KiB and five seconds, and validates field types, lengths and email format before asking Gmail to deliver the message.
+
+Each warm Node.js instance limits SMTP attempts to five per ten minutes per Vercel client address. If that platform-provided address is unavailable, the instance uses a shared quota. Enable a Vercel Firewall rate limit for `POST /api/contact` if the project plan supports it to enforce a shared quota across instances. Review this rule and SMTP delivery in the deployment dashboard.
 
 For Gmail:
 
@@ -67,7 +76,7 @@ The UI reports success only after Gmail accepts the recipient. Provider acceptan
 1. Import the repository into Vercel.
 2. Add `GMAIL_USER` and `GMAIL_APP_PASSWORD` under Project Settings → Environment Variables.
 3. Add `CONTACT_TO_ADDRESS` only when a different recipient is required.
-4. Deploy and verify `/`, all three `/work/*` routes, `/robots.txt`, `/sitemap.xml` and `/opengraph-image`.
+4. Deploy and verify `/`, all five `/work/*` routes, `/robots.txt`, `/sitemap.xml` and `/opengraph-image`.
 5. Confirm the production response includes the security headers configured in `next.config.ts`.
 6. Keep `wathshalaamarasinghe.com` as the canonical production domain.
 
@@ -75,6 +84,6 @@ Do not upload `.env.local`, Gmail credentials, Playwright reports or `.next` out
 
 ## Performance behavior
 
-The decorative MP4 remains part of the desktop design. It is homepage-only and is requested 2.5 seconds after the first pointer, keyboard or scroll interaction, with a ten-second fallback for an idle desktop. It is not requested when the viewport is mobile-sized, reduced motion is requested or the browser is in data-saving mode. A static gradient is always available as the fallback. Playback pauses when the tab is hidden.
+The homepage starts with a static gradient. On desktop, visitors who allow motion can play and stop the decorative MP4 with a button. Playback pauses when the tab is hidden and stops if the viewport becomes mobile-sized or reduced motion is enabled. Project cards use still images. The LUMI walkthrough remains on its case-study page with user-controlled playback.
 
 The preloader does not depend on GSAP, does not intercept pointer input, skips fast/repeat loads and is capped at 800 ms on slow first loads.

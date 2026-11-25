@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { siteConfig } from "@/lib/site-config";
-import {
-  CONTACT_BODY_LIMIT_BYTES,
-  escapeHtml,
-  validateContactSubmission,
-} from "@/lib/contact";
+import { escapeHtml, validateContactSubmission } from "@/lib/contact";
+import { readContactBody, reserveContactAttempt } from "@/lib/contact-request";
 
 export const runtime = "nodejs";
 
@@ -43,39 +40,24 @@ export async function POST(req: NextRequest) {
     return jsonResponse({ error: "Request origin is not allowed." }, 403);
   }
 
-  const contentType = req.headers.get("content-type")?.toLowerCase() ?? "";
-  if (!contentType.startsWith("application/json")) {
+  const contentType = req.headers
+    .get("content-type")
+    ?.split(";")[0]
+    ?.trim()
+    .toLowerCase();
+  if (contentType !== "application/json") {
     return jsonResponse(
       { error: "Content-Type must be application/json." },
       415
     );
   }
 
-  const contentLength = req.headers.get("content-length");
-  if (contentLength) {
-    const declaredBytes = Number(contentLength);
-    if (!Number.isFinite(declaredBytes) || declaredBytes < 0) {
-      return jsonResponse({ error: "Invalid Content-Length header." }, 400);
-    }
-    if (declaredBytes > CONTACT_BODY_LIMIT_BYTES) {
-      return jsonResponse({ error: "Request body is too large." }, 413);
-    }
-  }
-
-  let rawBody: string;
-  try {
-    rawBody = await req.text();
-  } catch {
-    return jsonResponse({ error: "Unable to read request body." }, 400);
-  }
-
-  if (new TextEncoder().encode(rawBody).byteLength > CONTACT_BODY_LIMIT_BYTES) {
-    return jsonResponse({ error: "Request body is too large." }, 413);
-  }
+  const body = await readContactBody(req);
+  if (!body.ok) return jsonResponse({ error: body.error }, body.status);
 
   let requestBody: unknown;
   try {
-    requestBody = JSON.parse(rawBody) as unknown;
+    requestBody = JSON.parse(body.text) as unknown;
   } catch {
     return jsonResponse({ error: "Request body must be valid JSON." }, 400);
   }
@@ -90,13 +72,27 @@ export async function POST(req: NextRequest) {
   const gmailUser = process.env.GMAIL_USER;
   const gmailPass = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, "");
   const contactToAddress =
-    process.env.CONTACT_TO_ADDRESS?.trim() ?? DEFAULT_CONTACT_TO_ADDRESS;
+    process.env.CONTACT_TO_ADDRESS?.trim() || DEFAULT_CONTACT_TO_ADDRESS;
 
   if (!gmailUser || !gmailPass) {
     console.error("Contact email service is missing required credentials.");
     return jsonResponse(
       { error: "Email service is temporarily unavailable." },
       503
+    );
+  }
+
+  const retryAfter = reserveContactAttempt(req.headers);
+  if (retryAfter > 0) {
+    return NextResponse.json(
+      { error: "Too many messages sent recently. Please try again later." },
+      {
+        status: 429,
+        headers: {
+          "Cache-Control": "no-store",
+          "Retry-After": String(retryAfter),
+        },
+      }
     );
   }
 
@@ -139,8 +135,6 @@ export async function POST(req: NextRequest) {
     if (!Array.isArray(delivery.accepted) || delivery.accepted.length === 0) {
       throw new Error("RecipientNotAccepted");
     }
-
-    console.info(`Contact email accepted by Gmail (${delivery.messageId}).`);
 
     return jsonResponse({ success: true });
   } catch (error: unknown) {

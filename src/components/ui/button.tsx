@@ -20,13 +20,13 @@ type Props = ButtonProps | AnchorProps;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-[--color-accent-primary] text-[--color-text-primary] hover:brightness-110",
+    "bg-[var(--color-accent-primary)] text-[var(--color-text-primary)] hover:brightness-110",
   secondary:
-    "bg-[--color-raised] text-[--color-text-primary] border-2 border-[--color-divider] hover:border-[--color-accent-primary] hover:text-[--color-accent-primary]",
+    "bg-[--color-raised] text-[--color-text-primary] border-2 border-[--color-divider] hover:border-[--color-accent-primary] hover:text-[var(--color-accent-text)]",
   ghost:
     "text-[--color-text-secondary] hover:text-[--color-text-primary] hover:bg-[--color-raised]",
   outline:
-    "border-2 border-[--color-accent-primary] text-[--color-accent-primary] hover:bg-[--color-accent-primary-dim]",
+    "border-2 border-[--color-accent-primary] text-[var(--color-accent-text)] hover:bg-[--color-accent-primary-dim]",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -36,7 +36,7 @@ const sizes: Record<ButtonSize, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded-[--radius-md] font-medium leading-none transition-all duration-[--duration-fast] cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-[--color-accent-primary] focus-visible:outline-offset-2 disabled:opacity-40 disabled:pointer-events-none";
+  "inline-flex items-center justify-center rounded-[--radius-md] font-medium leading-none transition-all duration-[--duration-fast] cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-[var(--color-focus-ring)] focus-visible:outline-offset-2 disabled:opacity-40 disabled:pointer-events-none";
 
 export function Button({
   variant = "primary",

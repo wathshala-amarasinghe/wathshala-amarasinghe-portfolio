@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/motion/reveal";
 import { ContactForm } from "@/components/ui/contact-form";
+import { profile } from "@/data/profile";
 import { Mail } from "lucide-react";
 
 export function ContactSection() {
@@ -25,6 +26,12 @@ export function ContactSection() {
           <div className="flex w-full justify-center">
             <ContactForm />
           </div>
+          <a
+            className="mt-6 inline-flex min-h-10 items-center underline underline-offset-4"
+            href={`mailto:${profile.email}`}
+          >
+            Email me directly
+          </a>
         </Reveal>
       </Container>
     </section>

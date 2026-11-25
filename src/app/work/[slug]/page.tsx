@@ -8,9 +8,11 @@ import { caseStudies } from "@/data/case-studies";
 import { siteConfig } from "@/lib/site-config";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({
-    slug: p.slug,
-  }));
+  return projects
+    .filter((p) => p.status === "published")
+    .map((p) => ({
+      slug: p.slug,
+    }));
 }
 
 export async function generateMetadata({
@@ -24,7 +26,6 @@ export async function generateMetadata({
   if (!project || project.status === "draft") {
     return {
       title: "Case Study Not Found",
-      robots: { index: false, follow: false },
     };
   }
 

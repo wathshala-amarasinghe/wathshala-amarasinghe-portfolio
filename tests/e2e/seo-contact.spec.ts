@@ -65,7 +65,7 @@ test.describe("SEO metadata", () => {
 
     expect(person).toMatchObject({
       name: "Wathshala Amarasinghe",
-      url: productionUrl,
+      url: `${productionUrl}/`,
       jobTitle: "UI/UX Product Designer + Engineer",
     });
     expect(person?.sameAs).toEqual(
@@ -76,7 +76,7 @@ test.describe("SEO metadata", () => {
       ])
     );
     expect(profilePage).toMatchObject({
-      url: productionUrl,
+      url: `${productionUrl}/`,
       mainEntity: { "@id": `${productionUrl}/#person` },
     });
   });
@@ -158,16 +158,14 @@ test.describe("SEO metadata", () => {
       (match) => match[1]
     );
     expect(locations).toEqual([
-      productionUrl,
+      `${productionUrl}/`,
       `${productionUrl}/work/kavon`,
       `${productionUrl}/work/lumi`,
       `${productionUrl}/work/smart-web-pos`,
       `${productionUrl}/work/nation-spice`,
       `${productionUrl}/work/lmt-go`,
     ]);
-    expect(xml.match(/<lastmod>2026-11-13<\/lastmod>/g)).toHaveLength(
-      locations.length
-    );
+    expect(xml.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g)).toHaveLength(1);
   });
 });
 

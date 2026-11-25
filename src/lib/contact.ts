@@ -16,7 +16,8 @@ type ContactValidationResult =
   | { success: true; data: ContactSubmission }
   | { success: false; error: string };
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_PATTERN =
+  /^[a-z\d.!#$%&'*+/=?^_`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i;
 const CONTROL_CHARACTERS = /[\u0000-\u001f\u007f]/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {

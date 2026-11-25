@@ -7,17 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((project) => project.status === "published")
     .map((project) => ({
       url: `${siteConfig.url}/work/${project.slug}`,
-      lastModified: siteConfig.contentUpdatedAt,
-      changeFrequency: "yearly",
-      priority: 0.8,
     }));
 
   return [
     {
-      url: siteConfig.url,
+      url: new URL("/", siteConfig.url).href,
       lastModified: siteConfig.contentUpdatedAt,
-      changeFrequency: "monthly",
-      priority: 1,
     },
     ...projectPages,
   ];

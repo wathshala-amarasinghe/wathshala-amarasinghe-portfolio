@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   description:
     "UI/UX Engineer based in Sri Lanka. Crafting purposeful digital experiences through thoughtful research, interaction design, and visual craft.",
   url: "https://wathshalaamarasinghe.com",
-  contentUpdatedAt: "2026-11-13",
+  contentUpdatedAt: "2026-11-25",
   locale: "en",
   themeColor: "#08090D",
   twitterHandle: null,

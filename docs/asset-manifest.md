@@ -12,7 +12,7 @@ This document records the assets that currently exist under `public`. Paths are 
 
 - `/videos/background/Wathshala-Portfolio-Wave-Background.mp4` — 2.64 MB decorative background video.
 
-The site requests this video only on the homepage and never on mobile, reduced-motion or data-saving connections. Desktop loading waits until 2.5 seconds after interaction or a ten-second idle fallback so primary content and the profile image receive priority. The CSS gradient in `AmbientBackground` is the permanent fallback.
+The site requests this video only when a desktop visitor plays background motion on the homepage. The control follows the visitor’s reduced-motion preference. The CSS gradient in `AmbientBackground` is the default.
 
 ## Public project assets
 
@@ -30,7 +30,7 @@ Original Figma board exports are stored in `/images/projects/ui_ux/lmt-go/`:
 - `project-overview.png` — project brief, scope, evidence and validation boundaries.
 
 Source: [LMT GO Figma project](https://www.figma.com/design/HB65y3WTI8IODJDcGGZ79S/LMT-GO--Lanka-Metro-Transit---Redesign-Project?node-id=0-1).
-The three supplied showcase images form the homepage slider and lead the case-study gallery. The original component boards follow them on the details page.
+The first showcase image is the homepage cover. All three showcase images lead the case-study gallery, followed by the original component boards.
 Boards retain their original proportions and can be opened at full size from the case study. Next.js serves optimized display versions. The project is an independent redesign concept with demonstration data and passenger validation pending.
 
 ### LUMI

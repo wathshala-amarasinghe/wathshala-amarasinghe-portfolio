@@ -6,7 +6,7 @@
 
   --color-text-primary: #e8d4c3;
   --color-text-secondary: #a9998e;
-  --color-text-muted: #786b63;
+  --color-text-muted: #9e8b80;
 
   --color-accent-primary: #6b191f;
   --color-accent-secondary: #8c2731;
@@ -14,10 +14,14 @@
   --color-accent-secondary-dim: rgba(140, 39, 49, 0.1);
 
   --color-scrim: rgba(8, 9, 13, 0.8);
-  --color-focus-ring: rgba(107, 25, 31, 0.6);
+  --color-accent-text: #e07e85;
+  --color-focus-ring: #e07e85;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-syne), var(--font-sans);
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: var(--font-sans);
   --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
 
   --text-xs: clamp(0.6875rem, 0.65rem + 0.2vw, 0.75rem);

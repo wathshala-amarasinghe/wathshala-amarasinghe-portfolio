@@ -21,7 +21,7 @@ export function AboutSection() {
             <p>
               I am a UI/UX Engineer and Software Engineering graduate with
               experience designing and developing
-              <span className="px-1 text-[#6B191F] italic">
+              <span className="px-1 text-[var(--color-accent-text)] italic">
                 healthcare, financial, property, and corporate
               </span>{" "}
               digital products. I specialize in translating requirements into
@@ -30,7 +30,7 @@ export function AboutSection() {
             </p>
             <p>
               By combining{" "}
-              <span className="px-1 text-[#6B191F] italic">
+              <span className="px-1 text-[var(--color-accent-text)] italic">
                 user-centred design with frontend development
               </span>{" "}
               knowledge, I strive to create accessible, practical, and
